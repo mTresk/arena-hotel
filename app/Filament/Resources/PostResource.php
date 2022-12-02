@@ -16,6 +16,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
+use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 
 class PostResource extends Resource
@@ -71,12 +73,15 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title'),
-                Tables\Columns\TextColumn::make('content'),
-                Tables\Columns\TextColumn::make('created_at')
-                    ->dateTime(),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime(),
+                SpatieMediaLibraryImageColumn::make('news')
+                    ->label('Изображение')
+                    ->collection('news'),
+                TextColumn::make('title')
+                    ->label('Заголовок'),
+                TextColumn::make('created_at')
+                    ->label('Дата создания')
+                    ->dateTime()
+                    ->sortable(),
             ])
             ->filters([
                 //

@@ -17,7 +17,7 @@ class HomeController extends Controller
             ->orWhere('category_id', 3)
             ->get();
 
-        $news = Post::paginate(4);
+        $news = Post::published()->paginate(4);
 
         return view('home', compact('standardRooms', 'luxuryRooms', 'news'));
     }

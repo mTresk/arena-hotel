@@ -70,7 +70,7 @@ class UserResource extends Resource
             ->columns([
                 ImageColumn::make('avatar')
                     ->label('Аватар')
-                    ->rounded(),
+                    ->circular(),
                 Tables\Columns\TextColumn::make('name')->label('Имя'),
                 Tables\Columns\TextColumn::make('email')->label('Email'),
                 Tables\Columns\BooleanColumn::make('is_admin')->label('Администратор'),

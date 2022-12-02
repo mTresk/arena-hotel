@@ -20,7 +20,7 @@ class Post extends Model implements HasMedia
 
     public function scopePublished(Builder $query): Builder
     {
-        return $query->whereNotNull('published_at');
+        return $query->where('published_at', '<=', now());
     }
 
     public function scopeDraft(Builder $query): Builder

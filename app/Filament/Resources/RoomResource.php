@@ -100,13 +100,16 @@ class RoomResource extends Resource
     {
         return $table
             ->columns([
-//                SpatieMediaLibraryImageColumn::make('header')
-//                    ->label('Изображение'),
+                SpatieMediaLibraryImageColumn::make('thumb')
+                    ->collection('thumbs')
+                    ->label('Изображение'),
                 TextColumn::make('name')
                     ->label('Название номера'),
                 TextColumn::make('category.name')
-                    ->label('Категория номера'),
+                    ->label('Категория номера')
+                    ->sortable(),
                 TextColumn::make('price')
+                    ->sortable()
                     ->label('Цена'),
             ])
             ->filters([
@@ -117,7 +120,7 @@ class RoomResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ]);
+            ])->defaultSort('category.name');
     }
 
     public static function getRelations(): array
