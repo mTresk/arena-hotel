@@ -1,15 +1,11 @@
 @extends('layout.app')
 
-@section('title')
-    {{'Главная'}}
-@endsection
-
 @section('content')
     <main class="page">
         <div data-prlx-parent class="hero">
             <picture>
-                <source srcset="img/hero-bg.webp" type="image/webp">
-                <img data-prlx data-direction="0" src="img/hero-bg.jpg" alt="Стадион геолог" class="hero__background"/></picture>
+                <source srcset="{{ asset('img/hero-bg.webp') }}" type="image/webp">
+                <img data-prlx data-direction="0" src="{{ asset('img/hero-bg.jpg') }}" alt="Стадион геолог" class="hero__background"/></picture>
             <div class="hero__container">
                 <div class="hero__body">
                     <div class="hero__panel panel" id="panel"></div>
@@ -84,38 +80,27 @@
                         <h2 class="rooms-block__title">Номера класса стандарт</h2>
                         <div class="rooms-block__slider rooms-block__slider--top swiper">
                             <div class="rooms-block__wrapper swiper-wrapper">
-                                <a href="room.html" class="rooms-block__card swiper-slide room-card">
-                                    <picture>
-                                        <source srcset="img/rooms-slider/1.webp" type="image/webp">
-                                        <img src="img/rooms-slider/1.jpg" alt="" class="room-card__image room-card__image--front"/></picture>
-                                    <picture>
-                                        <source srcset="img/rooms-slider/2.webp" type="image/webp">
-                                        <img src="img/rooms-slider/2.jpg" alt="" class="room-card__image room-card__image--back"/></picture>
-                                    <div class="room-card__content">
-                                        <h3 class="room-card__title">Номер «Стандарт»</h3>
-                                        <div class="room-card__offer">
-                                            <div class="room-card__price">2500₽ за ночь</div>
-                                            <div class="room-card__conditions">Одноместное размещение</div>
-                                        </div>
-                                    </div>
-                                </a>
-                                <a href="room.html" class="rooms-block__card swiper-slide room-card">
-                                    <picture>
-                                        <source srcset="img/rooms-slider/2.webp" type="image/webp">
-                                        <img src="img/rooms-slider/2.jpg" alt="" class="room-card__image room-card__image--front"/></picture>
-                                    <picture>
-                                        <source srcset="img/rooms-slider/1.webp" type="image/webp">
-                                        <img src="img/rooms-slider/1.jpg" alt="" class="room-card__image room-card__image--back"/></picture>
-                                    <div class="room-card__content">
-                                        <h3 class="room-card__title">Номер «Стандарт»</h3>
-                                        <div class="room-card__offer">
-                                            <div class="room-card__price">2800₽ за ночь</div>
-                                            <div class="room-card__conditions">
-                                                Двухместное размещение с двумя доп. кроватями
+                                @foreach($standardRooms as $room)
+                                    <a href="{{ route('room', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
+                                        <picture>
+                                            @isset($room->getMedia('thumbs')[0])
+                                                <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">
+                                                <img src="{{ $room->getMedia('thumbs')[0]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--front"/></picture>
+                                        @endisset
+                                        <picture>
+                                            @isset($room->getMedia('thumbs')[1])
+                                                <source srcset="{{ $room->getMedia('thumbs')[1]->getUrl('thumbWebp') }}" type="image/webp">
+                                                <img src="{{ $room->getMedia('thumbs')[1]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--back"/></picture>
+                                        @endisset
+                                        <div class="room-card__content">
+                                            <h3 class="room-card__title">{{ $room->name }}</h3>
+                                            <div class="room-card__offer">
+                                                <div class="room-card__price">{{ $room->price }}</div>
+                                                <div class="room-card__conditions">{{ $room->description }}</div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
                             </div>
                             <nav class="rooms-block__navigation">
                                 <button type="button" class="rooms-block__button rooms-block__button--prev slider-button">
@@ -166,36 +151,27 @@
                         <h2 class="rooms-block__title">Номера класса Полу-люкс и люкс</h2>
                         <div class="rooms-block__slider rooms-block__slider--bottom swiper">
                             <div class="rooms-block__wrapper swiper-wrapper">
-                                <a href="room.html" class="rooms-block__card swiper-slide room-card">
-                                    <picture>
-                                        <source srcset="img/rooms-slider/3.webp" type="image/webp">
-                                        <img src="img/rooms-slider/3.jpg" alt="" class="room-card__image room-card__image--front"/></picture>
-                                    <picture>
-                                        <source srcset="img/rooms-slider/4.webp" type="image/webp">
-                                        <img src="img/rooms-slider/4.jpg" alt="" class="room-card__image room-card__image--back"/></picture>
-                                    <div class="room-card__content">
-                                        <h3 class="room-card__title">Номер «Полу-люкс»</h3>
-                                        <div class="room-card__offer">
-                                            <div class="room-card__price">4500₽ за ночь</div>
-                                            <div class="room-card__conditions">Двухместное размещение</div>
+                                @foreach($luxuryRooms as $room)
+                                    <a href="{{ route('room', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
+                                        <picture>
+                                            @isset($room->getMedia('thumbs')[0])
+                                                <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">
+                                                <img src="{{ $room->getMedia('thumbs')[0]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--front"/></picture>
+                                        @endisset
+                                        <picture>
+                                            @isset($room->getMedia('thumbs')[1])
+                                                <source srcset="{{ $room->getMedia('thumbs')[1]->getUrl('thumbWebp') }}" type="image/webp">
+                                                <img src="{{ $room->getMedia('thumbs')[1]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--back"/></picture>
+                                        @endisset
+                                        <div class="room-card__content">
+                                            <h3 class="room-card__title">{{ $room->name }}</h3>
+                                            <div class="room-card__offer">
+                                                <div class="room-card__price">{{ $room->price }}</div>
+                                                <div class="room-card__conditions">{{ $room->description }}</div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </a>
-                                <a href="room.html" class="rooms-block__card swiper-slide room-card">
-                                    <picture>
-                                        <source srcset="img/rooms-slider/4.webp" type="image/webp">
-                                        <img src="img/rooms-slider/4.jpg" alt="" class="room-card__image room-card__image--front"/></picture>
-                                    <picture>
-                                        <source srcset="img/rooms-slider/3.webp" type="image/webp">
-                                        <img src="img/rooms-slider/3.jpg" alt="" class="room-card__image room-card__image--back"/></picture>
-                                    <div class="room-card__content">
-                                        <h3 class="room-card__title">Номер «люкс»</h3>
-                                        <div class="room-card__offer">
-                                            <div class="room-card__price">7000₽ за ночь</div>
-                                            <div class="room-card__conditions">Двухместное размещение</div>
-                                        </div>
-                                    </div>
-                                </a>
+                                    </a>
+                                @endforeach
                             </div>
                             <nav class="rooms-block__navigation">
                                 <button type="button" class="rooms-block__button rooms-block__button--prev-bottom slider-button">

@@ -15,7 +15,9 @@
         "jeffgreco13/filament-breezy": "^1.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
-        "laravel/tinker": "^2.7"
+        "laravel/tinker": "^2.7",
+        "symfony/http-client": "^6.2",
+        "symfony/mailgun-mailer": "^6.2"
     },
     "require-dev": {
         "doctrine/dbal": "^3.5",

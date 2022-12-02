@@ -17,4 +17,9 @@ class Comment extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function rating(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Rating::class, 'rateable_id');
+    }
 }

@@ -1,210 +1,233 @@
 .contacts {
-	@include adaptiveValue('margin-top', -10, -30);
+    @include adaptiveValue('margin-top', -10, -30);
 
-	&__container {
-		@media (max-width: $mobile) {
-			padding: 0;
-		}
-	}
-	// .contacts__body
-	&__body {
-		display: flex;
-		gap: rem(15);
+    &__container {
+        @media (max-width: $mobile) {
+            padding: 0;
+        }
+    }
 
-		@media (max-width: $tablet) {
-			flex-direction: column;
-		}
-	}
-	// .contacts__items
-	&__items {
-		flex: 0 1 rem(415);
-		display: grid;
-		grid-template-columns: 1fr;
+    // .contacts__body
+    &__body {
+        display: flex;
+        gap: rem(15);
 
-		@include adaptiveValue('grid-gap', 15, 10);
+        @media (max-width: $tablet) {
+            flex-direction: column;
+        }
+    }
 
-		@media (max-width: $tablet) {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			margin: 0 auto;
-			width: 100%;
-		}
+    // .contacts__items
+    &__items {
+        flex: 0 1 rem(415);
+        display: grid;
+        grid-template-columns: 1fr;
 
-		@media (max-width: $mobile) {
-			padding-left: rem(15);
-			padding-right: rem(15);
-		}
-	}
+        @include adaptiveValue('grid-gap', 15, 10);
+
+        @media (max-width: $tablet) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (max-width: $mobile) {
+            padding-left: rem(15);
+            padding-right: rem(15);
+        }
+    }
 }
+
 .contacts-item {
-	display: flex;
-	align-items: center;
-	padding: rem(10);
-	background-color: $whiteColor;
-	border-radius: rem(5);
+    display: flex;
+    align-items: center;
+    padding: rem(10);
+    background-color: $whiteColor;
+    border-radius: rem(5);
 
-	@media (max-width: $tablet) {
-		max-width: rem(700);
-		width: 100%;
-	}
-	// .contacts-item__icon
-	&__icon {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: $accentColor;
-		border-radius: rem(6);
-		flex: 0 0 rem(60);
+    @media (max-width: $tablet) {
+        max-width: rem(700);
+        width: 100%;
+    }
+    // .contacts-item__icon
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $accentColor;
+        border-radius: rem(6);
+        flex: 0 0 rem(60);
 
-		svg {
-			@include adaptiveValue('max-width', 30, 20);
-		}
+        svg {
+            @include adaptiveValue('max-width', 30, 20);
+        }
 
-		@include adaptiveValue('width', 60, 50);
-		@include adaptiveValue('height', 60, 50);
-		@include adaptiveValue('flex-basis', 60, 50);
-	}
-	// .contacts-item__content
-	&__content {
-		margin-left: rem(10);
-	}
-	// .contacts-item__title
-	&__title {
-		font-weight: 700;
-		line-height: 120%;
-		text-transform: uppercase;
-		margin-bottom: rem(5);
+        @include adaptiveValue('width', 60, 50);
+        @include adaptiveValue('height', 60, 50);
+        @include adaptiveValue('flex-basis', 60, 50);
+    }
 
-		@include adaptiveValue('font-size', 14, 11);
-	}
-	// .contacts-item__data
-	&__data {
-		font-weight: 300;
-		line-height: 120%;
+    // .contacts-item__content
+    &__content {
+        margin-left: rem(10);
+    }
 
-		@include adaptiveValue('font-size', 13, 11);
+    // .contacts-item__title
+    &__title {
+        font-weight: 700;
+        line-height: 120%;
+        text-transform: uppercase;
+        margin-bottom: rem(5);
 
-		&:not(:last-child) {
-			margin-bottom: rem(5);
-		}
-	}
+        @include adaptiveValue('font-size', 14, 11);
+    }
 
-	a {
-		transition: color 0.3s ease-in-out;
-		@media (any-hover: hover) {
-			&:hover {
-				color: $accentColor;
-			}
-		}
-	}
+    // .contacts-item__data
+    &__data {
+        font-weight: 300;
+        line-height: 120%;
+
+        @include adaptiveValue('font-size', 13, 11);
+
+        &:not(:last-child) {
+            margin-bottom: rem(5);
+        }
+    }
+
+    a {
+        transition: color 0.3s ease-in-out;
+        @media (any-hover: hover) {
+            &:hover {
+                color: $accentColor;
+            }
+        }
+    }
 }
+
 .contacts-form {
-	flex: 0 1 rem(852);
-	padding: rem(20) rem(30);
-	background-color: $whiteColor;
+    position: relative;
+    flex: 0 1 rem(852);
+    padding: rem(20) rem(30);
+    background-color: $whiteColor;
 
-	@media (max-width: $tablet) {
-		flex: 1 1 auto;
-	}
+    @media (max-width: $tablet) {
+        flex: 1 1 auto;
+    }
 
-	@media (max-width: $mobile) {
-		padding-left: rem(15);
-		padding-right: rem(15);
-		padding-bottom: rem(40);
-	}
-	// .contacts-form__title
-	&__title {
-		position: relative;
-		font-weight: 700;
-		line-height: 120%;
-		text-transform: uppercase;
-		padding-bottom: rem(10);
+    @media (max-width: $mobile) {
+        padding-left: rem(15);
+        padding-right: rem(15);
+        padding-bottom: rem(40);
+    }
+    // .contacts-form__title
+    &__title {
+        position: relative;
+        font-weight: 700;
+        line-height: 120%;
+        text-transform: uppercase;
+        padding-bottom: rem(10);
 
-		@include adaptiveValue('font-size', 20, 16);
-		@include adaptiveValue('margin-bottom', 25, 20);
+        @include adaptiveValue('font-size', 20, 16);
+        @include adaptiveValue('margin-bottom', 25, 20);
 
-		&::before {
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			content: '';
-			width: rem(50);
-			height: rem(1);
-			background-color: $accentColor;
-		}
-	}
-	// .contacts-form__input
-	&__input {
-		width: 100%;
-		&:not(:last-child) {
-			margin-bottom: rem(10);
-		}
-		input {
-			width: 100%;
-			line-height: 120%;
-			padding-top: rem(20);
-			padding-bottom: rem(20);
-			border: 1px solid $greyColor;
-			border-radius: rem(4);
-			outline: none;
+        &::before {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            content: '';
+            width: rem(50);
+            height: rem(1);
+            background-color: $accentColor;
+        }
+    }
 
-			@include adaptiveValue('padding-left', 20, 15);
-			@include adaptiveValue('padding-right', 20, 15);
-			@include adaptiveValue('font-size', 14, 12);
+    // .contacts-form__input
+    &__input {
+        width: 100%;
 
-			&::placeholder {
-				font-weight: 300;
-				line-height: 120%;
+        &:not(:last-child) {
+            margin-bottom: rem(10);
+        }
 
-				@include adaptiveValue('font-size', 14, 12);
-			}
-		}
+        input {
+            width: 100%;
+            line-height: 120%;
+            padding-top: rem(20);
+            padding-bottom: rem(20);
+            border: 1px solid $greyColor;
+            border-radius: rem(4);
+            outline: none;
 
-		textarea {
-			width: 100%;
-			line-height: 120%;
-			padding-top: rem(20);
-			padding-bottom: rem(20);
-			border: 1px solid $greyColor;
-			border-radius: rem(4);
-			outline: none;
-			resize: vertical;
+            @include adaptiveValue('padding-left', 20, 15);
+            @include adaptiveValue('padding-right', 20, 15);
+            @include adaptiveValue('font-size', 14, 12);
 
-			@include adaptiveValue('font-size', 14, 12);
-			@include adaptiveValue('padding-left', 20, 15);
-			@include adaptiveValue('padding-right', 20, 15);
+            &::placeholder {
+                font-weight: 300;
+                line-height: 120%;
 
-			&::placeholder {
-				font-weight: 300;
-				line-height: 120%;
+                @include adaptiveValue('font-size', 14, 12);
+            }
+        }
 
-				@include adaptiveValue('font-size', 14, 12);
-			}
-		}
-	}
-	// .contacts-form__button
-	&__button {
-		margin-top: rem(20);
-		display: flex;
-		justify-content: center;
-		width: 100%;
-		line-height: 120%;
-		font-weight: 400;
-		text-align: center;
-		text-transform: uppercase;
-		padding: rem(12) rem(20);
-		background-color: $accentColor;
-		color: $whiteColor;
-		border-radius: rem(4);
-		transition: background-color 0.3s ease-in-out;
+        textarea {
+            width: 100%;
+            line-height: 120%;
+            padding-top: rem(20);
+            padding-bottom: rem(20);
+            border: 1px solid $greyColor;
+            border-radius: rem(4);
+            outline: none;
+            resize: vertical;
 
-		@include adaptiveValue('font-size', 14, 12);
+            @include adaptiveValue('font-size', 14, 12);
+            @include adaptiveValue('padding-left', 20, 15);
+            @include adaptiveValue('padding-right', 20, 15);
 
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: $hoverColor;
-			}
-		}
-	}
+            &::placeholder {
+                font-weight: 300;
+                line-height: 120%;
+
+                @include adaptiveValue('font-size', 14, 12);
+            }
+        }
+    }
+
+    // .contacts-form__button
+    &__button {
+        margin-top: rem(20);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        line-height: 120%;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        padding: rem(12) rem(20);
+        background-color: $accentColor;
+        color: $whiteColor;
+        border-radius: rem(4);
+        transition: background-color 0.3s ease-in-out;
+
+        @include adaptiveValue('font-size', 14, 12);
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $hoverColor;
+            }
+        }
+    }
+
+    &__error {
+        margin-bottom: rem(7);
+        font-weight: 300;
+        font-size: 13px;
+        color: red;
+    }
+
+    &__success {
+        color: darkgreen;
+    }
 }

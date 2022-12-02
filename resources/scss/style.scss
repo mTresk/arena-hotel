@@ -48,92 +48,91 @@ $responsiveType: 1;
 // Стили тега BODY ============================================================================================================================================================================================================================================================================================================================================================================================
 
 body {
-	// Скролл заблокирован
-	.lock & {
-		overflow: hidden;
-		touch-action: none;
-		overscroll-behavior: none;
-	}
-	// Сайт загружен
-	.loaded & {
-	}
+    // Скролл заблокирован
+    .lock & {
+        overflow: hidden;
+        touch-action: none;
+        overscroll-behavior: none;
+    }
 }
 
 // Оболочка wrapper ============================================================================================================================================================================================================================================================================================================================================================================================================================================
 .wrapper {
-	min-height: 100%;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-	// Прижимаем footer
-	> main {
-		flex: 1 1 auto;
-	}
-	// Фикс для слайдеров
-	> * {
-		min-width: 0;
-	}
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    // Прижимаем footer
+    > main {
+        flex: 1 1 auto;
+    }
+
+    // Фикс для слайдеров
+    > * {
+        min-width: 0;
+    }
 }
 
 .page {
-	.sticky & {
-		padding-top: rem(70);
+    .sticky & {
+        padding-top: rem(70);
 
-		@media (max-width: em(850)) {
-			padding-top: 0;
-		}
-	}
+        @media (max-width: em(850)) {
+            padding-top: 0;
+        }
+    }
 }
+
 // Ограничивающий контейнер ======================================================================================================================================================================================================================
 
 /*
-(i) Стили будут применяться ко 
+(i) Стили будут применяться ко
 всем классам содержащим *__container
 Например header__container, main__container и т.д.
 Снипет (HTML): cnt
 */
 @if ($responsiveType==1) {
-	// Отзывчивая
-	[class*='__container'] {
-		@if ($maxWidthContainer>0) {
-			max-width: rem($maxWidthContainer);
-			box-sizing: content-box;
-			margin: 0 auto;
-		}
-		@if ($containerPadding>0) {
-			@if ($maxWidthContainer>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			} @else {
-				@include adaptiveValue('padding-left', math.div($containerPadding, 2), 15);
-				@include adaptiveValue('padding-right', math.div($containerPadding, 2), 15);
-			}
-		}
-	}
+    // Отзывчивая
+    [class*='__container'] {
+        @if ($maxWidthContainer>0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+            margin: 0 auto;
+        }
+        @if ($containerPadding>0) {
+            @if ($maxWidthContainer>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            } @else {
+                @include adaptiveValue('padding-left', math.div($containerPadding, 2), 15);
+                @include adaptiveValue('padding-right', math.div($containerPadding, 2), 15);
+            }
+        }
+    }
 } @else {
-	// По брейк-поинтам
-	[class*='__container'] {
-		margin: 0 auto;
-		@if ($maxWidthContainer>0) {
-			max-width: rem($maxWidthContainer);
-			box-sizing: content-box;
-		} @else {
-			@if ($containerPadding>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-		@media (max-width: $pc) {
-			max-width: rem(970);
-		}
-		@media (max-width: $tablet) {
-			max-width: rem(750);
-		}
-		@media (max-width: $mobile) {
-			max-width: none;
-			@if ($containerPadding>0 and $maxWidthContainer>0) {
-				padding: 0 rem(math.div($containerPadding, 2));
-			}
-		}
-	}
+    // По брейк-поинтам
+    [class*='__container'] {
+        margin: 0 auto;
+        @if ($maxWidthContainer>0) {
+            max-width: rem($maxWidthContainer);
+            box-sizing: content-box;
+        } @else {
+            @if ($containerPadding>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+        @media (max-width: $pc) {
+            max-width: rem(970);
+        }
+        @media (max-width: $tablet) {
+            max-width: rem(750);
+        }
+        @media (max-width: $mobile) {
+            max-width: none;
+            @if ($containerPadding>0 and $maxWidthContainer>0) {
+                padding: 0 rem(math.div($containerPadding, 2));
+            }
+        }
+    }
 }
 
 @import 'common';
@@ -145,3 +144,4 @@ body {
 @import 'news';
 @import 'service';
 @import 'contacts';
+@import 'base/popup';

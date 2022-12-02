@@ -35,13 +35,13 @@ class CommentResource extends Resource
                     ->label('Имя')
                     ->required()
                     ->maxLength(255),
+                TextInput::make('room_id')
+                    ->label('ID номера')
+                    ->required(),
                 Textarea::make('review')
                     ->label('Отзыв')
                     ->required()
                     ->maxLength(65535),
-                TextInput::make('room_id')
-                    ->label('Номер')
-                    ->required(),
                 Toggle::make('is_published')
                     ->label('Опубликован')
             ]);

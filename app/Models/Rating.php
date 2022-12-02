@@ -12,4 +12,9 @@ class Rating extends Model
     {
         return $this->morphTo();
     }
+
+    public function comment(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Comment::class);
+    }
 }

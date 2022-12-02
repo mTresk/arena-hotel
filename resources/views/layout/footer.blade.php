@@ -2,7 +2,7 @@
     <div class="footer__container">
         <div class="footer__body">
             <a href="/" class="footer__logo">
-                <img src="img/logo.svg" alt=""/>
+                <img src="{{ asset('img/logo.svg') }}" alt=""/>
             </a>
             <div class="footer__column footer__column--menu">
                 <h3 class="footer__title">Меню</h3>
@@ -107,8 +107,8 @@
                 <h3 class="footer__title">При поддержке</h3>
                 <div class="footer__partner-logo">
                     <picture>
-                        <source srcset="img/goverment.webp" type="image/webp">
-                        <img src="img/goverment.png" alt=""/></picture>
+                        <source srcset="{{ asset('img/government.webp') }}" type="image/webp">
+                        <img src="{{ asset('img/government.png') }}" alt=""/></picture>
                 </div>
                 <div class="footer__partner-text">Правительство Тюменской области</div>
             </div>

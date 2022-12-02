@@ -1,13 +1,9 @@
-/* Маски для полей (в работе) */
+import 'inputmask/dist/inputmask.min.js';
 
-// Подключение функционала "Чертогов Фрилансера"
-// Подключение списка активных модулей
-import { flsModules } from "../modules.js";
-
-// Подключение модуля
-import "inputmask/dist/inputmask.min.js";
-
-const inputMasks = document.querySelectorAll('input');
+const inputMasks = document.querySelectorAll('input[name="phone"]');
 if (inputMasks.length) {
-	flsModules.inputmask = Inputmask().mask(inputMasks);
+    let im = new Inputmask('+7 (999) 999 9999', {showMaskOnHover: false});
+    inputMasks.forEach((inputMask) => {
+        im.mask(inputMask);
+    });
 }

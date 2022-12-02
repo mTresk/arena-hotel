@@ -1,407 +1,445 @@
 .rooms {
-	@include adaptiveValue('margin-top', -10, -30);
-	// .rooms__body
-	&__body {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
+    @include adaptiveValue('margin-top', -10, -30);
+    // .rooms__body
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
 
-		@include adaptiveValue('grid-gap', 40, 20);
+        @include adaptiveValue('grid-gap', 40, 20);
 
-		@media (max-width: 991px) {
-			grid-template-columns: repeat(2, 1fr);
-		}
+        @media (max-width: 991px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
 
-		@media (max-width: $mobile) {
-			margin-bottom: rem(40);
-		}
+        @media (max-width: $mobile) {
+            margin-bottom: rem(40);
+        }
 
-		@media (max-width: 700px) {
-			grid-template-columns: 1fr;
-			justify-items: center;
-		}
-	}
+        @media (max-width: 700px) {
+            grid-template-columns: 1fr;
+            justify-items: center;
+        }
+    }
 }
+
 //========================================================================================================================================================
 .room {
-	@include adaptiveValue('margin-top', -10, -30);
+    @include adaptiveValue('margin-top', -10, -30);
 
-	&__container {
-		@media (max-width: $mobile) {
-			padding: 0;
-		}
-	}
-	// .room__body
-	&__body {
-		max-width: rem(1000);
-		margin: 0 auto;
-		background-color: $whiteColor;
-	}
-	// .room__slider
-	&__slider {
-		position: relative;
-		padding-top: rem(30);
-		margin-left: rem(20);
-		margin-right: rem(20);
-		margin-bottom: rem(20);
+    &__container {
+        @media (max-width: $mobile) {
+            padding: 0;
+        }
+    }
 
-		@media (max-width: $mobile) {
-			padding: 0;
-			margin-right: 0;
-			margin-left: 0;
-		}
-	}
-	// .room__slide
-	&__slide {
-		padding-bottom: 54%;
-	}
-	// .room__navigation
-	&__navigation {
-		position: absolute;
-		width: 100%;
-		top: 50%;
-		transform: translateY(-50%);
-		display: flex;
-		justify-content: space-between;
-	}
-	// .room__title
-	&__title {
-		font-weight: 600;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
+    // .room__body
+    &__body {
+        max-width: rem(1000);
+        margin: 0 auto;
+        background-color: $whiteColor;
+    }
 
-		@include adaptiveValue('font-size', 28, 18);
-		@include adaptiveValue('margin-bottom', 15, 10);
-	}
-	// .room__description
-	&__description {
-		font-weight: 300;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
-		padding-bottom: rem(25);
-		border-bottom: 1px solid $greyColor;
+    // .room__slider
+    &__slider {
+        position: relative;
+        padding-top: rem(30);
+        margin-left: rem(20);
+        margin-right: rem(20);
+        margin-bottom: rem(20);
 
-		@include adaptiveValue('font-size', 18, 13);
-		@include adaptiveValue('padding-bottom', 25, 20);
-	}
-	// .room__price
-	&__price {
-		font-weight: 700;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
+        @media (max-width: $mobile) {
+            padding: 0;
+            margin-right: 0;
+            margin-left: 0;
+        }
+    }
 
-		@include adaptiveValue('font-size', 32, 20);
-		@include adaptiveValue('margin-bottom', 25, 15);
-		@include adaptiveValue('margin-top', 25, 20);
-	}
-	// .room__booking
-	&__booking {
-		margin: 0 auto;
-		display: flex;
-		align-items: center;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
-		color: $whiteColor;
-		background-color: $accentColor;
-		padding: rem(10) rem(15);
-		border-radius: rem(4);
-		transition: background-color 0.3s ease-in-out;
+    // .room__slide
+    &__slide {
+        padding-bottom: 54%;
+    }
 
-		@include adaptiveValue('font-size', 20, 14);
-		@include adaptiveValue('margin-bottom', 40, 25);
+    // .room__navigation
+    &__navigation {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+    }
 
-		svg {
-			position: relative;
-			top: 1px;
-			margin-right: rem(10);
+    // .room__title
+    &__title {
+        font-weight: 600;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
 
-			@media (max-width: $mobile) {
-				top: 0;
-			}
-		}
+        @include adaptiveValue('font-size', 28, 18);
+        @include adaptiveValue('margin-bottom', 15, 10);
+    }
 
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: $hoverColor;
-			}
-		}
-	}
+    // .room__description
+    &__description {
+        font-weight: 300;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
+        padding-bottom: rem(25);
+        border-bottom: 1px solid $greyColor;
+
+        @include adaptiveValue('font-size', 18, 13);
+        @include adaptiveValue('padding-bottom', 25, 20);
+    }
+
+    // .room__price
+    &__price {
+        font-weight: 700;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
+
+        @include adaptiveValue('font-size', 32, 20);
+        @include adaptiveValue('margin-bottom', 25, 15);
+        @include adaptiveValue('margin-top', 25, 20);
+    }
+
+    // .room__booking
+    &__booking {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
+        color: $whiteColor;
+        background-color: $accentColor;
+        padding: rem(10) rem(15);
+        border-radius: rem(4);
+        transition: background-color 0.3s ease-in-out;
+
+        @include adaptiveValue('font-size', 20, 14);
+        @include adaptiveValue('margin-bottom', 40, 25);
+
+        svg {
+            position: relative;
+            top: 1px;
+            margin-right: rem(10);
+
+            @media (max-width: $mobile) {
+                top: 0;
+            }
+        }
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $hoverColor;
+            }
+        }
+    }
 }
 
 .thumbs {
-	padding-bottom: rem(40);
-	margin-left: rem(20);
-	margin-right: rem(20);
+    padding-bottom: rem(40);
+    margin-left: rem(20);
+    margin-right: rem(20);
 
-	@media (max-width: $mobile) {
-		display: none;
-	}
-	// .thumbs__wrapper
-	&__wrapper {
-		justify-content: center;
-	}
-	// .thumbs__slide
-	&__slide {
-		max-width: 125px;
-		padding-bottom: 8.5%;
-		cursor: pointer;
+    @media (max-width: $mobile) {
+        display: none;
+    }
+    // .thumbs__wrapper
+    &__wrapper {
+        justify-content: center;
+    }
 
-		&.swiper-slide-thumb-active {
-			border: 2px solid $accentColor;
-		}
-	}
+    // .thumbs__slide
+    &__slide {
+        max-width: 125px;
+        padding-bottom: 8.5%;
+        cursor: pointer;
+
+        &.swiper-slide-thumb-active {
+            border: 2px solid $accentColor;
+        }
+    }
 }
 
 .rating-block {
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	margin-top: rem(25);
-	padding-bottom: rem(25);
-	border-bottom: 1px solid $greyColor;
-	// .rating-block__rating
-	&__rating {
-		margin-bottom: rem(10);
-		pointer-events: none;
-	}
-	// .rating-block__total
-	&__total {
-		font-weight: 300;
-		font-size: rem(14);
-		line-height: 120%;
-		text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: rem(25);
+    padding-bottom: rem(25);
+    border-bottom: 1px solid $greyColor;
+    // .rating-block__rating
+    &__rating {
+        margin-bottom: rem(10);
+        pointer-events: none;
+    }
 
-		span {
-			font-weight: 400;
-		}
-	}
+    // .rating-block__total
+    &__total {
+        font-weight: 300;
+        font-size: rem(14);
+        line-height: 120%;
+        text-align: center;
+
+        span {
+            font-weight: 400;
+        }
+    }
 }
 
 .facilities-block {
-	background-color: $lightGreyColor;
-	padding-left: rem(20);
-	padding-right: rem(20);
+    background-color: $lightGreyColor;
+    padding-left: rem(20);
+    padding-right: rem(20);
 
-	@include adaptiveValue('padding-top', 25, 20);
-	@include adaptiveValue('padding-bottom', 30, 20);
+    @include adaptiveValue('padding-top', 25, 20);
+    @include adaptiveValue('padding-bottom', 30, 20);
 
-	@media (max-width: $mobile) {
-		padding-left: rem(15);
-		padding-right: rem(15);
-	}
+    @media (max-width: $mobile) {
+        padding-left: rem(15);
+        padding-right: rem(15);
+    }
 
-	// .facilities-block__title
-	&__title {
-		font-weight: 600;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
+    // .facilities-block__title
+    &__title {
+        font-weight: 600;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
 
-		@include adaptiveValue('font-size', 23, 16);
-		@include adaptiveValue('margin-bottom', 20, 15);
-	}
-	// .facilities-block__body
-	&__body {
-		display: grid;
-		grid-template-columns: repeat(4, auto);
-		grid-gap: rem(10);
+        @include adaptiveValue('font-size', 23, 16);
+        @include adaptiveValue('margin-bottom', 20, 15);
+    }
 
-		@media (max-width: 991px) {
-			grid-template-columns: repeat(3, auto);
-		}
+    // .facilities-block__body
+    &__body {
+        display: grid;
+        grid-template-columns: repeat(4, auto);
+        grid-gap: rem(10);
 
-		@media (max-width: 787px) {
-			grid-template-columns: repeat(2, auto);
-		}
-	}
-	// .facilities-block__item
-	&__item {
-		display: flex;
-		align-items: center;
-		line-height: 120%;
-		text-transform: uppercase;
+        @media (max-width: 991px) {
+            grid-template-columns: repeat(3, auto);
+        }
 
-		@include adaptiveValue('font-size', 15, 11);
+        @media (max-width: 787px) {
+            grid-template-columns: repeat(2, auto);
+        }
+    }
 
-		svg {
-			@include adaptiveValue('margin-right', 5, 3);
-			@include adaptiveValue('max-width', 18, 13);
-		}
-	}
+    // .facilities-block__item
+    &__item {
+        display: flex;
+        align-items: center;
+        line-height: 120%;
+        text-transform: uppercase;
+
+        @include adaptiveValue('font-size', 15, 11);
+
+        svg {
+            @include adaptiveValue('margin-right', 5, 3);
+            @include adaptiveValue('max-width', 18, 13);
+        }
+    }
 }
 
 .comments {
-	// .comments__title
-	&__title {
-		font-weight: 600;
-		line-height: 120%;
-		text-align: center;
-		text-transform: uppercase;
+    // .comments__title
+    &__title {
+        font-weight: 600;
+        line-height: 120%;
+        text-align: center;
+        text-transform: uppercase;
 
-		@include adaptiveValue('font-size', 23, 16);
-		@include adaptiveValue('margin-bottom', 20, 15);
-	}
-	// .comments__body
-	&__body {
-		background-color: $lightGreyColor;
-		padding-left: rem(20);
-		padding-right: rem(20);
+        @include adaptiveValue('font-size', 23, 16);
+        @include adaptiveValue('margin-bottom', 20, 15);
+    }
 
-		@include adaptiveValue('padding-top', 25, 20);
-		@include adaptiveValue('padding-bottom', 25, 20);
+    // .comments__body
+    &__body {
+        background-color: $lightGreyColor;
+        padding-left: rem(20);
+        padding-right: rem(20);
 
-		@media (max-width: $mobile) {
-			padding-left: rem(15);
-			padding-right: rem(15);
-		}
-	}
-	// .comments__item
-	&__item {
-		border: 1px solid $greyColor;
-		border-radius: rem(5);
+        @include adaptiveValue('padding-top', 25, 20);
 
-		&:not(:last-child) {
-			@include adaptiveValue('margin-bottom', 15, 10);
-		}
-	}
-	// .comments__header
-	&__header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		border-bottom: 1px solid $greyColor;
-	}
-	// .comments__name
-	&__name {
-		font-weight: 700;
-		line-height: 120%;
-		padding: rem(8) rem(15);
+        @media (max-width: $mobile) {
+            padding-left: rem(15);
+            padding-right: rem(15);
+        }
+    }
 
-		@include adaptiveValue('font-size', 15, 12);
-	}
-	// .comments__date
-	&__date {
-		font-weight: 300;
-		line-height: 120%;
-		text-align: right;
-		padding-right: rem(15);
+    // .comments__item
+    &__item {
+        border: 1px solid $greyColor;
+        border-radius: rem(5);
 
-		@include adaptiveValue('font-size', 15, 12);
-	}
-	// .comments__text
-	&__text {
-		font-weight: 300;
-		line-height: 120%;
-		padding: rem(8) rem(15);
+        &:not(:last-child) {
+            @include adaptiveValue('margin-bottom', 15, 10);
+        }
+    }
 
-		@include adaptiveValue('font-size', 15, 12);
-	}
-	// .comments__rating
-	&__rating {
-		margin-top: rem(2);
-		padding-left: rem(15);
-		padding-bottom: rem(15);
-		pointer-events: none;
-	}
+    // .comments__header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $greyColor;
+    }
+
+    // .comments__name
+    &__name {
+        font-weight: 700;
+        line-height: 120%;
+        padding: rem(8) rem(15);
+
+        @include adaptiveValue('font-size', 15, 12);
+    }
+
+    // .comments__date
+    &__date {
+        font-weight: 300;
+        line-height: 120%;
+        text-align: right;
+        padding-right: rem(15);
+
+        @include adaptiveValue('font-size', 15, 12);
+    }
+
+    // .comments__text
+    &__text {
+        font-weight: 300;
+        line-height: 120%;
+        padding: rem(8) rem(15);
+
+        @include adaptiveValue('font-size', 15, 12);
+    }
+
+    // .comments__rating
+    &__rating {
+        margin-top: rem(2);
+        padding-left: rem(15);
+        padding-bottom: rem(15);
+        pointer-events: none;
+    }
 }
 
 .room-form {
-	padding-left: rem(20);
-	padding-right: rem(20);
-	padding-bottom: rem(40);
-	background-color: $lightGreyColor;
+    position: relative;
+    padding-left: rem(20);
+    padding-right: rem(20);
+    padding-bottom: rem(40);
+    background-color: $lightGreyColor;
 
-	@media (max-width: $mobile) {
-		padding-left: rem(15);
-		padding-right: rem(15);
-	}
+    @include adaptiveValue('padding-top', 25, 20);
 
-	// .room-form__title
-	&__title {
-		font-weight: 600;
-		line-height: 120%;
-		text-transform: uppercase;
+    @media (max-width: $mobile) {
+        padding-left: rem(15);
+        padding-right: rem(15);
+    }
 
-		@include adaptiveValue('font-size', 23, 16);
-		@include adaptiveValue('margin-bottom', 20, 15);
-	}
-	// .room-form__input
-	&__input {
-		width: 100%;
-		&:not(:last-child) {
-			margin-bottom: rem(15);
-		}
-		input {
-			width: 100%;
-			line-height: 120%;
-			padding-top: rem(20);
-			padding-bottom: rem(20);
-			border: 1px solid $greyColor;
-			border-radius: rem(4);
-			outline: none;
+    // .room-form__title
+    &__title {
+        font-weight: 600;
+        line-height: 120%;
+        text-transform: uppercase;
 
-			@include adaptiveValue('padding-left', 20, 15);
-			@include adaptiveValue('padding-right', 20, 15);
-			@include adaptiveValue('font-size', 14, 12);
+        @include adaptiveValue('font-size', 23, 16);
+        @include adaptiveValue('margin-bottom', 20, 15);
+    }
 
-			&::placeholder {
-				font-weight: 300;
-				line-height: 120%;
+    // .room-form__input
+    &__input {
+        width: 100%;
 
-				@include adaptiveValue('font-size', 14, 12);
-			}
-		}
+        &:not(:last-child) {
+            margin-bottom: rem(15);
+        }
 
-		textarea {
-			width: 100%;
-			line-height: 120%;
-			padding-top: rem(20);
-			padding-bottom: rem(20);
-			border: 1px solid $greyColor;
-			border-radius: rem(4);
-			outline: none;
-			resize: vertical;
+        input {
+            width: 100%;
+            line-height: 120%;
+            padding-top: rem(20);
+            padding-bottom: rem(20);
+            border: 1px solid $greyColor;
+            border-radius: rem(4);
+            outline: none;
 
-			@include adaptiveValue('font-size', 14, 12);
-			@include adaptiveValue('padding-left', 20, 15);
-			@include adaptiveValue('padding-right', 20, 15);
+            @include adaptiveValue('padding-left', 20, 15);
+            @include adaptiveValue('padding-right', 20, 15);
+            @include adaptiveValue('font-size', 14, 12);
 
-			&::placeholder {
-				font-weight: 300;
-				line-height: 120%;
+            &::placeholder {
+                font-weight: 300;
+                line-height: 120%;
 
-				@include adaptiveValue('font-size', 14, 12);
-			}
-		}
-	}
-	// .room-form__rating
-	&__rating {
-		@include adaptiveValue('margin-bottom', 30, 25);
-	}
-	// .room-form__button
-	&__button {
-		display: flex;
-		justify-content: center;
-		width: 100%;
-		line-height: 120%;
-		font-weight: 400;
-		text-align: center;
-		text-transform: uppercase;
-		padding: rem(12) rem(20);
-		background-color: $accentColor;
-		color: $whiteColor;
-		border-radius: rem(4);
-		transition: background-color 0.3s ease-in-out;
+                @include adaptiveValue('font-size', 14, 12);
+            }
+        }
 
-		@include adaptiveValue('font-size', 14, 12);
+        textarea {
+            width: 100%;
+            line-height: 120%;
+            padding-top: rem(20);
+            padding-bottom: rem(20);
+            border: 1px solid $greyColor;
+            border-radius: rem(4);
+            outline: none;
+            resize: vertical;
 
-		@media (any-hover: hover) {
-			&:hover {
-				background-color: $hoverColor;
-			}
-		}
-	}
+            @include adaptiveValue('font-size', 14, 12);
+            @include adaptiveValue('padding-left', 20, 15);
+            @include adaptiveValue('padding-right', 20, 15);
+
+            &::placeholder {
+                font-weight: 300;
+                line-height: 120%;
+
+                @include adaptiveValue('font-size', 14, 12);
+            }
+        }
+    }
+
+    // .room-form__rating
+    &__rating {
+        @include adaptiveValue('margin-bottom', 30, 25);
+    }
+
+    &__rate {
+        font-weight: 300;
+        margin-bottom: rem(10);
+        @include adaptiveValue('font-size', 14, 12);
+    }
+
+    // .room-form__button
+    &__button {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        line-height: 120%;
+        font-weight: 400;
+        text-align: center;
+        text-transform: uppercase;
+        padding: rem(12) rem(20);
+        background-color: $accentColor;
+        color: $whiteColor;
+        border-radius: rem(4);
+        transition: background-color 0.3s ease-in-out;
+
+        @include adaptiveValue('font-size', 14, 12);
+
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: $hoverColor;
+            }
+        }
+    }
+
+    &__success {
+        color: darkgreen;
+        margin-bottom: rem(15);
+    }
 }

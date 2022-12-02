@@ -38,14 +38,14 @@ class Room extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->performOnCollections('thumbs')
-            ->fit(Manipulations::FIT_CROP, 500, 500)
+            ->fit(Manipulations::FIT_CROP, 700, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('thumbWebp')
             ->performOnCollections('thumbs')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 500, 500)
+            ->fit(Manipulations::FIT_CROP, 700, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
@@ -69,7 +69,7 @@ class Room extends Model implements HasMedia
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderWebp')
-            ->performOnCollections('slider')
+            ->performOnCollections('sliders')
             ->format('webp')
             ->fit(Manipulations::FIT_CROP, 1000, 540)
             ->nonQueued()
@@ -82,7 +82,7 @@ class Room extends Model implements HasMedia
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderThumbWebp')
-            ->performOnCollections('slider')
+            ->performOnCollections('sliders')
             ->format('webp')
             ->fit(Manipulations::FIT_CROP, 200, 140)
             ->nonQueued()
@@ -93,5 +93,16 @@ class Room extends Model implements HasMedia
             ->fit(Manipulations::FIT_CROP, 1200, 630)
             ->nonQueued()
             ->nonOptimized();
+    }
+
+    public function getThumbAttribute()
+    {
+        $image = $this->getMedia('thumbs')->last();
+        if ($image) {
+            $image->thumb = $image->getUrl('thumb');
+            $image->thumbWebp = $image->getUrl('thumbWebp');
+        }
+
+        return $image;
     }
 }
