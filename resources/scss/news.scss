@@ -1,31 +1,32 @@
 .news {
-	@include adaptiveValue('margin-top', -10, -30);
-	// .news__body
-	&__body {
-		max-width: rem(900);
-		margin: 0 auto;
-		padding: rem(30) rem(20);
-		background-color: $whiteColor;
+    @include adaptiveValue('margin-top', -10, -30);
+    // .news__body
+    &__body {
+        max-width: rem(900);
+        margin: 0 auto;
+        padding: rem(30) rem(20);
+        background-color: $whiteColor;
 
-		@media (max-width: $mobile) {
-			padding-left: rem(15);
-			padding-right: rem(15);
-		}
-	}
-	// .news__title
-	&__title {
-		font-weight: 700;
-		line-height: 140%;
-		text-transform: uppercase;
+        @media (max-width: $mobile) {
+            padding-left: rem(15);
+            padding-right: rem(15);
+        }
+    }
 
-		@include adaptiveValue('font-size', 25, 16);
-		@include adaptiveValue('margin-bottom', 25, 20);
-	}
-	// .news__image
-	&__image {
-		max-width: 100%;
-		height: auto;
+    // .news__title
+    &__title {
+        font-weight: 700;
+        line-height: 140%;
+        text-transform: uppercase;
 
-		@include adaptiveValue('margin-bottom', 25, 20);
-	}
+        @include adaptiveValue('font-size', 25, 16);
+        @include adaptiveValue('margin-bottom', 25, 20);
+    }
+
+    // .news__image
+    &__image {
+        padding-bottom: 55%;
+
+        @include adaptiveValue('margin-bottom', 25, 20);
+    }
 }

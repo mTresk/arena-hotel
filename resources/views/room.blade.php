@@ -1,5 +1,21 @@
 @extends('layout.app')
 
+@if($room->seo_title)
+    @section('title', $room->seo_title)
+@else
+    @section('title', $room->name)
+@endif
+
+@if($room->seo_description)
+    @section('description', $room->seo_description)
+@else
+    @section('description', $room->description)
+@endif
+
+@isset($room->getMedia('seo')[0])
+    @section('image', $room->getMedia('seo')[0]->getUrl('ogImage'))
+@endisset
+
 @section('content')
     <main class="page">
         <section data-prlx-parent class="page-header">

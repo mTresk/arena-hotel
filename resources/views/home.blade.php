@@ -81,7 +81,7 @@
                         <div class="rooms-block__slider rooms-block__slider--top swiper">
                             <div class="rooms-block__wrapper swiper-wrapper">
                                 @foreach($standardRooms as $room)
-                                    <a href="{{ route('room', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
+                                    <a href="{{ route('room.show', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
                                         <picture>
                                             @isset($room->getMedia('thumbs')[0])
                                                 <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">
@@ -152,7 +152,7 @@
                         <div class="rooms-block__slider rooms-block__slider--bottom swiper">
                             <div class="rooms-block__wrapper swiper-wrapper">
                                 @foreach($luxuryRooms as $room)
-                                    <a href="{{ route('room', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
+                                    <a href="{{ route('room.show', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
                                         <picture>
                                             @isset($room->getMedia('thumbs')[0])
                                                 <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">
@@ -335,70 +335,22 @@
             <div class="news-block__container">
                 <h2 class="news-block__title">#Новости</h2>
                 <div class="news-block__body">
-                    <div class="news-block__item news-item">
-                        <a href="news-single.html" class="news-item__image news-item__image--ibg">
-                            <picture>
-                                <source srcset="img/news/1.webp" type="image/webp">
-                                <img src="img/news/1.jpg" alt=""/></picture>
-                        </a>
-                        <div class="news-item__content">
-                            <h3 class="news-item__title">В Тюмени прошел этап кубка мира по биатлону</h3>
-                            <p class="news-item__text">
-                                Lorem ipsum dolor sit amet consectetur. Leo penatibus tellus blandit ultrices
-                                pharetra pulvinar. Ultricies erat pretium arcu neque scelerisque nibh elit. Sit
-                                aliquet quisque...
-                            </p>
-                            <a href="news-single.html" class="news-item__button">Подробнее</a>
+                    @foreach($news as $item)
+                        <div class="news-block__item news-item">
+                            <a href="{{ route('post.show', $item->slug) }}" class="news-item__image news-item__image--ibg">
+                                <picture>
+                                    <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsWebp') }}" type="image/webp">
+                                    <img src="{{ $item->getMedia('news')[0]->getUrl('news') }}" alt=""/></picture>
+                            </a>
+                            <div class="news-item__content">
+                                <h3 class="news-item__title">{{ $item->title }}</h3>
+                                <p class="news-item__text">
+                                    {{ $item->excerpt }}
+                                </p>
+                                <a href="{{ route('post.show', $item->slug) }}" class="news-item__button">Подробнее</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="news-block__item news-item">
-                        <a href="news-single.html" class="news-item__image news-item__image--ibg">
-                            <picture>
-                                <source srcset="img/news/2.webp" type="image/webp">
-                                <img src="img/news/2.jpg" alt=""/></picture>
-                        </a>
-                        <div class="news-item__content">
-                            <h3 class="news-item__title">МФК «Тюмень» — чемпионы!</h3>
-                            <p class="news-item__text">
-                                Lorem ipsum dolor sit amet consectetur. Leo penatibus tellus blandit ultrices
-                                pharetra pulvinar. Ultricies erat pretium arcu neque scelerisque nibh elit. Sit
-                                aliquet quisque...
-                            </p>
-                            <a href="news-single.html" class="news-item__button">Подробнее</a>
-                        </div>
-                    </div>
-                    <div class="news-block__item news-item">
-                        <a href="news-single.html" class="news-item__image news-item__image--ibg">
-                            <picture>
-                                <source srcset="img/news/3.webp" type="image/webp">
-                                <img src="img/news/3.jpg" alt=""/></picture>
-                        </a>
-                        <div class="news-item__content">
-                            <h3 class="news-item__title">Абонименты в наш фитнес-центр со скидкой 15%</h3>
-                            <p class="news-item__text">
-                                Lorem ipsum dolor sit amet consectetur. Leo penatibus tellus blandit ultrices
-                                pharetra pulvinar. Ultricies erat pretium arcu neque scelerisque nibh elit. Sit
-                                aliquet quisque...
-                            </p>
-                            <a href="news-single.html" class="news-item__button">Подробнее</a>
-                        </div>
-                    </div>
-                    <div class="news-block__item news-item">
-                        <a href="news-single.html" class="news-item__image news-item__image--ibg">
-                            <picture>
-                                <source srcset="img/news/1.webp" type="image/webp">
-                                <img src="img/news/1.jpg" alt=""/></picture>
-                        </a>
-                        <div class="news-item__content">
-                            <h3 class="news-item__title">В Тюмени прошел этап кубка мира по биатлону</h3>
-                            <p class="news-item__text">
-                                Lorem ipsum dolor sit amet consectetur. Leo penatibus tellus blandit ultrices
-                                pharetra pulvinar. Ultricies erat pretium arcu neque scelerisque nibh elit. Sit
-                                aliquet quisque...
-                            </p>
-                            <a href="news-single.html" class="news-item__button">Подробнее</a>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>

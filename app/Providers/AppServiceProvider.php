@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Filament\Facades\Filament;
+use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\UserMenuItem;
 use Illuminate\Support\ServiceProvider;
 use JeffGreco13\FilamentBreezy\Pages\MyProfile;

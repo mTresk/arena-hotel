@@ -94,15 +94,5 @@ class Room extends Model implements HasMedia
             ->nonQueued()
             ->nonOptimized();
     }
-
-    public function getThumbAttribute()
-    {
-        $image = $this->getMedia('thumbs')->last();
-        if ($image) {
-            $image->thumb = $image->getUrl('thumb');
-            $image->thumbWebp = $image->getUrl('thumbWebp');
-        }
-
-        return $image;
-    }
+    
 }

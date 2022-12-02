@@ -1,14 +1,30 @@
 @extends('layout.app')
 
+@if($pageData->seo_title)
+    @section('title', $pageData->seo_title)
+@else
+    @section('title', $pageData->page_title)
+@endif
+
+@if($pageData->seo_description)
+    @section('description', $pageData->seo_description)
+    else @section('description', $pageData->page_title)
+@endif
+
+@isset($pageData->getMedia('seo')[0])
+    @section('image', $pageData->getMedia('seo')[0]->getUrl('ogImage'))
+@endisset
+
 @section('content')
     <main class="page">
         <section data-prlx-parent class="page-header">
             <picture>
-                <source srcset="img/rooms-header.webp" type="image/webp">
-                <img data-prlx data-direction="0" src="img/rooms-header.jpg" alt="Фоновое изображение" class="page-header__background"/></picture>
+                <source srcset="{{ $pageData->getMedia('headers')[0]->getUrl('headerWebp') }}" type="image/webp">
+                <img data-prlx data-direction="0" src="{{ $pageData->getMedia('headers')[0]->getUrl('header') }}" alt="Фоновое изображение" class="page-header__background"/>
+            </picture>
             <div class="page-header__container">
                 <div class="page-header__body">
-                    <h1 class="page-header__title">Все номера</h1>
+                    <h1 class="page-header__title">{{ $pageData->page_title }}</h1>
                 </div>
             </div>
         </section>
@@ -23,7 +39,7 @@
             <div class="rooms__container">
                 <div class="rooms__body">
                     @foreach($rooms as $room)
-                        <a href="{{ route('room', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
+                        <a href="{{ route('room.show', $room->id ) }}" class="rooms-block__card swiper-slide room-card">
                             <picture>
                                 @isset($room->getMedia('thumbs')[0])
                                     <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">

@@ -36,7 +36,7 @@ import {ref} from "vue";
 import axios from "axios";
 
 const props = defineProps({
-    room_id: String
+    room_id: Number
 })
 
 const payload = ref({

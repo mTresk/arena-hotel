@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\RoomsPage;
 
 class RoomController extends Controller
 {
@@ -28,6 +29,8 @@ class RoomController extends Controller
     public function index()
     {
         $rooms = Room::query()->orderBy('category_id', 'ASC')->get();
-        return view('rooms', compact('rooms'));
+        $pageData = RoomsPage::first();
+
+        return view('rooms', compact('rooms', 'pageData'));
     }
 }
