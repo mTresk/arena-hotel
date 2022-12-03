@@ -92,7 +92,7 @@ const handleSubmit = () => {
         width: 100%;
         height: 100%;
         background-color: #0d0a0a;
-        opacity: 0.5;
+        opacity: 0.2;
         content: '';
         border-radius: 6px;
     }

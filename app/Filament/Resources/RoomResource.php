@@ -120,13 +120,13 @@ class RoomResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ])->defaultSort('category.name');
+            ])->defaultSort('category.name', 'desc');
     }
 
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\CommentsRelationManager::class,
         ];
     }
 

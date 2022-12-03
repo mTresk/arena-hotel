@@ -1,16 +1,11 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\RoomResource\RelationManagers;
 
-use App\Filament\Resources\CommentResource\Pages;
-use App\Filament\Resources\CommentResource\RelationManagers;
-use App\Models\Comment;
 use Filament\Forms;
 use Filament\Forms\Components\Textarea;
-use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Resources\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
@@ -18,32 +13,26 @@ use Filament\Tables\Columns\ToggleColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class CommentResource extends Resource
+class CommentsRelationManager extends RelationManager
 {
-    protected static ?string $model = Comment::class;
+    protected static string $relationship = 'comments';
 
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $recordTitleAttribute = 'username';
     protected static ?string $modelLabel = 'отзыв';
     protected static ?string $pluralModelLabel = 'Отзывы';
-    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('username')
+                Forms\Components\TextInput::make('username')
                     ->label('Имя')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('room_id')
-                    ->label('ID номера')
-                    ->required(),
                 Textarea::make('review')
                     ->label('Отзыв')
                     ->required()
                     ->maxLength(65535),
-                Toggle::make('is_published')
-                    ->label('Опубликован')
             ]);
     }
 
@@ -52,15 +41,10 @@ class CommentResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('username')
-                    ->label('Постоялец'),
+                    ->label('Имя'),
                 TextColumn::make('review')
                     ->label('Отзыв')
                     ->limit(20),
-                TextColumn::make('room.name')
-                    ->label('Номер'),
-                TextColumn::make('created_at')->dateTime()
-                    ->label('Дата')
-                    ->sortable(),
                 ToggleColumn::make('is_published')
                     ->label('Опубликован')
                     ->sortable(),
@@ -68,27 +52,15 @@ class CommentResource extends Resource
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
-    }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListComments::route('/'),
-            'create' => Pages\CreateComment::route('/create'),
-            'edit' => Pages\EditComment::route('/{record}/edit'),
-        ];
     }
 }
