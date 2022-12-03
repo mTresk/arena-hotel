@@ -102,17 +102,16 @@ const handleSubmit = () => {
 .spinner {
     position: absolute;
     z-index: 10;
-    top: 35%;
+    top: 50%;
     left: 50%;
     color: #a63d4d;
     font-size: 20px;
-    margin: 100px auto;
     width: 1em;
     height: 1em;
     border-radius: 50%;
     text-indent: -9999em;
     animation: load4 1.3s infinite linear;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
 }
 
 @-webkit-keyframes load4 {

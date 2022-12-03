@@ -1,37 +1,53 @@
 <template>
-    <form :class="{disabled: isSending}" @submit.prevent="handleSubmit" action="#" class="contacts__form contacts-form">
-        <div v-if="isSending" class="spinner"></div>
-        <h2 class="contacts-form__title">Связаться с нами</h2>
-        <div v-if="errors.name" class="contacts-form__error">{{ errors.name[0] }}</div>
-        <div class="contacts-form__input">
-            <input v-model="payload.name" autocomplete="off" type="text" name="name" placeholder="Ваше имя"/>
+    <div id="callback-form" aria-hidden="true" class="popup">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div v-if="isSending" class="spinner"></div>
+                <button data-close type="button" class="popup__close">X</button>
+                <form :class="{disabled: isSending}" @submit.prevent="handleSubmit" class="popup__body callback-form">
+                    <div class="callback-form__title">
+                        Заказать звонок
+                    </div>
+                    <div v-if="errors.name" class="contacts-form__error">{{ errors.name[0] }}</div>
+                    <div class="callback-form__input">
+                        <label>
+                            <input v-model="payload.name" autocomplete="off" type="text" name="name"
+                                   placeholder="Ваше имя">
+                        </label>
+                    </div>
+                    <div v-if="errors.phone" class="contacts-form__error">{{ errors.phone[0] }}</div>
+                    <div class="callback-form__input">
+                        <label>
+                            <input v-model="payload.phone" autocomplete="off" type="text" name="phone"
+                                   placeholder="Ваш телефон">
+                        </label>
+                    </div>
+                    <button type="submit" class="callback-form__button">Отправить</button>
+                </form>
+            </div>
         </div>
-        <div v-if="errors.email" class="contacts-form__error">{{ errors.email[0] }}</div>
-        <div class="contacts-form__input">
-            <input v-model="payload.email" autocomplete="off" type="text" name="email" placeholder="Ваша почта"/>
+    </div>
+    <div class="popup" aria-hidden="true" id="thanks">
+        <div class="popup__wrapper">
+            <div class="popup__content">
+                <div class="popup__body thanks">
+                    <div class="thanks__title title">Спасибо!</div>
+                    <div class="thanks__text">Скоро мы свяжемся с вами.</div>
+                    <button data-close type="button" class="popup__close">X</button>
+                </div>
+            </div>
         </div>
-        <div v-if="errors.phone" class="contacts-form__error">{{ errors.phone[0] }}</div>
-        <div class="contacts-form__input">
-            <input v-model="payload.phone" autocomplete="off" type="text" name="phone" placeholder="Ваш телефон"/>
-        </div>
-        <div v-if="errors.message" class="contacts-form__error">{{ errors.message[0] }}</div>
-        <div class="contacts-form__input">
-            <textarea v-model="payload.message" rows="4" autocomplete="off" name="message" placeholder="Сообщение"></textarea>
-        </div>
-        <div v-if="isSuccess" class="contacts-form__success">Спасибо, ваше сообщение отправлено!</div>
-        <button type="submit" class="contacts-form__button">Отправить сообщение</button>
-    </form>
+    </div>
 </template>
 
 <script setup>
 import {ref} from "vue";
 import axios from "axios";
+import {flsModules} from "../files/modules";
 
 const payload = ref({
     name: '',
-    email: '',
     phone: '',
-    message: ''
 })
 
 const errors = ref([])
@@ -39,21 +55,28 @@ const errors = ref([])
 const isSending = ref(false)
 const isSuccess = ref(false)
 
+const formSent = () => {
+    if (flsModules.popup) {
+        flsModules.popup.open('#thanks')
+    }
+    payload.value = {
+        name: '',
+        phone: '',
+    }
+}
+
 const handleSubmit = () => {
     isSending.value = true
     isSuccess.value = false
 
-    axios.post('/contact', payload.value)
+    console.log(payload.value)
+
+    axios.post('/callback', payload.value)
         .then(response => {
             if (response.status === 200) {
                 isSending.value = false
                 isSuccess.value = true
-                payload.value = {
-                    name: '',
-                    email: '',
-                    phone: '',
-                    message: ''
-                }
+                formSent()
                 errors.value = []
             }
         })
@@ -83,6 +106,7 @@ const handleSubmit = () => {
         border-radius: 6px;
     }
 }
+
 
 .spinner {
     position: absolute;

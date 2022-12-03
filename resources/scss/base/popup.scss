@@ -67,6 +67,7 @@ body::after {
         z-index: 100;
         transition: color 0.3s ease-in-out;
         outline: none;
+        background-color: transparent;
 
         @media (any-hover: hover) {
             &:hover {
@@ -157,5 +158,13 @@ body::after {
                 background-color: $hoverColor;
             }
         }
+    }
+}
+
+.thanks {
+    &__title {
+        font-weight: 700;
+        font-size: rem(20);
+        margin-bottom: rem(15);
     }
 }

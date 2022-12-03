@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -20,3 +21,4 @@ Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('servic
 
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::post('/comment', [CommentController::class, 'comment'])->name('comment');
+Route::post('/callback', [CallbackController::class, 'callback'])->name('callback');
