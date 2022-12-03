@@ -8,7 +8,8 @@
 
 @if($pageData->seo_description)
     @section('description', $pageData->seo_description)
-    else @section('description', $pageData->page_title)
+@else
+    @section('description', $pageData->page_title)
 @endif
 
 @isset($pageData->getMedia('seo')[0])
