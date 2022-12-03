@@ -1,23 +1,73 @@
 version: '3.9'
 
 services:
-    server:
-        image: nginx:latest
+    
+    # Application
+    app:
+        build:
+            context: .
+            dockerfile: app.dockerfile
+        working_dir: /var/www
         volumes:
             - ./:/var/www
-            - ./_docker/nginx/conf.d:/etc/nginx/conf.d
+        depends_on:
+            - "database"
+        networks:
+            - web
+            - internal
+        container_name: arena_app
+    # Web Server
+    server:
+        build:
+            context: .
+            dockerfile: web.dockerfile
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - "app"
+        container_name: arena_server
         labels:
             - "traefik.http.routers.server.rule=Host(`arena.maximtresk.ru`)"
             - "traefik.port=80"
             - "traefik.docker.network=web"
             - "traefik.http.routers.server.entrypoints=websecure"
             - "traefik.http.routers.server.tls.certresolver=myresolver"
-        depends_on:
-            - app
-        container_name: arena_server
         networks:
             - web
             - internal
+    # Database
+    database:
+        image: mysql:8.0
+        volumes:
+            - dbdata:/var/lib/mysql
+        environment:
+            environment:
+            MYSQL_DATABASE: arena
+            MYSQL_ROOT_PASSWORD: 'root'
+        ports:
+            - 33061:3306
+        container_name: arena_db
+        networks:
+            - internal
+            - web
+    # Database management
+    pma:
+        image: phpmyadmin:5.1
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=${DB_HOST}
+            - PMA_USER=${DB_USERNAME}
+            - PMA_PASSWORD=${DB_PASSWORD}
+            - PMA_PORT=${DB_PORT}
+        depends_on:
+            - database
+        ports:
+            - 8888:80
+        networks:
+            - web
+            - internal
+        container_name: arena_pma
 
     node:
         image: node:alpine
@@ -30,38 +80,11 @@ services:
             - web
             - internal
 
-    app:
-        build:
-            context: .
-            dockerfile: _docker/app/Dockerfile
-        volumes:
-            - ./:/var/www
-            - ./_docker/php/conf.d/php.ini:/usr/local/etc/php/conf.d/php.ini
-        depends_on:
-            - db
-        container_name: arena_app
-        networks:
-            - web
-            - internal
-
-    db:
-        image: mysql:8.0
-        restart: always
-        volumes:
-            - ./tmp/db:/var/lib/mysql
-        environment:
-            MYSQL_DATABASE: arena
-            MYSQL_ROOT_PASSWORD: 'root'
-        ports:
-            - "3306:3306"
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
-        container_name: arena_db
-        networks:
-            - internal
-            - web
-
 networks:
     web:
         external: true
     internal:
         external: false
+
+volumes:
+    dbdata:
