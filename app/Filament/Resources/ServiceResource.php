@@ -2,12 +2,13 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RoomResource\Pages;
-use App\Filament\Resources\RoomResource\RelationManagers;
-use App\Models\Room;
-use Filament\Forms\Components\Repeater;
+use App\Filament\Resources\ServiceResource\Pages;
+use App\Filament\Resources\ServiceResource\RelationManagers;
+use App\Models\Service;
+use Closure;
+use Filament\Forms\Components\Hidden;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
@@ -16,51 +17,48 @@ use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
-use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Str;
 
-class RoomResource extends Resource
+class ServiceResource extends Resource
 {
-    protected static ?string $model = Room::class;
+    protected static ?string $model = Service::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-key';
-    protected static ?string $modelLabel = 'номера';
-    protected static ?string $pluralModelLabel = 'Номера';
-    protected static ?int $navigationSort = 1;
+    protected static ?string $navigationIcon = 'heroicon-o-emoji-happy';
+    protected static ?string $modelLabel = 'услуги';
+    protected static ?string $pluralModelLabel = 'Услуги';
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Section::make('Основное')->schema([
-                    TextInput::make('name')
-                        ->label('Название номера')
-                        ->required()
-                        ->maxLength(255),
-                    TextInput::make('description')
-                        ->label('Описание номера')
-                        ->required()
-                        ->maxLength(255),
-                    TextInput::make('price')
-                        ->label('Цена')
-                        ->required()
-                        ->maxLength(255),
-                    Select::make('category_id')
-                        ->label('Категория')
-                        ->relationship('category', 'name')
+                    SpatieMediaLibraryFileUpload::make('header')
+                        ->image()
+                        ->collection('headers')
+                        ->label('Изображение в шапке'),
+                    TextInput::make('title')
+                        ->afterStateUpdated(function (Closure $get, Closure $set, ?string $state) {
+                            if (!$get('is_slug_changed_manually') && filled($state)) {
+                                $set('slug', Str::slug($state));
+                            }
+                        })
+                        ->label('Название страницы')
+                        ->reactive()
                         ->required(),
-
-                    Repeater::make('facilities')
-                        ->label('Удобства и возможности')
-                        ->schema([
-                            TextInput::make('facilities')
-                                ->label('Удобство')
-                                ->required()
-                        ])
-                        ->orderable()
-                        ->collapsed()
-                        ->createItemButtonLabel('Добавить удобство')
-                        ->columns(1),
+                    TextInput::make('slug')
+                        ->afterStateUpdated(function (Closure $set) {
+                            $set('is_slug_changed_manually', true);
+                        })
+                        ->label('Ссылка')
+                        ->required(),
+                    Hidden::make('is_slug_changed_manually')
+                        ->default(false)
+                        ->dehydrated(false),
+                    RichEditor::make('content')
+                        ->label('Контент')
+                        ->required()
+                        ->maxLength(65535),
                     SpatieMediaLibraryFileUpload::make('thumb')
                         ->image()
                         ->collection('thumbs')
@@ -68,17 +66,16 @@ class RoomResource extends Resource
                         ->enableReordering()
                         ->label('Изображения в карточке')
                         ->panelLayout('grid'),
-                    SpatieMediaLibraryFileUpload::make('header')
+                    TextInput::make('banner_title')
+                        ->label('Заголовок на баннере')
+                        ->maxLength(255),
+                    TextInput::make('banner_description')
+                        ->label('Текст на баннере')
+                        ->maxLength(255),
+                    SpatieMediaLibraryFileUpload::make('banner')
                         ->image()
-                        ->collection('headers')
-                        ->label('Изображение в шапке'),
-                    SpatieMediaLibraryFileUpload::make('slide')
-                        ->image()
-                        ->collection('sliders')
-                        ->multiple()
-                        ->enableReordering()
-                        ->label('Изображения в слайдере')
-                        ->panelLayout('grid')
+                        ->collection('banners')
+                        ->label('Изображение на баннере'),
                 ])->columnSpan(2),
 
                 Section::make('SEO')
@@ -118,17 +115,8 @@ class RoomResource extends Resource
                 SpatieMediaLibraryImageColumn::make('thumb')
                     ->collection('thumbs')
                     ->label('Изображение'),
-                TextColumn::make('name')
-                    ->label('Название номера'),
-                TextColumn::make('category.name')
-                    ->label('Категория номера')
-                    ->sortable(),
-                TextColumn::make('description')
-                    ->label('Описание')
-                    ->sortable(),
-                TextColumn::make('price')
-                    ->sortable()
-                    ->label('Цена'),
+                Tables\Columns\TextColumn::make('title')
+                    ->label('Услуга'),
             ])
             ->filters([
                 //
@@ -138,22 +126,22 @@ class RoomResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
-            ])->defaultSort('category.name', 'desc');
+            ]);
     }
 
     public static function getRelations(): array
     {
         return [
-            RelationManagers\CommentsRelationManager::class,
+            //
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRooms::route('/'),
-            'create' => Pages\CreateRoom::route('/create'),
-            'edit' => Pages\EditRoom::route('/{record}/edit'),
+            'index' => Pages\ListServices::route('/'),
+            'create' => Pages\CreateService::route('/create'),
+            'edit' => Pages\EditService::route('/{record}/edit'),
         ];
     }
 }

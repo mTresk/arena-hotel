@@ -1,8 +1,8 @@
 <footer class="footer">
     <div class="footer__container">
         <div class="footer__body">
-            <a href="/" class="footer__logo">
-                <img src="{{ asset('img/logo.svg') }}" alt=""/>
+            <a href="{{ route('home') }}" class="footer__logo">
+                <img src="{{ asset('img/logo.svg') }}" alt="Логотип сайта"/>
             </a>
             <div class="footer__column footer__column--menu">
                 <h3 class="footer__title">Меню</h3>
@@ -10,20 +10,20 @@
                     <nav class="footer-menu__body">
                         <ul class="footer-menu__list">
                             <li class="footer-menu__item">
-                                <a href="rooms.html" class="footer-menu__link">Номера и цены</a>
+                                <a href="{{ route('rooms') }}" class="footer-menu__link">Номера и цены</a>
                             </li>
-                            <li class="footer-menu__item"><a href="cafe.html" class="footer-menu__link">Кафе</a></li>
+                            <li class="footer-menu__item"><a href="{{ route('service.show', 'cafe') }}" class="footer-menu__link">Кафе</a></li>
                             <li class="footer-menu__item">
-                                <a href="spa.html" class="footer-menu__link">Сауна и бассейн</a>
-                            </li>
-                            <li class="footer-menu__item">
-                                <a href="parking.html" class="footer-menu__link">Парковка</a>
+                                <a href="{{ route('service.show', 'spa') }}" class="footer-menu__link">Сауна и бассейн</a>
                             </li>
                             <li class="footer-menu__item">
-                                <a href="fitness.html" class="footer-menu__link">Фитнес зал</a>
+                                <a href="{{ route('service.show', 'parking') }}" class="footer-menu__link">Парковка</a>
                             </li>
                             <li class="footer-menu__item">
-                                <a href="contacts.html" class="footer-menu__link">Контакты</a>
+                                <a href="{{ route('service.show', 'fitness') }}" class="footer-menu__link">Фитнес зал</a>
+                            </li>
+                            <li class="footer-menu__item">
+                                <a href="{{ route('contacts') }}" class="footer-menu__link">Контакты</a>
                             </li>
                         </ul>
                     </nav>
@@ -33,7 +33,7 @@
                 <h3 class="footer__title">Контакты</h3>
                 <ul class="footer__list">
                     <li class="footer__item">
-                        <a href="tel:8 800 922  22 22" class="footer__phone">
+                        <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone) }}" class="footer__phone">
                             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_150_3423)">
                                     <path
@@ -46,7 +46,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span>8 800 922 22 22</span></a>
+                            <span>{{ $phone }}</span></a>
                     </li>
                     <li class="footer__item">
                         <div class="footer__address">
@@ -55,11 +55,11 @@
                                     d="M5.5 0C3.60181 0 2.0625 1.53931 2.0625 3.4375C2.0625 6.875 5.5 11 5.5 11C5.5 11 8.9375 6.875 8.9375 3.4375C8.9375 1.53931 7.39819 0 5.5 0ZM5.5 5.5C4.36081 5.5 3.4375 4.57669 3.4375 3.4375C3.4375 2.29831 4.36081 1.375 5.5 1.375C6.63919 1.375 7.5625 2.29831 7.5625 3.4375C7.5625 4.57669 6.63919 5.5 5.5 5.5Z"
                                     fill="white"/>
                             </svg>
-                            <span>625003 г. Тюмень, ул. Коммуны 22, корп. 1</span>
+                            <span>{{ $address_full }}</span>
                         </div>
                     </li>
                     <li class="footer__item">
-                        <a href="mailto:sportgosti@bk.ru" class="footer__email">
+                        <a href="mailto:{{ $email }}" class="footer__email">
                             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_150_3431)">
                                     <path
@@ -72,7 +72,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span>sportgosti@bk.ru</span></a>
+                            <span>{{ $email }}</span></a>
                     </li>
                     <li class="footer__item">
                         <div class="footer__schedule">
@@ -88,7 +88,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <span>Круглосуточно</span>
+                            <span>{{ $schedule }}</span>
                         </div>
                     </li>
                 </ul>
@@ -96,11 +96,9 @@
             <div class="footer__column">
                 <h3 class="footer__title">Реквизиты</h3>
                 <ul class="footer__list">
-                    <li class="footer__item">АНО «Футбол-Хоккей»</li>
-                    <li class="footer__item">ИНН / КПП 7203418928 / 720301001</li>
-                    <li class="footer__item">р/сч. 40703810395150000013</li>
-                    <li class="footer__item">Корр/субсчет 30101810200000000903</li>
-                    <li class="footer__item">БИК 046577903</li>
+                    @foreach($requisites as $item)
+                        <li class="footer__item">{{ $item['item'] }}</li>
+                    @endforeach
                 </ul>
             </div>
             <div class="footer__column">
@@ -115,7 +113,7 @@
         </div>
         <div class="footer__bottom">
             <a href="/policy" class="footer__policy">Политика конфиденциальности</a>
-            <div class="footer__copyright">© 2022. Гостиница «Арена»</div>
+            <div class="footer__copyright">© @php echo date( 'Y' ) @endphp. {{ $site_name }}</div>
             <div class="footer__developer">Разработка сайта: <a href="https://t.me/tresk">Maxim Tresk</a></div>
         </div>
     </div>

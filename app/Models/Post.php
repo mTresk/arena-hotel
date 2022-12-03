@@ -36,14 +36,14 @@ class Post extends Model implements HasMedia
         $this
             ->addMediaConversion('news')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CROP, 1400, 1400)
+            ->fit(Manipulations::FIT_CONTAIN, 1400, 1400)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('newsWebp')
             ->performOnCollections('news')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 1400, 1400)
+            ->fit(Manipulations::FIT_CONTAIN, 1400, 1400)
             ->nonQueued()
             ->nonOptimized();
     }

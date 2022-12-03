@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Home;
 use App\Models\Post;
 use App\Models\Room;
 
@@ -19,7 +20,9 @@ class HomeController extends Controller
 
         $news = Post::published()->paginate(4);
 
-        return view('home', compact('standardRooms', 'luxuryRooms', 'news'));
+        $homeData = Home::first();
+
+        return view('home', compact('standardRooms', 'luxuryRooms', 'news', 'homeData'));
     }
 
 }

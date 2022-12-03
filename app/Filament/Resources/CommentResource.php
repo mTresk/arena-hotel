@@ -21,11 +21,10 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
-
-    protected static ?string $navigationIcon = 'heroicon-o-user';
+    protected static ?string $navigationIcon = 'heroicon-o-chat';
     protected static ?string $modelLabel = 'отзыв';
     protected static ?string $pluralModelLabel = 'Отзывы';
-    protected static ?int $navigationSort = 2;
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -64,7 +63,7 @@ class CommentResource extends Resource
                 ToggleColumn::make('is_published')
                     ->label('Опубликован')
                     ->sortable(),
-            ])
+            ])->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])

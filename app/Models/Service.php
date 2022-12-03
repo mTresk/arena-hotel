@@ -10,20 +10,44 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class RoomsPage extends Model implements HasMedia
+class Service extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
 
-    protected $table = 'rooms_pages';
-
-    protected $fillable = ['page_title', 'seo_title', 'seo_description'];
+    protected $fillable = ['title', 'slug', 'content', 'banner_title', 'banner_description', 'seo_title', 'seo_description'];
 
     /**
      * @throws InvalidManipulation
      */
     public function registerMediaConversions(Media $media = null): void
     {
+        $this
+            ->addMediaConversion('thumb')
+            ->performOnCollections('thumbs')
+            ->fit(Manipulations::FIT_CONTAIN, 350, 250)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('thumbWebp')
+            ->performOnCollections('thumbs')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 350, 250)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('banner')
+            ->performOnCollections('banners')
+            ->fit(Manipulations::FIT_CONTAIN, 500, 800)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('bannerWebp')
+            ->performOnCollections('banners')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 500, 800)
+            ->nonQueued()
+            ->nonOptimized();
         $this
             ->addMediaConversion('header')
             ->performOnCollections('headers')
@@ -32,8 +56,8 @@ class RoomsPage extends Model implements HasMedia
             ->nonOptimized();
         $this
             ->addMediaConversion('headerWebp')
-            ->format('webp')
             ->performOnCollections('headers')
+            ->format('webp')
             ->fit(Manipulations::FIT_CONTAIN, 1920, 400)
             ->nonQueued()
             ->nonOptimized();

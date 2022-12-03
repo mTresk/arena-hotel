@@ -19,6 +19,9 @@ class PageRooms extends Page implements Forms\Contracts\HasForms
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
     protected static ?string $navigationLabel = 'Номера';
     protected static ?string $navigationGroup = 'Страницы';
+    protected static ?string $title = 'Страница номеров';
+    protected static ?string $slug = 'page-rooms';
+    protected static ?int $navigationSort = 2;
 
     protected static string $view = 'filament.pages.page-rooms';
 
@@ -58,8 +61,7 @@ class PageRooms extends Page implements Forms\Contracts\HasForms
                     TextInput::make('page_title')
                         ->label('Название страницы')
                         ->required()
-                        ->maxLength(255)
-                        ->default('Status Update'),
+                        ->maxLength(255),
                     SpatieMediaLibraryFileUpload::make('header')
                         ->image()
                         ->collection('headers')

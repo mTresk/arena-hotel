@@ -16,6 +16,7 @@ class Room extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = ['name', 'description', 'price', 'facilities', 'seo_title', 'seo_description', 'seo_image', 'category_id'];
+
     protected $casts = [
         'facilities' => 'array',
     ];
@@ -38,61 +39,61 @@ class Room extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->performOnCollections('thumbs')
-            ->fit(Manipulations::FIT_CROP, 700, 700)
+            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('thumbWebp')
             ->performOnCollections('thumbs')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 700, 700)
+            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('header')
             ->performOnCollections('headers')
-            ->fit(Manipulations::FIT_CROP, 1920, 400)
+            ->fit(Manipulations::FIT_CONTAIN, 1920, 400)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('headerWebp')
             ->performOnCollections('headers')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 1920, 400)
+            ->fit(Manipulations::FIT_CONTAIN, 1920, 400)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('slider')
             ->performOnCollections('sliders')
-            ->fit(Manipulations::FIT_CROP, 1000, 540)
+            ->fit(Manipulations::FIT_CONTAIN, 1000, 540)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderWebp')
             ->performOnCollections('sliders')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 1000, 540)
+            ->fit(Manipulations::FIT_CONTAIN, 1000, 540)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderThumb')
             ->performOnCollections('sliders')
-            ->fit(Manipulations::FIT_CROP, 200, 140)
+            ->fit(Manipulations::FIT_CONTAIN, 200, 140)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderThumbWebp')
             ->performOnCollections('sliders')
             ->format('webp')
-            ->fit(Manipulations::FIT_CROP, 200, 140)
+            ->fit(Manipulations::FIT_CONTAIN, 200, 140)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('ogImage')
             ->performOnCollections('seo')
-            ->fit(Manipulations::FIT_CROP, 1200, 630)
+            ->fit(Manipulations::FIT_CONTAIN, 1200, 630)
             ->nonQueued()
             ->nonOptimized();
     }
-    
+
 }

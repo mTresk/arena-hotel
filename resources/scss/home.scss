@@ -290,7 +290,7 @@
     &__icon {
         margin-bottom: rem(10);
 
-        svg {
+        img {
             @include adaptiveValue('max-height', 40, 30);
         }
     }

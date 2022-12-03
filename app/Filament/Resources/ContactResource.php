@@ -15,10 +15,10 @@ class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-chat';
+    protected static ?string $navigationIcon = 'heroicon-o-user';
     protected static ?string $modelLabel = 'контакт';
     protected static ?string $pluralModelLabel = 'Контакты';
-    protected static ?int $navigationSort = 10;
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {

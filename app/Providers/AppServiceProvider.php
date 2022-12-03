@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Filament\Settings\GeneralSettings;
 use Filament\Facades\Filament;
 use Filament\Navigation\NavigationGroup;
 use Filament\Navigation\UserMenuItem;
+use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use JeffGreco13\FilamentBreezy\Pages\MyProfile;
 
@@ -28,8 +31,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         if (env('APP_ENV') === 'production') {
-            \Illuminate\Support\Facades\URL::forceScheme('https');
+            URL::forceScheme('https');
         }
+
+        View::composer('*', function ($view) {
+            $settings = app(GeneralSettings::class);
+
+            $view->with('site_name', $settings->site_name);
+            $view->with('address', $settings->address);
+            $view->with('address_full', $settings->address_full);
+            $view->with('phone', $settings->phone);
+            $view->with('whatsapp', $settings->whatsapp);
+            $view->with('telegram', $settings->telegram);
+            $view->with('viber', $settings->viber);
+            $view->with('email', $settings->email);
+            $view->with('schedule', $settings->schedule);
+            $view->with('requisites', $settings->requisites);
+        });
 
         Filament::serving(function () {
             Filament::registerUserMenuItems([

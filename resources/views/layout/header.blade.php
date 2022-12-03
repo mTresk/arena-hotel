@@ -10,17 +10,17 @@
                                 d="M4.9 0.5C2.191 0.5 0 2.691 0 5.4C0 9.075 4.9 14.5 4.9 14.5C4.9 14.5 9.8 9.075 9.8 5.4C9.8 2.691 7.609 0.5 4.9 0.5ZM4.9 7.15C4.43587 7.15 3.99075 6.96563 3.66256 6.63744C3.33437 6.30925 3.15 5.86413 3.15 5.4C3.15 4.93587 3.33437 4.49075 3.66256 4.16256C3.99075 3.83437 4.43587 3.65 4.9 3.65C5.36413 3.65 5.80925 3.83437 6.13744 4.16256C6.46563 4.49075 6.65 4.93587 6.65 5.4C6.65 5.86413 6.46563 6.30925 6.13744 6.63744C5.80925 6.96563 5.36413 7.15 4.9 7.15V7.15Z"
                                 fill="white"/>
                         </svg>
-                        <span>Тюмень, Коммуны 22, корпус 1</span>
+                        <span>{{ $address }}</span>
                     </div>
                 </div>
                 <div data-da=".menu__body,850,3" class="top-header__right">
-                    <a href="tel:88009222222" class="top-header__phone">
+                    <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone) }}" class="top-header__phone">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M10.2667 8.9C9.33333 9.83333 9.33333 10.7667 8.4 10.7667C7.46667 10.7667 6.53333 9.83333 5.6 8.9C4.66667 7.96667 3.73333 7.03333 3.73333 6.1C3.73333 5.16667 4.66667 5.16667 5.6 4.23333C6.53333 3.3 3.73333 0.5 2.8 0.5C1.86667 0.5 0 3.3 0 3.3C0 5.16667 1.918 8.95133 3.73333 10.7667C5.54867 12.582 9.33333 14.5 11.2 14.5C11.2 14.5 14 12.6333 14 11.7C14 10.7667 11.2 7.96667 10.2667 8.9Z"
                                 fill="white"/>
                         </svg>
-                        <span>8 800 922 22 22</span>
+                        <span>{{ $phone }}</span>
                     </a>
                     <button data-popup="#callback" type="button" class="top-header__callback">
                         <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,17 +46,17 @@
                             <a href="{{ route('home') }}" class="menu__main">Главная</a>
                             <ul class="menu__list">
                                 <li class="menu__item"><a href="{{ route('rooms') }}" class="menu__link">Номера и цены</a></li>
-                                <li class="menu__item"><a href="cafe.html" class="menu__link">Кафе</a></li>
-                                <li class="menu__item"><a href="spa.html" class="menu__link">Сауна и бассейн</a></li>
-                                <li class="menu__item"><a href="parking.html" class="menu__link">Парковка</a></li>
-                                <li class="menu__item"><a href="fitness.html" class="menu__link">Фитнес зал</a></li>
+                                <li class="menu__item"><a href="{{ route('service.show', 'cafe') }}" class="menu__link">Кафе</a></li>
+                                <li class="menu__item"><a href="{{ route('service.show', 'spa') }}" class="menu__link">Сауна и бассейн</a></li>
+                                <li class="menu__item"><a href="{{ route('service.show', 'parking') }}" class="menu__link">Парковка</a></li>
+                                <li class="menu__item"><a href="{{ route('service.show', 'fitness') }}" class="menu__link">Фитнес зал</a></li>
                                 <li class="menu__item"><a href="{{ route('contacts') }}" class="menu__link">Контакты</a></li>
                             </ul>
                         </nav>
                     </div>
                 </div>
                 <div class="bottom-header__socials">
-                    <a href="#" class="bottom-header__social">
+                    <a href="{{ $whatsapp }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_150_3145)">
                                 <path
@@ -70,7 +70,7 @@
                             </defs>
                         </svg>
                     </a>
-                    <a href="#" class="bottom-header__social">
+                    <a href="{{ $telegram }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_150_3147)">
                                 <path d="M14.9998 6.66675L4.1665 10.4167L7.9165 11.6667M14.9998 6.66675L7.9165 11.6667M14.9998 6.66675L11.6665 15.4167L7.9165 11.6667"
@@ -86,7 +86,7 @@
                             </defs>
                         </svg>
                     </a>
-                    <a href="#" class="bottom-header__social">
+                    <a href="{{ $viber }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M10 18C12.1217 18 14.1566 17.1571 15.6569 15.6569C17.1571 14.1566 18 12.1217 18 10C18 7.87827 17.1571 5.84344 15.6569 4.34315C14.1566 2.84285 12.1217 2 10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10C2 12.1217 2.84285 14.1566 4.34315 15.6569C5.84344 17.1571 7.87827 18 10 18V18ZM10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20Z"
