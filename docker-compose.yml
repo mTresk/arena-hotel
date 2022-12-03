@@ -19,6 +19,17 @@ services:
             - web
             - internal
 
+    node:
+        image: node:alpine
+        container_name: arena_node
+        restart: unless-stopped
+        tty: true
+        volumes:
+            - ./:/var/www
+        networks:
+            - web
+            - internal
+
     app:
         build:
             context: .
