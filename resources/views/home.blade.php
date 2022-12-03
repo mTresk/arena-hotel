@@ -215,7 +215,7 @@
                     @foreach($homeData['features'] as $feature)
                         <div class="features__item feature">
                             <div class="feature__icon">
-                                <img src="{{ url($feature['icon']) }}" alt="Иконка">
+                                <img src="{{ url('storage/' . $feature['icon']) }}" alt="Иконка">
                             </div>
                             <h3 class="feature__title">{{ $feature['title'] }}</h3>
                             <p class="feature__text">
