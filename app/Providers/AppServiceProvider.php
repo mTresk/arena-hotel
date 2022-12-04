@@ -50,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         Filament::serving(function () {
+            Filament::registerViteTheme('resources/scss/filament.scss');
             Filament::registerUserMenuItems([
                 'account' => UserMenuItem::make()->url(MyProfile::getUrl()),
             ]);
