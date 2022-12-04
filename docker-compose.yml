@@ -1,12 +1,12 @@
 version: '3.9'
 
 services:
-    
+
     # Application
     app:
         build:
             context: .
-            dockerfile: app.dockerfile
+            dockerfile: _docker/app.dockerfile
         working_dir: /var/www
         volumes:
             - ./:/var/www
@@ -20,7 +20,7 @@ services:
     server:
         build:
             context: .
-            dockerfile: web.dockerfile
+            dockerfile: _docker/web.dockerfile
         working_dir: /var/www
         volumes:
             - ./:/var/www
