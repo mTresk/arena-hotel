@@ -1,5 +1,7 @@
 @extends('layout.app')
 
+@section('title', 'Контакты')
+
 @section('content')
     <main class="page">
         <section data-prlx-parent class="page-header">
@@ -34,7 +36,7 @@
                             <div class="contacts-item__content">
                                 <h3 class="contacts-item__title">Адрес</h3>
                                 <div class="contacts-item__data">
-                                    625003, г. Тюмень, ул. Коммуны 22, корп. 1
+                                    {{ $address_full }}
                                 </div>
                             </div>
                         </div>
@@ -48,7 +50,7 @@
                             </div>
                             <div class="contacts-item__content">
                                 <h3 class="contacts-item__title">Телефон</h3>
-                                <a href="tel:88009222222" class="contacts-item__data">8 800 922 22 22</a>
+                                <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone) }}" class="contacts-item__data">{{ $phone }}</a>
                             </div>
                         </div>
                         <div class="contacts__item contacts-item">
@@ -61,7 +63,7 @@
                             </div>
                             <div class="contacts-item__content">
                                 <h3 class="contacts-item__title">Почта</h3>
-                                <a href="mailto:sportgosti@bk.ru" class="contacts-item__data">sportgosti@bk.ru</a>
+                                <a href="mailto:{{ $email }}" class="contacts-item__data">{{ $email }}</a>
                             </div>
                         </div>
                         <div class="contacts__item contacts-item">
@@ -74,7 +76,7 @@
                             </div>
                             <div class="contacts-item__content">
                                 <h3 class="contacts-item__title">Время работы</h3>
-                                <div class="contacts-item__data">круглосуточно</div>
+                                <div class="contacts-item__data">{{ $schedule }}</div>
                             </div>
                         </div>
                         <div class="contacts__item contacts-item">
@@ -86,10 +88,10 @@
                                 </svg>
                             </div>
                             <div class="contacts-item__content">
-                                <h3 class="contacts-item__title">АНО «Футбол-Хоккей»</h3>
-                                <div class="contacts-item__data">ИНН / КПП 7203418928 / 720301001</div>
-                                <div class="contacts-item__data">р/сч. 40703810395150000013</div>
-                                <div class="contacts-item__data">БИК 046577903</div>
+                                <h3 class="contacts-item__title">Реквизиты</h3>
+                                @foreach($requisites as $item)
+                                    <div class="contacts-item__data">{{ $item['item'] }}</div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

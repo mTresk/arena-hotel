@@ -39,14 +39,14 @@ class Room extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->performOnCollections('thumbs')
-            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
+            ->fit(Manipulations::FIT_CONTAIN, 600, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('thumbWebp')
             ->performOnCollections('thumbs')
             ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
+            ->fit(Manipulations::FIT_CONTAIN, 600, 700)
             ->nonQueued()
             ->nonOptimized();
         $this

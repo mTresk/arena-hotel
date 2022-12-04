@@ -9,7 +9,9 @@ const contactComponent = createApp({
     },
 })
 
-contactComponent.mount('#contacts')
+if (document.querySelector('#contacts')) {
+    contactComponent.mount('#contacts')
+}
 
 const commentComponent = createApp({
     components: {
@@ -17,8 +19,9 @@ const commentComponent = createApp({
     },
 })
 
-commentComponent.mount('#comments')
-
+if (document.querySelector('#comments')) {
+    commentComponent.mount('#comments')
+}
 
 const callbackComponent = createApp({
     components: {
@@ -26,4 +29,6 @@ const callbackComponent = createApp({
     },
 })
 
-callbackComponent.mount('#callback')
+if (document.querySelector('#callback')) {
+    callbackComponent.mount('#callback')
+}

@@ -35,7 +35,6 @@ class CallbackResource extends Resource
                     ->maxLength(255),
                 TextInput::make('phone')
                     ->label('Телефон')
-                    ->tel()
                     ->required()
                     ->maxLength(255),
             ]);

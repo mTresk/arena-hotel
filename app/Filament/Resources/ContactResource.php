@@ -6,10 +6,13 @@ use App\Filament\Resources\ContactResource\Pages;
 use App\Filament\Resources\ContactResource\RelationManagers;
 use App\Models\Contact;
 use Filament\Forms;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 
 class ContactResource extends Resource
 {
@@ -24,35 +27,37 @@ class ContactResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                TextInput::make('name')
                     ->label('Имя')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('email')
+                TextInput::make('email')
                     ->label('Email')
                     ->email()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('phone')
+                TextInput::make('phone')
                     ->label('Телефон')
-                    ->tel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\Textarea::make('message')
+                Textarea::make('message')
                     ->label('Сообщение')
                     ->required()
                     ->maxLength(65535),
             ]);
     }
 
+    /**
+     * @throws \Exception
+     */
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Имя'),
-                Tables\Columns\TextColumn::make('email')->label('Email'),
-                Tables\Columns\TextColumn::make('phone')->label('Телефон'),
-                Tables\Columns\TextColumn::make('message')
+                TextColumn::make('name')->label('Имя'),
+                TextColumn::make('email')->label('Email'),
+                TextColumn::make('phone')->label('Телефон'),
+                TextColumn::make('message')
                     ->label('Сообщение')
                     ->limit(20),
                 Tables\Columns\TextColumn::make('created_at')

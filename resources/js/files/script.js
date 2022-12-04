@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/ru.js'
 import updateLocale from 'dayjs/plugin/updateLocale.js'
+import {menuClose} from "./functions";
 
 // Дата и время
 const interval = setInterval(() => {
@@ -78,4 +79,3 @@ function topButton() {
 }
 
 topButton();
-

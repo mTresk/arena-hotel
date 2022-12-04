@@ -45,7 +45,7 @@
                         {!! $service->content !!}
                     </div>
                     <div class="service__images">
-                        @foreach($service->getMedia('thumbs') as $thumb)
+                        @foreach($service->getMedia('thumbs')->take(2) as $thumb)
                             <picture>
                                 <source srcset="{{ $thumb->getUrl('thumbWebp') }}" type="image/webp">
                                 <img src="{{ $thumb->getUrl('thumb') }}" alt="{{ $service->title }}" class="service__image"/></picture>
