@@ -5,9 +5,11 @@
             @foreach($news as $item)
                 <div class="news-block__item news-item">
                     <a href="{{ route('post.show', $item->slug) }}" class="news-item__image news-item__image--ibg">
-                        <picture>
-                            <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsWebp') }}" type="image/webp">
-                            <img src="{{ $item->getMedia('news')[0]->getUrl('news') }}" alt=""/></picture>
+                        @isset($item->getMedia('news')[0])
+                            <picture>
+                                <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsWebp') }}" type="image/webp">
+                                <img src="{{ $item->getMedia('news')[0]->getUrl('news') }}" alt=""/></picture>
+                        @endisset
                     </a>
                     <div class="news-item__content">
                         <h3 class="news-item__title">{{ $item->title }}</h3>

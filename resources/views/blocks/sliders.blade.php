@@ -50,9 +50,11 @@
                     <h2 class="banner__title">{{ $homeData['banner1_title'] }}</h2>
                     <p class="banner__text">{{ $homeData['banner1_description'] }}</p>
                 </div>
-                <picture>
-                    <source srcset="{{ $homeData->getMedia('banner')[0]->getUrl('bannerWebp') }}" type="image/webp">
-                    <img src="{{ $homeData->getMedia('banner')[0]->getUrl('banner') }}" alt="" class="banner__background"/></picture>
+                @isset($homeData->getMedia('banner')[0])
+                    <picture>
+                        <source srcset="{{ $homeData->getMedia('banner')[0]->getUrl('bannerWebp') }}" type="image/webp">
+                        <img src="{{ $homeData->getMedia('banner')[0]->getUrl('banner') }}" alt="" class="banner__background"/></picture>
+                @endisset
                 <img src="{{ asset('img/logo.svg') }}" alt="Логотип" class="banner__logo"/>
             </div>
         </div>
@@ -66,10 +68,11 @@
                     <h2 class="banner__title">{{ $homeData['banner2_title'] }}</h2>
                     <p class="banner__text">{{ $homeData['banner2_description'] }}</p>
                 </div>
-
-                <picture>
-                    <source srcset="{{ $homeData->getMedia('banner1')[0]->getUrl('bannerWebp') }}" type="image/webp">
-                    <img src="{{ $homeData->getMedia('banner1')[0]->getUrl('banner') }}" alt="" class="banner__background"/></picture>
+                @isset($homeData->getMedia('banner1')[0])
+                    <picture>
+                        <source srcset="{{ $homeData->getMedia('banner1')[0]->getUrl('bannerWebp') }}" type="image/webp">
+                        <img src="{{ $homeData->getMedia('banner1')[0]->getUrl('banner') }}" alt="" class="banner__background"/></picture>
+                @endisset
                 <img src="{{ asset('img/logo.svg') }}" alt="Логотип" class="banner__logo"/>
             </div>
             <div class="rooms-block__content">

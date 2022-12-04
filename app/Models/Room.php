@@ -39,14 +39,14 @@ class Room extends Model implements HasMedia
         $this
             ->addMediaConversion('thumb')
             ->performOnCollections('thumbs')
-            ->fit(Manipulations::FIT_CONTAIN, 600, 700)
+            ->fit(Manipulations::FIT_CROP, 600, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('thumbWebp')
             ->performOnCollections('thumbs')
             ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 600, 700)
+            ->fit(Manipulations::FIT_CROP, 600, 700)
             ->nonQueued()
             ->nonOptimized();
         $this
@@ -65,27 +65,27 @@ class Room extends Model implements HasMedia
         $this
             ->addMediaConversion('slider')
             ->performOnCollections('sliders')
-            ->fit(Manipulations::FIT_CONTAIN, 1000, 540)
+            ->fit(Manipulations::FIT_CROP, 1000, 540)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderWebp')
             ->performOnCollections('sliders')
             ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 1000, 540)
+            ->fit(Manipulations::FIT_CROP, 1000, 540)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderThumb')
             ->performOnCollections('sliders')
-            ->fit(Manipulations::FIT_CONTAIN, 200, 140)
+            ->fit(Manipulations::FIT_CROP, 200, 140)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('sliderThumbWebp')
             ->performOnCollections('sliders')
             ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 200, 140)
+            ->fit(Manipulations::FIT_CROP, 200, 140)
             ->nonQueued()
             ->nonOptimized();
         $this
