@@ -1,0 +1,81 @@
+{
+  "resources/fonts/Exo2-Light.woff2": {
+    "file": "assets/Exo2-Light.0ea539f4.woff2",
+    "src": "resources/fonts/Exo2-Light.woff2"
+  },
+  "resources/fonts/Exo2-Medium.woff2": {
+    "file": "assets/Exo2-Medium.371423c2.woff2",
+    "src": "resources/fonts/Exo2-Medium.woff2"
+  },
+  "resources/fonts/Exo2-Bold.woff2": {
+    "file": "assets/Exo2-Bold.3e79b9a0.woff2",
+    "src": "resources/fonts/Exo2-Bold.woff2"
+  },
+  "resources/fonts/Exo2-Regular.woff2": {
+    "file": "assets/Exo2-Regular.a641c67f.woff2",
+    "src": "resources/fonts/Exo2-Regular.woff2"
+  },
+  "resources/fonts/Exo2-SemiBold.woff2": {
+    "file": "assets/Exo2-SemiBold.b4a31f1c.woff2",
+    "src": "resources/fonts/Exo2-SemiBold.woff2"
+  },
+  "resources/fonts/Exo2-Medium.woff": {
+    "file": "assets/Exo2-Medium.d99e133a.woff",
+    "src": "resources/fonts/Exo2-Medium.woff"
+  },
+  "resources/fonts/Exo2-Bold.woff": {
+    "file": "assets/Exo2-Bold.61e73194.woff",
+    "src": "resources/fonts/Exo2-Bold.woff"
+  },
+  "resources/fonts/Exo2-Light.woff": {
+    "file": "assets/Exo2-Light.61d2d050.woff",
+    "src": "resources/fonts/Exo2-Light.woff"
+  },
+  "resources/fonts/Exo2-Regular.woff": {
+    "file": "assets/Exo2-Regular.71a977ce.woff",
+    "src": "resources/fonts/Exo2-Regular.woff"
+  },
+  "resources/fonts/Exo2-SemiBold.woff": {
+    "file": "assets/Exo2-SemiBold.bcb9a696.woff",
+    "src": "resources/fonts/Exo2-SemiBold.woff"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app.fed39a71.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "resources/js/vue.js"
+    ],
+    "css": [
+      "assets/app.d521b5fe.css"
+    ],
+    "assets": [
+      "assets/Exo2-Bold.3e79b9a0.woff2",
+      "assets/Exo2-Bold.61e73194.woff",
+      "assets/Exo2-Light.0ea539f4.woff2",
+      "assets/Exo2-Light.61d2d050.woff",
+      "assets/Exo2-Medium.371423c2.woff2",
+      "assets/Exo2-Medium.d99e133a.woff",
+      "assets/Exo2-Regular.a641c67f.woff2",
+      "assets/Exo2-Regular.71a977ce.woff",
+      "assets/Exo2-SemiBold.b4a31f1c.woff2",
+      "assets/Exo2-SemiBold.bcb9a696.woff"
+    ]
+  },
+  "resources/js/vue.js": {
+    "file": "assets/vue.4731d8a2.js",
+    "src": "resources/js/vue.js",
+    "isEntry": true,
+    "css": [
+      "assets/vue.81bb63f1.css"
+    ]
+  },
+  "resources/js/vue.css": {
+    "file": "assets/vue.81bb63f1.css",
+    "src": "resources/js/vue.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.d521b5fe.css",
+    "src": "resources/js/app.css"
+  }
+}
