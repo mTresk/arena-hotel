@@ -23,6 +23,7 @@ class CallbackResource extends Resource
     protected static ?string $modelLabel = 'Обратный звонок';
     protected static ?string $navigationLabel = 'Обратный звонок';
     protected static ?string $pluralModelLabel = 'Обратные звонки';
+    protected static ?string $navigationGroup = 'Обратная связь';
     protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form

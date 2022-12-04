@@ -339,6 +339,27 @@
         display: none;
     }
 
+    blockquote {
+        position: relative;
+        font-weight: 300;
+        line-height: 140%;
+        font-style: italic;
+
+        @include adaptiveValue('font-size', 15, 12);
+        @include adaptiveValue('margin-bottom', 15, 10);
+        @include adaptiveValue('padding-left', 15, 10);
+
+        &::before {
+            position: absolute;
+            left: 0;
+            content: '';
+            height: 100%;
+            background-color: $accentColor;
+
+            @include adaptiveValue('width', 5, 3);
+        }
+    }
+
     img {
         max-width: 100%;
         height: auto;

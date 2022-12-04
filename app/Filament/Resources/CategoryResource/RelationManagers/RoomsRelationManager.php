@@ -25,6 +25,11 @@ class RoomsRelationManager extends RelationManager
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Название')
+                    ->required()
+                    ->maxLength(255),
+                TextInput::make('description')
+                    ->label('Размещение')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('price')
@@ -40,6 +45,8 @@ class RoomsRelationManager extends RelationManager
             ->columns([
                 TextColumn::make('name')
                     ->label('Номер'),
+                TextColumn::make('description')
+                    ->label('Рамещение'),
             ])
             ->filters([
                 //

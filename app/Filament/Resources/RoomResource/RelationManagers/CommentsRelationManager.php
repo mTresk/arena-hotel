@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\RoomResource\RelationManagers;
 
 use Filament\Forms;
+use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Resources\Table;
@@ -25,14 +27,29 @@ class CommentsRelationManager extends RelationManager
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('username')
+                TextInput::make('username')
                     ->label('Имя')
                     ->required()
                     ->maxLength(255),
+                Group::make()
+                    ->relationship('room')
+                    ->schema([
+                        TextInput::make('name')
+                            ->label('Название номера')
+                            ->disabled(),
+                    ]),
                 Textarea::make('review')
                     ->label('Отзыв')
                     ->required()
                     ->maxLength(65535),
+                Group::make()
+                    ->relationship('rating')
+                    ->schema([
+                        TextInput::make('rating')
+                            ->label('Оценка')
+                            ->required()
+                            ->numeric(),
+                    ]),
             ]);
     }
 
@@ -45,6 +62,8 @@ class CommentsRelationManager extends RelationManager
                 TextColumn::make('review')
                     ->label('Отзыв')
                     ->limit(20),
+                TextColumn::make('rating.rating')
+                    ->label('Оценка'),
                 ToggleColumn::make('is_published')
                     ->label('Опубликован')
                     ->sortable(),

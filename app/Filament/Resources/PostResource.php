@@ -77,12 +77,13 @@ class PostResource extends Resource
                     ->label('Изображение')
                     ->collection('news'),
                 TextColumn::make('title')
-                    ->label('Заголовок'),
-                TextColumn::make('created_at')
-                    ->label('Дата создания')
+                    ->label('Заголовок')
+                    ->limit(40),
+                TextColumn::make('published_at')
+                    ->label('Дата публикации')
                     ->dateTime()
                     ->sortable(),
-            ])
+            ])->defaultSort('published_at', 'desc')
             ->filters([
                 //
             ])
