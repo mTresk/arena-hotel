@@ -5,7 +5,10 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\CommentResource\Pages;
 use App\Filament\Resources\CommentResource\RelationManagers;
 use App\Models\Comment;
+use App\Models\Room;
+use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Group;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -33,13 +36,19 @@ class CommentResource extends Resource
                     ->label('Имя')
                     ->required()
                     ->maxLength(255),
-                Group::make()
-                    ->relationship('room')
-                    ->schema([
-                        TextInput::make('name')
-                            ->label('Название номера')
-                            ->disabled(),
-                    ]),
+                Select::make('room_id')
+                    ->required()
+                    ->options(function (callable $get) {
+                        $comment = Comment::find($get('room_id'));
+
+                        if (!$comment) {
+                            return Room::all()->pluck('name', 'id')->toArray();
+                        }
+                        return $comment->room->pluck('name', 'id');
+                    })
+                    ->reactive()
+                    ->afterStateUpdated(fn(callable $set) => $set('tournament_id', null))
+                    ->label('Номер'),
                 Textarea::make('review')
                     ->label('Отзыв')
                     ->required()
@@ -52,6 +61,8 @@ class CommentResource extends Resource
                             ->required()
                             ->numeric(),
                     ]),
+                DatePicker::make('created_at')
+                    ->label('Дата публикации'),
                 Toggle::make('is_published')
                     ->label('Опубликован')
             ]);

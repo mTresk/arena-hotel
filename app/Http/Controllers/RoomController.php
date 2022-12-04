@@ -9,7 +9,7 @@ class RoomController extends Controller
 {
     public function show(Room $room)
     {
-        $comments = $room->comments()->whereIsPublished(1)->with('rating')->get();
+        $comments = $room->comments()->whereIsPublished(1)->with('rating')->orderByDesc('created_at')->get();
         $ratingsCount = $comments->count();
         $ratingValue = 0;
         $averageRating = 0;

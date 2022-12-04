@@ -11,7 +11,7 @@ class Comment extends Model
     use HasFactory;
     use Rateable;
 
-    protected $fillable = ['username', 'review', 'room_id', 'is_published'];
+    protected $fillable = ['username', 'review', 'room_id', 'is_published', 'created_at'];
 
     public function room(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
