@@ -2,8 +2,8 @@
     <div class="map-block__container">
         <div id="map" class="map-block__map map">
             <picture>
-                <source srcset="{{asset('img/map-mobile.jpg')}} 1x, {{asset('img/map-mobile@2.jpg')}} 2x" media="(max-width: 560px)">
                 <source srcset="{{asset('img/map-mobile.webp')}} 1x, {{asset('img/map-mobile@2.webp')}} 2x" media="(max-width: 560px)" type="image/webp">
+                <source srcset="{{asset('img/map-mobile.jpg')}} 1x, {{asset('img/map-mobile@2.jpg')}} 2x" media="(max-width: 560px)">
                 <source srcset="{{ asset('/img/map.webp') }} 1x, {{ asset('/img/map@2.webp') }} 2x" type="image/webp">
                 <img src="{{ asset('/img/map.jpg') }}"
                      srcset="{{ asset('/img/map.jpg') }} 1x, {{ asset('/img/map@2.jpg') }} 2x"
