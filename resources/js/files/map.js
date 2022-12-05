@@ -8,10 +8,7 @@ window.onload = function () {
     };
 
     if (map) {
-        map.addEventListener('click', start_lazy_map, options_map);
-        map.addEventListener('mouseover', start_lazy_map, options_map);
-        map.addEventListener('touchstart', start_lazy_map, options_map);
-        map.addEventListener('touchmove', start_lazy_map, options_map);
+        window.addEventListener('scroll', start_lazy_map, options_map);
     }
 
     let map_loaded = false;
