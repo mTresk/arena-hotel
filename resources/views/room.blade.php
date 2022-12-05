@@ -21,6 +21,8 @@
         <section data-prlx-parent class="page-header">
             @isset($room->getMedia('headers')[0])
                 <picture>
+                    <source srcset="{{ $room->getMedia('headers')[0]->getUrl('headerMobileWebp') }}" type="image/webp" media="(max-width: 560px)">
+                    <source srcset="{{ $room->getMedia('headers')[0]->getUrl('headerMobile') }}" media="(max-width: 560px)">
                     <source srcset="{{ $room->getMedia('headers')[0]->getUrl('headerWebp') }} 1x, {{ $room->getMedia('headers')[0]->getUrl('headerWebp@2') }} 2x" type="image/webp">
                     <img data-prlx data-direction="0" src="{{ $room->getMedia('headers')[0]->getUrl('header') }}"
                          srcset="{{ $room->getMedia('headers')[0]->getUrl('header') }} 1x, {{ $room->getMedia('headers')[0]->getUrl('header@2') }} 2x"

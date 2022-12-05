@@ -78,6 +78,19 @@ class Room extends Model implements HasMedia
             ->nonQueued()
             ->nonOptimized();
         $this
+            ->addMediaConversion('headerMobile')
+            ->performOnCollections('headers')
+            ->fit(Manipulations::FIT_CONTAIN, 540, 460)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('headerMobileWebp')
+            ->performOnCollections('headers')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 540, 460)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
             ->addMediaConversion('header@2')
             ->performOnCollections('headers')
             ->fit(Manipulations::FIT_CONTAIN, 2880, 920)

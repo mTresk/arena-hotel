@@ -21,8 +21,13 @@
         <section data-prlx-parent class="page-header">
             @isset($pageData->getMedia('headers')[0])
                 <picture>
-                    <source srcset="{{ $pageData->getMedia('headers')[0]->getUrl('headerWebp') }}" type="image/webp">
-                    <img data-prlx data-direction="0" src="{{ $pageData->getMedia('headers')[0]->getUrl('header') }}" alt="Фоновое изображение" class="page-header__background"/>
+                    <source srcset="{{ $pageData->getMedia('headers')[0]->getUrl('headerMobileWebp') }}" type="image/webp" media="(max-width: 560px)">
+                    <source srcset="{{ $pageData->getMedia('headers')[0]->getUrl('headerMobile') }}" media="(max-width: 560px)">
+                    <source srcset="{{ $pageData->getMedia('headers')[0]->getUrl('headerWebp') }} 1x, {{ $pageData->getMedia('headers')[0]->getUrl('headerWebp@2') }} 2x,"
+                            type="image/webp">
+                    <img data-prlx data-direction="0" src="{{ $pageData->getMedia('headers')[0]->getUrl('header') }}"
+                         srcset="{{ $pageData->getMedia('headers')[0]->getUrl('header') }} 1x, {{ $pageData->getMedia('headers')[0]->getUrl('header@2') }} 2x,"
+                         alt="Фоновое изображение" class="page-header__background"/>
                 </picture>
             @endisset
             <div class="page-header__container">
