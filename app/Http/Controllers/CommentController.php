@@ -30,7 +30,7 @@ class CommentController extends Controller
                 'rating' => $formData['rating']
             ];
 
-            foreach (['djtresk@gmail.com', 'tresk@icloud.com'] as $recipient) {
+            foreach (['djtresk@gmail.com', 'sportgosti@bk.ru'] as $recipient) {
                 Mail::to($recipient)->send(new CommentForm($mailData));
             }
         }

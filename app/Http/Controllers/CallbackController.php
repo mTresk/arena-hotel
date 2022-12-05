@@ -17,7 +17,7 @@ class CallbackController extends Controller
             Callback::create($formData);
         }
 
-        foreach (['djtresk@gmail.com', 'tresk@icloud.com'] as $recipient) {
+        foreach (['djtresk@gmail.com', 'sportgosti@bk.ru'] as $recipient) {
             Mail::to($recipient)->send(new CallbackForm($formData));
         }
 
