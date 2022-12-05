@@ -16,13 +16,7 @@ class Home extends Model implements HasMedia
     use InteractsWithMedia;
 
     protected $fillable = [
-        'banner1_title',
-        'banner2_title',
-        'banner1_description',
-        'banner2_description',
-        'slider1_title',
-        'slider2_title',
-        'features'
+        'banner1_title', 'banner2_title', 'banner1_description', 'banner2_description', 'slider1_title', 'slider2_title', 'features', 'seo_title', 'seo_description'
     ];
 
     protected $casts = [
