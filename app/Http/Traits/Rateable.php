@@ -3,6 +3,7 @@
 namespace App\Http\Traits;
 
 use App\Models\Rating;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 trait Rateable
 {
@@ -31,7 +32,7 @@ trait Rateable
         }
     }
 
-    public function ratings()
+    public function ratings(): MorphMany
     {
         return $this->morphMany(Rating::class, 'rateable');
     }
@@ -46,29 +47,8 @@ trait Rateable
         return $this->ratings()->sum('rating');
     }
 
-    public function timesRated()
+    public function timesRated(): int
     {
         return $this->ratings()->count();
-    }
-
-
-    public function ratingPercent($max = 5): float|int
-    {
-        $quantity = $this->ratings()->count();
-        $total = $this->sumRating();
-
-        return ($quantity * $max) > 0 ? $total / (($quantity * $max) / 100) : 0;
-    }
-
-    // Getters
-
-    public function getAverageRatingAttribute()
-    {
-        return $this->averageRating();
-    }
-
-    public function getSumRatingAttribute()
-    {
-        return $this->sumRating();
     }
 }
