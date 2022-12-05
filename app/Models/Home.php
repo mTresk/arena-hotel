@@ -42,6 +42,19 @@ class Home extends Model implements HasMedia
             ->nonQueued()
             ->nonOptimized();
         $this
+            ->addMediaConversion('heroImageMobileWebp')
+            ->format('webp')
+            ->performOnCollections('hero_image')
+            ->fit(Manipulations::FIT_CONTAIN, 720, 540)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('heroImageMobile')
+            ->performOnCollections('hero_image')
+            ->fit(Manipulations::FIT_CONTAIN, 720, 540)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
             ->addMediaConversion('heroImage@2')
             ->performOnCollections('hero_image')
             ->fit(Manipulations::FIT_CONTAIN, 2880, 2880)

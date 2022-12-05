@@ -1,5 +1,7 @@
 <div data-prlx-parent class="hero">
     <picture>
+        <source srcset="{{ $homeData->getMedia('hero_image')[0]->getUrl('heroImageMobileWebp') }}" media="(max-width: 560px)" type="image/webp">
+        <source srcset="{{ $homeData->getMedia('hero_image')[0]->getUrl('heroImageMobile') }}" media="(max-width: 560px)">
         <source srcset="{{ $homeData->getMedia('hero_image')[0]->getUrl('heroImageWebp') }} 1x, {{ $homeData->getMedia('hero_image')[0]->getUrl('heroImageWebp@2') }} 2x"
                 type="image/webp">
         <img data-prlx data-direction="0" src="{{ $homeData->getMedia('hero_image')[0]->getUrl('heroImage') }}"
