@@ -140,7 +140,6 @@ return [
         'path' => app_path('Filament/Widgets'),
         'register' => [
             Widgets\AccountWidget::class,
-            Widgets\FilamentInfoWidget::class,
         ],
     ],
 
@@ -262,7 +261,7 @@ return [
     |
     */
 
-    'favicon' => null,
+    'favicon' => '/favicon-32x32.png',
 
     /*
     |--------------------------------------------------------------------------

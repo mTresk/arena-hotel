@@ -120,83 +120,15 @@
                     <div class="room__facilities facilities-block">
                         <h3 class="facilities-block__title">Удобства и возможности</h3>
                         <div class="facilities-block__body">
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
+                            @foreach($room['facilities'] as $item)
+                                <div class="facilities-block__item">
+                                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
 
-                                <span>РАЗМЕР КОМНАТЫ: 40 М²</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>ДВУХСПАЛЬНАЯ КРОВАТЬ</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>КУРЕНИЕ РАЗРЕШЕНО</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>БЕСПЛАТНЫЙ WI-FI</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>ТЕЛЕВИЗОР</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>СЕЙФ</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>ФЕН</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>РАЗМЕР КОМНАТЫ: 40 М²</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>ВАННАЯ В НОМЕРЕ</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>ЗАВТРАК</span>
-                            </div>
-                            <div class="facilities-block__item">
-                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M3.75 9.75L6.75 12.75L14.25 5.25" stroke="#2C3640" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                </svg>
-
-                                <span>КОНДИЦИОНЕР</span>
-                            </div>
+                                    <span>{{ $item['facilities'] }}</span>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="room__advantages advantages advantages--page">
@@ -273,11 +205,21 @@
                                             <div class="rating__body">
                                                 <div class="rating__active"></div>
                                                 <div class="rating__items">
-                                                    <input type="radio" class="rating__item" value="1" name="rating"/>
-                                                    <input type="radio" class="rating__item" value="2" name="rating"/>
-                                                    <input type="radio" class="rating__item" value="3" name="rating"/>
-                                                    <input type="radio" class="rating__item" value="4" name="rating"/>
-                                                    <input type="radio" class="rating__item" value="5" name="rating"/>
+                                                    <label>
+                                                        <input type="radio" class="rating__item" value="1" name="rating"/>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" class="rating__item" value="2" name="rating"/>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" class="rating__item" value="3" name="rating"/>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" class="rating__item" value="4" name="rating"/>
+                                                    </label>
+                                                    <label>
+                                                        <input type="radio" class="rating__item" value="5" name="rating"/>
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="rating__value">{{ $comment->rating->rating }}</div>
