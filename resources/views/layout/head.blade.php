@@ -1,12 +1,11 @@
 <head>
     @if(request()->is('/'))
-        <title>Гостиница «Арена»</title>
+        <title>{{ $site_name }}</title>
     @else
-        <title>@yield('title') — Гостиница «Арена»</title>
+        <title>@yield('title') — {{ $site_name }}</title>
     @endif
     <meta charset="UTF-8"/>
     <meta name="format-detection" content="telephone=no"/>
-    <meta name="robots" content="noindex, nofollow"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="@yield('description')"/>
     <meta property="og:title" content="@yield('title')"/>
