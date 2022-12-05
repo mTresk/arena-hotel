@@ -48,15 +48,23 @@
                 <div class="rooms__body">
                     @foreach($rooms as $room)
                         <a href="{{ route('room.show', $room->id ) }}" class="rooms-block__card swiper-slide room-card room-card--page">
-                            <picture>
-                                @isset($room->getMedia('thumbs')[0])
-                                    <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }}" type="image/webp">
-                                    <img src="{{ $room->getMedia('thumbs')[0]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--front"/></picture>
+                            @isset($room->getMedia('thumbs')[0])
+                                <picture>
+                                    <source srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp') }} 1x, {{ $room->getMedia('thumbs')[0]->getUrl('thumbWebp@2') }} 2x"
+                                            type="image/webp">
+                                    <img src="{{ $room->getMedia('thumbs')[0]->getUrl('thumb') }}"
+                                         srcset="{{ $room->getMedia('thumbs')[0]->getUrl('thumb') }} 1x, {{ $room->getMedia('thumbs')[0]->getUrl('thumb@2') }} 2x"
+                                         alt="{{ $room->name }}" class="room-card__image room-card__image--front"/>
+                                </picture>
                             @endisset
-                            <picture>
-                                @isset($room->getMedia('thumbs')[1])
-                                    <source srcset="{{ $room->getMedia('thumbs')[1]->getUrl('thumbWebp') }}" type="image/webp">
-                                    <img src="{{ $room->getMedia('thumbs')[1]->getUrl('thumb') }}" alt="" class="room-card__image room-card__image--back"/></picture>
+                            @isset($room->getMedia('thumbs')[1])
+                                <picture>
+                                    <source srcset="{{ $room->getMedia('thumbs')[1]->getUrl('thumbWebp') }} 1x, {{ $room->getMedia('thumbs')[1]->getUrl('thumbWebp@2') }} 2x"
+                                            type="image/webp">
+                                    <img src="{{ $room->getMedia('thumbs')[1]->getUrl('thumb') }}"
+                                         srcset="{{ $room->getMedia('thumbs')[1]->getUrl('thumb') }} 1x, {{ $room->getMedia('thumbs')[1]->getUrl('thumb@2') }} 2x"
+                                         alt="{{ $room->name }}" class="room-card__image room-card__image--back"/>
+                                </picture>
                             @endisset
                             <div class="room-card__content">
                                 <h3 class="room-card__title">{{ $room->name }}</h3>
