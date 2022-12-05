@@ -95,7 +95,7 @@ class PageHome extends Page implements Forms\Contracts\HasForms
                     SpatieMediaLibraryFileUpload::make('banner2')
                         ->image()
                         ->collection('banner1')
-                        ->label('Изображение на первом баннере'),
+                        ->label('Изображение на втором баннере'),
                     TextInput::make('slider1_title')
                         ->required()
                         ->label('Заголовок первого слайдера')

@@ -7,8 +7,13 @@
                     <a href="{{ route('post.show', $item->slug) }}" class="news-item__image news-item__image--ibg">
                         @isset($item->getMedia('news')[0])
                             <picture>
-                                <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsWebp') }}" type="image/webp">
-                                <img src="{{ $item->getMedia('news')[0]->getUrl('news') }}" alt=""/></picture>
+                                <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsThumbWebp') }} 1x, {{ $item->getMedia('news')[0]->getUrl('newsThumbWebp@2') }} 2x"
+                                        type="image/webp">
+                                <img
+                                    src="{{ $item->getMedia('news')[0]->getUrl('newsThumb') }}"
+                                    srcset="{{ $item->getMedia('news')[0]->getUrl('newsThumb') }} 1x, {{ $item->getMedia('news')[0]->getUrl('newsThumb@2') }} 2x"
+                                    alt="{{ $item->title }}"/>
+                            </picture>
                         @endisset
                     </a>
                     <div class="news-item__content">

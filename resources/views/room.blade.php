@@ -21,8 +21,10 @@
         <section data-prlx-parent class="page-header">
             @isset($room->getMedia('headers')[0])
                 <picture>
-                    <source srcset="{{ $room->getMedia('headers')[0]->getUrl('headerWebp') }}" type="image/webp">
-                    <img data-prlx data-direction="0" src="{{ $room->getMedia('headers')[0]->getUrl('header') }}" alt="Фоновое изображение" class="page-header__background"/>
+                    <source srcset="{{ $room->getMedia('headers')[0]->getUrl('headerWebp') }} 1x, {{ $room->getMedia('headers')[0]->getUrl('headerWebp@2') }} 2x" type="image/webp">
+                    <img data-prlx data-direction="0" src="{{ $room->getMedia('headers')[0]->getUrl('header') }}"
+                         srcset="{{ $room->getMedia('headers')[0]->getUrl('header') }} 1x, {{ $room->getMedia('headers')[0]->getUrl('header@2') }} 2x"
+                         alt="Фоновое изображение" class="page-header__background"/>
                 </picture>
             @endisset
             <div class="page-header__container">

@@ -36,14 +36,53 @@ class Post extends Model implements HasMedia
         $this
             ->addMediaConversion('news')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CONTAIN, 1400, 1400)
+            ->fit(Manipulations::FIT_CONTAIN, 860, 860)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('news@2')
+            ->performOnCollections('news')
+            ->fit(Manipulations::FIT_CONTAIN, 1720, 1720)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('newsWebp')
             ->performOnCollections('news')
             ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 1400, 1400)
+            ->fit(Manipulations::FIT_CONTAIN, 860, 860)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('newsWebp@2')
+            ->performOnCollections('news')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 1720, 1720)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('newsThumb')
+            ->performOnCollections('news')
+            ->fit(Manipulations::FIT_CONTAIN, 350, 350)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('newsThumbWebp')
+            ->performOnCollections('news')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 350, 350)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('newsThumb@2')
+            ->performOnCollections('news')
+            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('newsThumbWebp@2')
+            ->performOnCollections('news')
+            ->format('webp')
+            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
             ->nonOptimized();
     }

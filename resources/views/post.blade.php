@@ -33,8 +33,13 @@
                 @isset($post->getMedia('news')[0])
                     <div class="news__image news__image--ibg">
                         <picture>
-                            <source srcset="{{ $post->getMedia('news')[0]->getUrl('newsWebp') }}" type="image/webp">
-                            <img src="{{ $post->getMedia('news')[0]->getUrl('news') }}" alt="{{ $post->title }}"/></picture>
+                            <source srcset="{{ $post->getMedia('news')[0]->getUrl('newsWebp') }} 1x, {{ $post->getMedia('news')[0]->getUrl('newsWebp@2') }} 2x"
+                                    type="image/webp">
+                            <img
+                                src="{{ $post->getMedia('news')[0]->getUrl('news') }}"
+                                srcset="{{ $post->getMedia('news')[0]->getUrl('news') }} 1x, {{ $post->getMedia('news')[0]->getUrl('news@2') }} 2x"
+                                alt="{{ $post->title }}"/>
+                        </picture>
                     </div>
                 @endisset
                 <div class="news__content content">

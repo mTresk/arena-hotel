@@ -31,14 +31,27 @@ class Home extends Model implements HasMedia
         $this
             ->addMediaConversion('heroImage')
             ->performOnCollections('hero_image')
-            ->fit(Manipulations::FIT_CONTAIN, 1920, 1080)
+            ->fit(Manipulations::FIT_CONTAIN, 1440, 1080)
             ->nonQueued()
             ->nonOptimized();
         $this
             ->addMediaConversion('heroImageWebp')
             ->format('webp')
             ->performOnCollections('hero_image')
-            ->fit(Manipulations::FIT_CONTAIN, 1920, 1080)
+            ->fit(Manipulations::FIT_CONTAIN, 1440, 1080)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('heroImage@2')
+            ->performOnCollections('hero_image')
+            ->fit(Manipulations::FIT_CONTAIN, 2880, 2880)
+            ->nonQueued()
+            ->nonOptimized();
+        $this
+            ->addMediaConversion('heroImageWebp@2')
+            ->format('webp')
+            ->performOnCollections('hero_image')
+            ->fit(Manipulations::FIT_CONTAIN, 2880, 2880)
             ->nonQueued()
             ->nonOptimized();
         $this
