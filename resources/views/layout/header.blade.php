@@ -100,7 +100,7 @@
                         </svg>
                     </a>
                 </div>
-                <button type="button" class="icon-menu"><span></span></button>
+                <button role="button" aria-label="menu" type="button" class="icon-menu"><span></span></button>
             </div>
         </div>
     </div>
