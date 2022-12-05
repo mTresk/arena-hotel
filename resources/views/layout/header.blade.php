@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="bottom-header__socials">
-                    <a href="{{ $whatsapp }}" target="_blank" class="bottom-header__social">
+                    <a aria-label="WhatsApp" href="{{ $whatsapp }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_150_3145)">
                                 <path
@@ -70,7 +70,7 @@
                             </defs>
                         </svg>
                     </a>
-                    <a href="{{ $telegram }}" target="_blank" class="bottom-header__social">
+                    <a aria-label="Telegram" href="{{ $telegram }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_150_3147)">
                                 <path d="M14.9998 6.66675L4.1665 10.4167L7.9165 11.6667M14.9998 6.66675L7.9165 11.6667M14.9998 6.66675L11.6665 15.4167L7.9165 11.6667"
@@ -86,7 +86,7 @@
                             </defs>
                         </svg>
                     </a>
-                    <a href="{{ $viber }}" target="_blank" class="bottom-header__social">
+                    <a aria-label="Viber" href="{{ $viber }}" target="_blank" class="bottom-header__social">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M10 18C12.1217 18 14.1566 17.1571 15.6569 15.6569C17.1571 14.1566 18 12.1217 18 10C18 7.87827 17.1571 5.84344 15.6569 4.34315C14.1566 2.84285 12.1217 2 10 2C7.87827 2 5.84344 2.84285 4.34315 4.34315C2.84285 5.84344 2 7.87827 2 10C2 12.1217 2.84285 14.1566 4.34315 15.6569C5.84344 17.1571 7.87827 18 10 18V18ZM10 20C4.477 20 0 15.523 0 10C0 4.477 4.477 0 10 0C15.523 0 20 4.477 20 10C20 15.523 15.523 20 10 20Z"
