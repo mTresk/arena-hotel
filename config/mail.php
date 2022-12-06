@@ -115,4 +115,13 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Admin and manager emails
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    'admin_email' => env('ADMIN_EMAIL', 'djtresk@gmail.com'),
+    'manager_email' => env('MANAGER_EMAIL', 'sportgosti@bk.ru'),
 ];
