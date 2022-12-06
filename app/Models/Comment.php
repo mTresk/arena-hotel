@@ -24,4 +24,14 @@ class Comment extends Model
     {
         return $this->hasOne(Rating::class, 'rateable_id');
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($comment) {
+            $comment->rating()->each(function ($rating) {
+                $rating->delete();
+            });
+        });
+    }
 }
