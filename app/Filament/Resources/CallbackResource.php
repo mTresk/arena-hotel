@@ -53,6 +53,7 @@ class CallbackResource extends Resource
                     ->dateTime()
                     ->label('Дата и время заявки'),
             ])
+            ->defaultSort('created_at', 'desc')
             ->filters([
                 //
             ])
