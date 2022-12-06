@@ -115,7 +115,7 @@ class RoomResource extends Resource
     {
         return $table
             ->columns([
-                SpatieMediaLibraryImageColumn::make('thumb')
+                SpatieMediaLibraryImageColumn::make('header')
                     ->collection('thumbs')
                     ->label('Изображение'),
                 TextColumn::make('name')
