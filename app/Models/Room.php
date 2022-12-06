@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -135,6 +136,25 @@ class Room extends Model implements HasMedia
             ->fit(Manipulations::FIT_CONTAIN, 1200, 630)
             ->nonQueued()
             ->nonOptimized();
+    }
+
+    protected function thumb(): Attribute
+    {
+        $collections = $this->getMedia('thumbs');
+
+        $thumbs = [];
+
+        foreach ($collections as $collection) {
+            $thumbs[] = [
+                'thumb' => $collection->getUrl('thumb'),
+                'thumbWebp' => $collection->getUrl('thumbWebp'),
+                'thumbBig' => $collection->getUrl('thumb@2'),
+                'thumbBigWebp' => $collection->getUrl('thumbWebp@2'),
+            ];
+        }
+
+        return Attribute::make(
+            get: fn() => ($thumbs));
     }
 
 }

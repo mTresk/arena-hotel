@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -85,5 +86,35 @@ class Post extends Model implements HasMedia
             ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
             ->nonOptimized();
+    }
+
+    protected function image(): Attribute
+    {
+        $collection = $this->getMedia('news')->last();
+
+        return Attribute::make(
+            get: fn() => (
+            [
+                'news' => $collection->getUrl('news'),
+                'newsWebp' => $collection->getUrl('newsWebp'),
+                'newsBig' => $collection->getUrl('news@2'),
+                'newsBigWebp' => $collection->getUrl('newsWebp@2'),
+            ])
+        );
+    }
+
+    protected function thumb(): Attribute
+    {
+        $collection = $this->getMedia('news')->last();
+
+        return Attribute::make(
+            get: fn() => (
+            [
+                'newsThumb' => $collection->getUrl('newsThumb'),
+                'newsThumbWebp' => $collection->getUrl('newsThumbWebp'),
+                'newsThumbBig' => $collection->getUrl('newsThumb@2'),
+                'newsThumbBigWebp' => $collection->getUrl('newsThumbWebp@2'),
+            ])
+        );
     }
 }

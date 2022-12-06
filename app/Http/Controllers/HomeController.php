@@ -18,7 +18,12 @@ class HomeController extends Controller
             ->orWhere('category_id', 3)
             ->get();
 
-        $news = Post::published()->orderBy('published_at', 'desc')->take(4)->get();
+        $news = Post::query()
+            ->published()
+//            ->select('title', 'slug', 'excerpt')
+            ->orderBy('published_at', 'desc')
+            ->take(4)
+            ->get();
 
         $homeData = Home::first();
 

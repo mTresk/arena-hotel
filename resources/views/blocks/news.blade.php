@@ -5,13 +5,13 @@
             @foreach($news as $item)
                 <div class="news-block__item news-item">
                     <a href="{{ route('post.show', $item->slug) }}" class="news-item__image news-item__image--ibg">
-                        @isset($item->getMedia('news')[0])
+                        @isset($item->thumb)
                             <picture>
-                                <source srcset="{{ $item->getMedia('news')[0]->getUrl('newsThumbWebp') }} 1x, {{ $item->getMedia('news')[0]->getUrl('newsThumbWebp@2') }} 2x"
+                                <source srcset="{{ $item->thumb['newsThumbWebp'] }} 1x, {{ $item->thumb['newsThumbBigWebp'] }} 2x"
                                         type="image/webp">
                                 <img
-                                    src="{{ $item->getMedia('news')[0]->getUrl('newsThumb') }}"
-                                    srcset="{{ $item->getMedia('news')[0]->getUrl('newsThumb') }} 1x, {{ $item->getMedia('news')[0]->getUrl('newsThumb@2') }} 2x"
+                                    src="{{ $item->thumb['newsThumb'] }}"
+                                    srcset="{{ $item->thumb['newsThumb'] }} 1x, {{ $item->thumb['newsThumbBig'] }} 2x"
                                     alt="{{ $item->title }}"/>
                             </picture>
                         @endisset

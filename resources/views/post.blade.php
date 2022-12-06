@@ -4,8 +4,8 @@
 
 @section('description', $post->excerpt)
 
-@isset($post->getMedia('news')[0])
-    @section('image', $post->getMedia('news')[0]->getUrl('news'))
+@isset($post->image)
+    @section('image', $post->image['news'])
 @endisset
 
 @section('content')
@@ -30,14 +30,14 @@
         <section class="news">
             <div class="news__body">
                 <h1 class="news__title">{{ $post->title }}</h1>
-                @isset($post->getMedia('news')[0])
+                @isset($post->image)
                     <div class="news__image news__image--ibg">
                         <picture>
-                            <source srcset="{{ $post->getMedia('news')[0]->getUrl('newsWebp') }} 1x, {{ $post->getMedia('news')[0]->getUrl('newsWebp@2') }} 2x"
+                            <source srcset="{{ $post->image['newsWebp'] }} 1x, {{ $post->image['newsBigWebp'] }} 2x"
                                     type="image/webp">
                             <img
-                                src="{{ $post->getMedia('news')[0]->getUrl('news') }}"
-                                srcset="{{ $post->getMedia('news')[0]->getUrl('news') }} 1x, {{ $post->getMedia('news')[0]->getUrl('news@2') }} 2x"
+                                src="{{ $post->image['news'] }}"
+                                srcset="{{ $post->image['news'] }} 1x, {{ $post->image['newsBig'] }} 2x"
                                 alt="{{ $post->title }}"/>
                         </picture>
                     </div>
