@@ -46,8 +46,6 @@ class CommentResource extends Resource
                         }
                         return $comment->room->pluck('name', 'id');
                     })
-                    ->reactive()
-                    ->afterStateUpdated(fn(callable $set) => $set('tournament_id', null))
                     ->label('Номер'),
                 Textarea::make('review')
                     ->label('Отзыв')
