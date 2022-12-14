@@ -1,4 +1,12 @@
 {
+  "resources/fonts/Exo2-Regular.woff2": {
+    "file": "assets/Exo2-Regular.a641c67f.woff2",
+    "src": "resources/fonts/Exo2-Regular.woff2"
+  },
+  "resources/fonts/Exo2-Bold.woff2": {
+    "file": "assets/Exo2-Bold.3e79b9a0.woff2",
+    "src": "resources/fonts/Exo2-Bold.woff2"
+  },
   "resources/fonts/Exo2-Medium.woff2": {
     "file": "assets/Exo2-Medium.371423c2.woff2",
     "src": "resources/fonts/Exo2-Medium.woff2"
@@ -11,13 +19,13 @@
     "file": "assets/Exo2-SemiBold.b4a31f1c.woff2",
     "src": "resources/fonts/Exo2-SemiBold.woff2"
   },
-  "resources/fonts/Exo2-Bold.woff2": {
-    "file": "assets/Exo2-Bold.3e79b9a0.woff2",
-    "src": "resources/fonts/Exo2-Bold.woff2"
+  "resources/fonts/Exo2-Regular.woff": {
+    "file": "assets/Exo2-Regular.71a977ce.woff",
+    "src": "resources/fonts/Exo2-Regular.woff"
   },
-  "resources/fonts/Exo2-Regular.woff2": {
-    "file": "assets/Exo2-Regular.a641c67f.woff2",
-    "src": "resources/fonts/Exo2-Regular.woff2"
+  "resources/fonts/Exo2-Bold.woff": {
+    "file": "assets/Exo2-Bold.61e73194.woff",
+    "src": "resources/fonts/Exo2-Bold.woff"
   },
   "resources/fonts/Exo2-Medium.woff": {
     "file": "assets/Exo2-Medium.d99e133a.woff",
@@ -31,14 +39,6 @@
     "file": "assets/Exo2-SemiBold.bcb9a696.woff",
     "src": "resources/fonts/Exo2-SemiBold.woff"
   },
-  "resources/fonts/Exo2-Bold.woff": {
-    "file": "assets/Exo2-Bold.61e73194.woff",
-    "src": "resources/fonts/Exo2-Bold.woff"
-  },
-  "resources/fonts/Exo2-Regular.woff": {
-    "file": "assets/Exo2-Regular.71a977ce.woff",
-    "src": "resources/fonts/Exo2-Regular.woff"
-  },
   "resources/js/app.js": {
     "file": "assets/app.56b45f1a.js",
     "src": "resources/js/app.js",
@@ -47,7 +47,7 @@
       "resources/js/vue.js"
     ],
     "css": [
-      "assets/app.0d1f3d2c.css"
+      "assets/app.87f7f06d.css"
     ],
     "assets": [
       "assets/Exo2-Bold.3e79b9a0.woff2",
@@ -75,7 +75,7 @@
     "src": "resources/js/vue.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app.0d1f3d2c.css",
+    "file": "assets/app.87f7f06d.css",
     "src": "resources/js/app.css"
   },
   "resources/scss/filament.scss": {
