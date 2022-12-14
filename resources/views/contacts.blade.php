@@ -49,8 +49,10 @@
                                 </svg>
                             </div>
                             <div class="contacts-item__content">
-                                <h3 class="contacts-item__title">Телефон</h3>
+                                <h3 class="contacts-item__title">Телефоны</h3>
                                 <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone) }}" class="contacts-item__data">{{ $phone }}</a>
+                                <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone_mobile) }}" class="contacts-item__data">{{ $phone_mobile }}</a>
+                                <a href="tel:{{ str_replace(['(', ')', ' ', '-'], '', $phone_local) }}" class="contacts-item__data">{{ $phone_local }}</a>
                             </div>
                         </div>
                         <div class="contacts__item contacts-item">

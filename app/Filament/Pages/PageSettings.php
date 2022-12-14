@@ -36,6 +36,12 @@ class PageSettings extends SettingsPage
                     TextInput::make('phone')
                         ->required()
                         ->label('Телефон'),
+                    TextInput::make('phone_mobile')
+                        ->required()
+                        ->label('Мобильный телефон'),
+                    TextInput::make('phone_local')
+                        ->required()
+                        ->label('Городской телефон'),
                     TextInput::make('email')
                         ->required()
                         ->email()

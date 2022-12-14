@@ -10,6 +10,8 @@ class GeneralSettings extends Settings
     public string $address;
     public string $address_full;
     public string $phone;
+    public string $phone_mobile;
+    public string $phone_local;
     public string $whatsapp;
     public string $telegram;
     public string $viber;

@@ -17,7 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
     }
-    
+
     public function boot(): void
     {
         if (config('app.env') === 'production') {
@@ -31,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
             $view->with('address', $settings->address);
             $view->with('address_full', $settings->address_full);
             $view->with('phone', $settings->phone);
+            $view->with('phone_mobile', $settings->phone_mobile);
+            $view->with('phone_local', $settings->phone_local);
             $view->with('whatsapp', $settings->whatsapp);
             $view->with('telegram', $settings->telegram);
             $view->with('viber', $settings->viber);
