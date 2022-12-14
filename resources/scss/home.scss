@@ -76,8 +76,10 @@
 }
 
 .BookingSearchForm_control {
-    padding-top: rem(40) !important;
-    padding-bottom: rem(40) !important;
+    @media (min-width: 919px) {
+        padding-top: rem(40) !important;
+        padding-bottom: rem(40) !important;
+    }
 
     @media (max-width: 920px) {
         width: 340px;
