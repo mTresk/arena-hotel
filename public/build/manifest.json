@@ -7,10 +7,6 @@
     "file": "assets/Exo2-Regular.a641c67f.woff2",
     "src": "resources/fonts/Exo2-Regular.woff2"
   },
-  "resources/fonts/Exo2-Light.woff2": {
-    "file": "assets/Exo2-Light.0ea539f4.woff2",
-    "src": "resources/fonts/Exo2-Light.woff2"
-  },
   "resources/fonts/Exo2-SemiBold.woff2": {
     "file": "assets/Exo2-SemiBold.b4a31f1c.woff2",
     "src": "resources/fonts/Exo2-SemiBold.woff2"
@@ -18,6 +14,10 @@
   "resources/fonts/Exo2-Medium.woff2": {
     "file": "assets/Exo2-Medium.371423c2.woff2",
     "src": "resources/fonts/Exo2-Medium.woff2"
+  },
+  "resources/fonts/Exo2-Light.woff2": {
+    "file": "assets/Exo2-Light.0ea539f4.woff2",
+    "src": "resources/fonts/Exo2-Light.woff2"
   },
   "resources/fonts/Exo2-Bold.woff": {
     "file": "assets/Exo2-Bold.61e73194.woff",
@@ -31,16 +31,16 @@
     "file": "assets/Exo2-SemiBold.bcb9a696.woff",
     "src": "resources/fonts/Exo2-SemiBold.woff"
   },
-  "resources/fonts/Exo2-Light.woff": {
-    "file": "assets/Exo2-Light.61d2d050.woff",
-    "src": "resources/fonts/Exo2-Light.woff"
-  },
   "resources/fonts/Exo2-Medium.woff": {
     "file": "assets/Exo2-Medium.d99e133a.woff",
     "src": "resources/fonts/Exo2-Medium.woff"
   },
+  "resources/fonts/Exo2-Light.woff": {
+    "file": "assets/Exo2-Light.61d2d050.woff",
+    "src": "resources/fonts/Exo2-Light.woff"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.637762a4.js",
+    "file": "assets/app.111fd4e2.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
@@ -74,13 +74,13 @@
     "file": "assets/vue.81bb63f1.css",
     "src": "resources/js/vue.css"
   },
+  "resources/js/app.css": {
+    "file": "assets/app.94844e6a.css",
+    "src": "resources/js/app.css"
+  },
   "resources/scss/filament.scss": {
     "file": "assets/filament.0ac659b1.css",
     "src": "resources/scss/filament.scss",
     "isEntry": true
-  },
-  "resources/js/app.css": {
-    "file": "assets/app.94844e6a.css",
-    "src": "resources/js/app.css"
   }
 }
