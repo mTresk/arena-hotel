@@ -19,13 +19,13 @@
     "file": "assets/Exo2-Medium.371423c2.woff2",
     "src": "resources/fonts/Exo2-Medium.woff2"
   },
-  "resources/fonts/Exo2-Light.woff": {
-    "file": "assets/Exo2-Light.61d2d050.woff",
-    "src": "resources/fonts/Exo2-Light.woff"
-  },
   "resources/fonts/Exo2-Bold.woff": {
     "file": "assets/Exo2-Bold.61e73194.woff",
     "src": "resources/fonts/Exo2-Bold.woff"
+  },
+  "resources/fonts/Exo2-Light.woff": {
+    "file": "assets/Exo2-Light.61d2d050.woff",
+    "src": "resources/fonts/Exo2-Light.woff"
   },
   "resources/fonts/Exo2-SemiBold.woff": {
     "file": "assets/Exo2-SemiBold.bcb9a696.woff",
@@ -40,14 +40,14 @@
     "src": "resources/fonts/Exo2-Medium.woff"
   },
   "resources/js/app.js": {
-    "file": "assets/app.637762a4.js",
+    "file": "assets/app.56b45f1a.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
       "resources/js/vue.js"
     ],
     "css": [
-      "assets/app.d9669a5a.css"
+      "assets/app.67c2c043.css"
     ],
     "assets": [
       "assets/Exo2-Bold.3e79b9a0.woff2",
@@ -75,7 +75,7 @@
     "src": "resources/js/vue.css"
   },
   "resources/js/app.css": {
-    "file": "assets/app.d9669a5a.css",
+    "file": "assets/app.67c2c043.css",
     "src": "resources/js/app.css"
   },
   "resources/scss/filament.scss": {
