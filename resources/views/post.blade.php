@@ -23,7 +23,7 @@
         <div class="page-panel">
             <div class="page-panel__container">
                 <div class="page-panel__body">
-                    <div class="page-panel__panel panel" id="panel"></div>
+                    @include('blocks.widget-horizontal')
                 </div>
             </div>
         </div>
