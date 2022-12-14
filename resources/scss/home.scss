@@ -58,6 +58,20 @@
     }
 }
 
+.WidgetNumberInputButton {
+    background: $accentColor !important;
+    color: $whiteColor !important;
+}
+
+.WidgetGuestSelectControlButtonContainer {
+    .react-ui-1g33jba {
+        background-color: $accentColor !important;
+        color: $whiteColor !important;
+        border-color: $accentColor !important;
+        border-radius: rem(4) !important;
+    }
+}
+
 .advantages {
     &--main {
         transform: translateY(-50%);
