@@ -26,8 +26,28 @@
 }
 
 .panel {
-    width: 890px;
     background-color: #fff;
+
+    .FixedButton_container {
+        display: none;
+    }
+
+    &--horizontal {
+        width: 890px;
+        @media (max-width: 920px) {
+            display: none;
+        }
+    }
+
+
+    &--mobile {
+        display: none;
+        width: 278px;
+
+        @media (max-width: 920px) {
+            display: block;
+        }
+    }
 }
 
 .advantages {
