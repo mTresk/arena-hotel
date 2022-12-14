@@ -1,5 +1,10 @@
 .rooms {
     @include adaptiveValue('margin-top', -10, -30);
+
+    @media (max-width: 767px) {
+        margin-top: rem(40) !important;
+    }
+
     // .rooms__body
     &__body {
         display: grid;

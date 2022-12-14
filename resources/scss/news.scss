@@ -1,5 +1,9 @@
 .news {
     @include adaptiveValue('margin-top', -10, -30);
+
+    @media (max-width: 767px) {
+        margin-top: rem(40) !important;
+    }
     // .news__body
     &__body {
         max-width: rem(900);

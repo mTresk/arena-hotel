@@ -1,47 +1,56 @@
 .service {
-	@include adaptiveValue('margin-top', -10, -30);
-	// .service__body
-	&__body {
-		max-width: rem(1000);
-		margin: 0 auto;
-		display: flex;
-	}
-	// .service__inner
-	&__inner {
-		flex: 0 1 615px;
-		padding-top: rem(30);
-		padding-bottom: rem(40);
-		padding-left: rem(20);
-		padding-right: rem(20);
-		background-color: $whiteColor;
+    @include adaptiveValue('margin-top', -10, -30);
 
-		@media (max-width: $mobile) {
-			flex: 1 1 auto;
-		}
-	}
-	// .service__images
-	&__images {
-		display: grid;
-		grid-template-columns: auto auto;
-		grid-gap: rem(25);
+    @media (max-width: 767px) {
+        margin-top: rem(40) !important;
+    }
 
-		@include adaptiveValue('margin-top', 40, 15);
-		@include adaptiveValue('grid-gap', 25, 15);
+    // .service__body
+    &__body {
+        max-width: rem(1000);
+        margin: 0 auto;
+        display: flex;
+    }
 
-		@media (max-width: $mobileSmall) {
-			grid-template-columns: 1fr;
-		}
-	}
-	// .service__image
-	&__image {
-		max-width: 100%;
-	}
-	// .service__banner
-	&__banner {
-		flex: 0 1 385px;
+    // .service__inner
+    &__inner {
+        flex: 0 1 615px;
+        padding-top: rem(30);
+        padding-bottom: rem(40);
+        padding-left: rem(20);
+        padding-right: rem(20);
+        background-color: $whiteColor;
 
-		@media (max-width: $mobile) {
-			display: none;
-		}
-	}
+        @media (max-width: $mobile) {
+            flex: 1 1 auto;
+        }
+    }
+
+    // .service__images
+    &__images {
+        display: grid;
+        grid-template-columns: auto auto;
+        grid-gap: rem(25);
+
+        @include adaptiveValue('margin-top', 40, 15);
+        @include adaptiveValue('grid-gap', 25, 15);
+
+        @media (max-width: $mobileSmall) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    // .service__image
+    &__image {
+        max-width: 100%;
+    }
+
+    // .service__banner
+    &__banner {
+        flex: 0 1 385px;
+
+        @media (max-width: $mobile) {
+            display: none;
+        }
+    }
 }
