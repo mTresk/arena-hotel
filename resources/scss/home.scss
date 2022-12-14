@@ -53,7 +53,8 @@
         background-color: $accentColor !important;
         color: $whiteColor !important;
         border-color: $accentColor !important;
-        border-radius: 0 !important;
+        border-radius: rem(4) !important;
+
     }
 }
 
