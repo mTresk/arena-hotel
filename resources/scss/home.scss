@@ -29,7 +29,6 @@
     background-color: #fff;
 
     &--horizontal {
-        width: 890px;
         @media (max-width: 920px) {
             display: none;
         }
@@ -38,7 +37,6 @@
 
     &--mobile {
         display: none;
-        width: 311px;
 
         @media (max-width: 920px) {
             display: block;
@@ -47,7 +45,7 @@
 }
 
 .WidgetApp_container, .FixedButton_container, .WidgetGuestSelectControlButtonContainer, .BookingLightbox {
-    font-family: 'Exo2', sans-serif;
+    font-family: 'Exo2', sans-serif !important;
 
     .react-ui-1g33jba {
         background-color: $accentColor !important;
@@ -61,6 +59,15 @@
 .WidgetNumberInputButton {
     background: $accentColor !important;
     color: $whiteColor !important;
+}
+
+.BookingSearchForm_dates {
+    margin-bottom: 0 !important;
+}
+
+.BookingSearchForm_control {
+    padding-top: rem(30) !important;
+    padding-bottom: rem(30) !important;
 }
 
 .advantages {
