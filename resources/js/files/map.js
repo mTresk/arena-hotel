@@ -28,15 +28,21 @@ window.onload = function () {
                             // Создание карты.
                             var myMap = new ymaps.Map('map', {
                                 controls: [],
-                                center: [57.161968520537066, 65.515336338623],
+                                center: [57.16223667256353, 65.5153470674591],
                                 zoom: 16,
                             });
 
                             let myPlacemark = new ymaps.Placemark(
-                                [57.161968520537066, 65.515336338623],
-                                {},
+                                [57.16223667256353, 65.5153470674591],
                                 {
-                                    hasBalloon: false,
+                                    balloonContentHeader: '<span>Гостиница «Арена»</span><br>',
+                                    balloonContentBody: '<span>г. Тюмень, ул. Коммуны 22, корп. 1</span> ' +
+                                        '<p>(заезд с улицы Фридриха Энгельса)</p>' +
+                                        '<a href="tel:+73452690096">+7 (3452) 69-00-96</a><br/>',
+                                    hintContent: 'Гостиница «Арена»',
+                                },
+                                {
+
                                     hideIconOnBalloonOpen: false,
                                     // Необходимо указать данный тип макета.
                                     iconLayout: 'default#imageWithContent',
