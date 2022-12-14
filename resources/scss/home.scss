@@ -50,6 +50,17 @@
     }
 }
 
+.WidgetApp_container {
+    font-family: 'Exo2', sans-serif;
+
+    .react-ui-1g33jba {
+        background-color: $accentColor !important;
+        color: $whiteColor !important;
+        border-color: $accentColor !important;
+        border-radius: 0 !important;
+    }
+}
+
 .advantages {
     &--main {
         transform: translateY(-50%);
