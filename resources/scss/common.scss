@@ -327,15 +327,11 @@
 }
 
 .page-panel {
+    transform: translateY(-50%);
     // .page-panel__body
     &__body {
         display: flex;
         justify-content: center;
-    }
-
-    // .page-panel__panel
-    &__panel {
-        transform: translateY(-50%);
     }
 }
 
