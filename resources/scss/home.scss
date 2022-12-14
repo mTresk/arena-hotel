@@ -46,7 +46,7 @@
     }
 }
 
-.WidgetApp_container, .FixedButton_container {
+.WidgetApp_container, .FixedButton_container, .WidgetGuestSelectControlButtonContainer, .BookingLightbox {
     font-family: 'Exo2', sans-serif;
 
     .react-ui-1g33jba {
@@ -61,24 +61,6 @@
 .WidgetNumberInputButton {
     background: $accentColor !important;
     color: $whiteColor !important;
-}
-
-.WidgetGuestSelectControlButtonContainer {
-    .react-ui-1g33jba {
-        background-color: $accentColor !important;
-        color: $whiteColor !important;
-        border-color: $accentColor !important;
-        border-radius: rem(4) !important;
-    }
-}
-
-.BookingLightbox {
-    .react-ui-1g33jba {
-        background-color: $accentColor !important;
-        color: $whiteColor !important;
-        border-color: $accentColor !important;
-        border-radius: rem(4) !important;
-    }
 }
 
 .advantages {
