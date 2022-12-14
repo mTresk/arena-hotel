@@ -70,16 +70,26 @@
 }
 
 .BookingSearchForm_dates, .BookingSearchForm_guestsSelect {
-    margin-bottom: 0 !important;
+    @media (min-width: 919px) {
+        margin-bottom: 0 !important;
+    }
 }
 
 .BookingSearchForm_control {
     padding-top: rem(40) !important;
     padding-bottom: rem(40) !important;
+
+    @media (max-width: 920px) {
+        width: 340px;
+    }
 }
 
 .BookingSearchForm_button {
     width: 320px !important;
+
+    @media (max-width: 920px) {
+        width: 100% !important;
+    }
 }
 
 .advantages {
