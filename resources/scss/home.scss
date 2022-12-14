@@ -28,10 +28,6 @@
 .panel {
     background-color: #fff;
 
-    .FixedButton_container {
-        display: none;
-    }
-
     &--horizontal {
         width: 890px;
         @media (max-width: 920px) {
@@ -50,7 +46,7 @@
     }
 }
 
-.WidgetApp_container {
+.WidgetApp_container, .FixedButton_container {
     font-family: 'Exo2', sans-serif;
 
     .react-ui-1g33jba {
