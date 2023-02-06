@@ -89,7 +89,6 @@
 
     // .footer__item
     &__item {
-        display: flex;
         align-items: center;
         font-weight: 300;
         line-height: 120%;
@@ -100,6 +99,21 @@
 
         svg {
             margin-right: rem(5);
+        }
+
+        a {
+            display: block;
+            text-decoration: underline;
+            text-decoration-style: dotted;
+            text-underline-offset: rem(4);
+            text-decoration-thickness: 1px;
+            transition: color 0.3s ease-in-out;
+
+            @media (any-hover: hover) {
+                &:hover {
+                    color: $accentColor;
+                }
+            }
         }
     }
 
