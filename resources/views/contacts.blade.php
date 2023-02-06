@@ -92,7 +92,7 @@
                             <div class="contacts-item__content">
                                 <h3 class="contacts-item__title">Реквизиты</h3>
                                 @foreach($requisites as $item)
-                                    <div class="contacts-item__data">{{ $item['item'] }}</div>
+                                    <div class="contacts-item__data">{!! $item['item'] !!}</div>
                                 @endforeach
                             </div>
                         </div>

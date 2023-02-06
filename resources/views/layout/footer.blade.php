@@ -13,14 +13,14 @@
                                 <a href="{{ route('rooms') }}" class="footer-menu__link">Номера и цены</a>
                             </li>
                             <li class="footer-menu__item"><a href="{{ route('service.show', 'cafe') }}" class="footer-menu__link">Кафе</a></li>
+                            {{--                            <li class="footer-menu__item">--}}
+                            {{--                                <a href="{{ route('service.show', 'spa') }}" class="footer-menu__link">Сауна и бассейн</a>--}}
+                            {{--                            </li>--}}
+                            {{--                            <li class="footer-menu__item">--}}
+                            {{--                                <a href="{{ route('service.show', 'parking') }}" class="footer-menu__link">Парковка</a>--}}
+                            {{--                            </li>--}}
                             <li class="footer-menu__item">
-                                <a href="{{ route('service.show', 'spa') }}" class="footer-menu__link">Сауна и бассейн</a>
-                            </li>
-                            <li class="footer-menu__item">
-                                <a href="{{ route('service.show', 'parking') }}" class="footer-menu__link">Парковка</a>
-                            </li>
-                            <li class="footer-menu__item">
-                                <a href="{{ route('service.show', 'fitness') }}" class="footer-menu__link">Фитнес зал</a>
+                                <a href="{{ route('service.show', 'fitness') }}" class="footer-menu__link">Фитнес зал и зона отдыха</a>
                             </li>
                             <li class="footer-menu__item">
                                 <a href="{{ route('contacts') }}" class="footer-menu__link">Контакты</a>

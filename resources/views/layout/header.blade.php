@@ -47,9 +47,9 @@
                             <ul class="menu__list">
                                 <li class="menu__item"><a href="{{ route('rooms') }}" class="menu__link">Номера и цены</a></li>
                                 <li class="menu__item"><a href="{{ route('service.show', 'cafe') }}" class="menu__link">Кафе</a></li>
-                                <li class="menu__item"><a href="{{ route('service.show', 'spa') }}" class="menu__link">Сауна и бассейн</a></li>
-                                <li class="menu__item"><a href="{{ route('service.show', 'parking') }}" class="menu__link">Парковка</a></li>
-                                <li class="menu__item"><a href="{{ route('service.show', 'fitness') }}" class="menu__link">Фитнес зал</a></li>
+                                {{--                                <li class="menu__item"><a href="{{ route('service.show', 'spa') }}" class="menu__link">Сауна и бассейн</a></li>--}}
+                                {{--                                <li class="menu__item"><a href="{{ route('service.show', 'parking') }}" class="menu__link">Парковка</a></li>--}}
+                                <li class="menu__item"><a href="{{ route('service.show', 'fitness') }}" class="menu__link">Фитнес зал и зона отдыха</a></li>
                                 <li class="menu__item"><a href="{{ route('contacts') }}" class="menu__link">Контакты</a></li>
                             </ul>
                         </nav>
