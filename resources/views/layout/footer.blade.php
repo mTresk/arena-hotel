@@ -97,7 +97,7 @@
                 <h3 class="footer__title">Реквизиты</h3>
                 <ul class="footer__list">
                     @foreach($requisites as $item)
-                        <li class="footer__item">{{ $item['item'] }}</li>
+                        <li class="footer__item">{!! $item['item'] !!}</li>
                     @endforeach
                 </ul>
             </div>
