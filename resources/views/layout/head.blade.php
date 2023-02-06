@@ -14,6 +14,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
     <link rel="manifest" href="/site.webmanifest"/>
+    <meta name="yandex-verification" content="289da6e18968854a"/>
+    <meta name="google-site-verification" content="DoEhbJR409lll2RhkIUKk4lxJ_1MT1T8VPO4_9cUkTg"/>
 
     @vite('resources/js/app.js')
 </head>
