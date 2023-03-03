@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('title', 'Контакты')
+@section('description', 'Контакты гостиницы «Арена»')
 
 @section('content')
     <main class="page">

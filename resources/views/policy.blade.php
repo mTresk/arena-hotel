@@ -1,6 +1,7 @@
 @extends('layout.app')
 
 @section('title', 'Политика конфиденциальности')
+@section('description', 'Политика конфиденциальности сайта гостиница «Арена»')
 
 @section('content')
     <main class="page">
