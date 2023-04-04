@@ -1,78 +1,78 @@
 window.onload = function () {
-    const map = document.querySelector('#map');
+	const map = document.querySelector('#map')
 
-    let options_map = {
-        once: true,
-        passive: true,
-        capture: true,
-    };
+	let options_map = {
+		once: true,
+		passive: true,
+		capture: true,
+	}
 
-    if (map) {
-        window.addEventListener('scroll', start_lazy_map, options_map);
-    }
+	if (map) {
+		window.addEventListener('scroll', start_lazy_map, options_map)
+	}
 
-    let map_loaded = false;
+	let map_loaded = false
 
-    function start_lazy_map() {
-        if (!map_loaded) {
-            let map_block = document.getElementById('ymap_lazy');
-            map_loaded = true;
-            map_block.setAttribute('src', map_block.getAttribute('data-src'));
-            map_block.removeAttribute('data-src');
-            setTimeout(() => {
-                if (map) {
-                    function mapInit() {
-                        ymaps.ready(init);
+	function start_lazy_map() {
+		if (!map_loaded) {
+			let map_block = document.getElementById('ymap_lazy')
+			map_loaded = true
+			map_block.setAttribute('src', map_block.getAttribute('data-src'))
+			map_block.removeAttribute('data-src')
+			setTimeout(() => {
+				if (map) {
+					function mapInit() {
+						ymaps.ready(init)
 
-                        function init() {
-                            // Создание карты.
-                            var myMap = new ymaps.Map('map', {
-                                controls: [],
-                                center: [57.16223667256353, 65.5153470674591],
-                                zoom: 16,
-                            });
+						function init() {
+							// Создание карты.
+							var myMap = new ymaps.Map('map', {
+								controls: [],
+								center: [57.16223667256353, 65.5153470674591],
+								zoom: 16,
+							})
 
-                            let myPlacemark = new ymaps.Placemark(
-                                [57.16223667256353, 65.5153470674591],
-                                {
-                                    balloonContentHeader: '<span>Гостиница «Арена»</span><br>',
-                                    balloonContentBody: '<span>г. Тюмень, ул. Коммуны 22, корп. 1</span> ' +
-                                        '<p>(заезд с улицы Фридриха Энгельса)</p>' +
-                                        '<a href="tel:+73452690096">+7 (3452) 69-00-96</a><br/>',
-                                    hintContent: 'Гостиница «Арена»',
-                                },
-                                {
+							let myPlacemark = new ymaps.Placemark(
+								[57.16223667256353, 65.5153470674591],
+								{
+									balloonContentHeader: '<span>Гостиница «Арена»</span><br>',
+									balloonContentBody:
+										'<span>г. Тюмень, ул. Коммуны 22, корп. 1</span> ' +
+										'<p>(заезд с улицы Фридриха Энгельса)</p>' +
+										'<a href="tel:+73452690096">+7 (3452) 69-00-96</a><br/>',
+									hintContent: 'Гостиница «Арена»',
+								},
+								{
+									hideIconOnBalloonOpen: false,
+									// Необходимо указать данный тип макета.
+									iconLayout: 'default#imageWithContent',
+									// Своё изображение иконки метки.
+									iconImageHref: '/img/map.svg',
+									// Размеры метки.
+									iconImageSize: [46, 32],
+									// Смещение левого верхнего угла иконки относительно
+									// её "ножки" (точки привязки).
+									iconImageOffset: [-20, -15],
+									// Смещение слоя с содержимым относительно слоя с картинкой.
+									iconContentOffset: [0, 0],
+								}
+							)
+							myMap.geoObjects.add(myPlacemark)
 
-                                    hideIconOnBalloonOpen: false,
-                                    // Необходимо указать данный тип макета.
-                                    iconLayout: 'default#imageWithContent',
-                                    // Своё изображение иконки метки.
-                                    iconImageHref: '/img/map.svg',
-                                    // Размеры метки.
-                                    iconImageSize: [46, 32],
-                                    // Смещение левого верхнего угла иконки относительно
-                                    // её "ножки" (точки привязки).
-                                    iconImageOffset: [-20, -15],
-                                    // Смещение слоя с содержимым относительно слоя с картинкой.
-                                    iconContentOffset: [0, 0],
-                                }
-                            )
-                            myMap.geoObjects.add(myPlacemark);
+							// myMap.behaviors.disable('drag');
+							myMap.controls.remove('geolocationControl') // удаляем геолокацию
+							myMap.controls.remove('searchControl') // удаляем поиск
+							myMap.controls.remove('trafficControl') // удаляем контроль трафика
+							myMap.controls.remove('typeSelector') // удаляем тип
+							myMap.controls.remove('fullscreenControl') // удаляем кнопку перехода в полноэкранный режим
+							myMap.controls.remove('rulerControl') // удаляем контрол правил
+							myMap.behaviors.disable(['scrollZoom']) // отключаем скролл карты (опционально)
+						}
+					}
 
-                            // myMap.behaviors.disable('drag');
-                            myMap.controls.remove('geolocationControl'); // удаляем геолокацию
-                            myMap.controls.remove('searchControl'); // удаляем поиск
-                            myMap.controls.remove('trafficControl'); // удаляем контроль трафика
-                            myMap.controls.remove('typeSelector'); // удаляем тип
-                            myMap.controls.remove('fullscreenControl'); // удаляем кнопку перехода в полноэкранный режим
-                            myMap.controls.remove('rulerControl'); // удаляем контрол правил
-                            myMap.behaviors.disable(['scrollZoom']); // отключаем скролл карты (опционально)
-                        }
-                    }
-
-                    mapInit();
-                }
-            }, 2000);
-        }
-    }
-};
+					mapInit()
+				}
+			}, 2000)
+		}
+	}
+}

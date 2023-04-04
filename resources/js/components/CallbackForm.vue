@@ -4,25 +4,43 @@
             <div class="popup__content">
                 <div v-if="isSending" class="spinner"></div>
                 <button data-close type="button" class="popup__close">X</button>
-                <form :class="{disabled: isSending}" @submit.prevent="handleSubmit" class="popup__body callback-form">
-                    <div class="callback-form__title">
-                        Заказать звонок
+                <form
+                    :class="{ disabled: isSending }"
+                    @submit.prevent="handleSubmit"
+                    class="popup__body callback-form"
+                >
+                    <div class="callback-form__title">Заказать звонок</div>
+                    <div v-if="errors.name" class="contacts-form__error">
+                        {{ errors.name[0] }}
                     </div>
-                    <div v-if="errors.name" class="contacts-form__error">{{ errors.name[0] }}</div>
                     <div class="callback-form__input">
                         <label>
-                            <input v-model="payload.name" autocomplete="off" type="text" name="name"
-                                   placeholder="Ваше имя">
+                            <input
+                                v-model="payload.name"
+                                autocomplete="off"
+                                type="text"
+                                name="name"
+                                placeholder="Ваше имя"
+                            />
                         </label>
                     </div>
-                    <div v-if="errors.phone" class="contacts-form__error">{{ errors.phone[0] }}</div>
+                    <div v-if="errors.phone" class="contacts-form__error">
+                        {{ errors.phone[0] }}
+                    </div>
                     <div class="callback-form__input">
                         <label>
-                            <input v-model="payload.phone" autocomplete="off" type="text" name="phone"
-                                   placeholder="Ваш телефон">
+                            <input
+                                v-model="payload.phone"
+                                autocomplete="off"
+                                type="text"
+                                name="phone"
+                                placeholder="Ваш телефон"
+                            />
                         </label>
                     </div>
-                    <button type="submit" class="callback-form__button">Отправить</button>
+                    <button type="submit" class="callback-form__button">
+                        Отправить
+                    </button>
                 </form>
             </div>
         </div>
@@ -33,7 +51,9 @@
                 <div class="popup__body thanks">
                     <div class="thanks__title title">Спасибо!</div>
                     <div class="thanks__text">Скоро мы свяжемся с вами.</div>
-                    <button data-close type="button" class="popup__close">X</button>
+                    <button data-close type="button" class="popup__close">
+                        X
+                    </button>
                 </div>
             </div>
         </div>
@@ -41,52 +61,51 @@
 </template>
 
 <script setup>
-import {ref} from "vue";
+import { ref } from "vue";
 import axios from "axios";
-import {flsModules} from "../files/modules";
+import { flsModules } from "../files/modules";
 
 const payload = ref({
-    name: '',
-    phone: '',
-})
+    name: "",
+    phone: "",
+});
 
-const errors = ref([])
+const errors = ref([]);
 
-const isSending = ref(false)
-const isSuccess = ref(false)
+const isSending = ref(false);
+const isSuccess = ref(false);
 
 const formSent = () => {
     if (flsModules.popup) {
-        flsModules.popup.open('#thanks')
+        flsModules.popup.open("#thanks");
     }
     payload.value = {
-        name: '',
-        phone: '',
-    }
-}
+        name: "",
+        phone: "",
+    };
+};
 
 const handleSubmit = () => {
-    isSending.value = true
-    isSuccess.value = false
+    isSending.value = true;
+    isSuccess.value = false;
 
-    console.log(payload.value)
-
-    axios.post('/callback', payload.value)
-        .then(response => {
+    axios
+        .post("/callback", payload.value)
+        .then((response) => {
             if (response.status === 200) {
-                isSending.value = false
-                isSuccess.value = true
-                formSent()
-                errors.value = []
+                isSending.value = false;
+                isSuccess.value = true;
+                formSent();
+                errors.value = [];
             }
         })
-        .catch(e => {
+        .catch((e) => {
             if (e) {
-                isSending.value = false
+                isSending.value = false;
             }
-            errors.value = e.response.data.errors
-        })
-}
+            errors.value = e.response.data.errors;
+        });
+};
 </script>
 
 <style lang="scss" scoped>
@@ -102,11 +121,10 @@ const handleSubmit = () => {
         height: 100%;
         background-color: #0d0a0a;
         opacity: 0.2;
-        content: '';
+        content: "";
         border-radius: 6px;
     }
 }
-
 
 .spinner {
     position: absolute;
@@ -126,56 +144,74 @@ const handleSubmit = () => {
 @-webkit-keyframes load4 {
     0%,
     100% {
-        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
     }
     12.5% {
-        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
     }
     25% {
-        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
     }
     37.5% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
+            0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
     }
     50% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
+            0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
     }
     62.5% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
     }
     75% {
-        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em,
+            2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em,
+            -2em -2em 0 0;
     }
     87.5% {
-        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
 }
 
 @keyframes load4 {
     0%,
     100% {
-        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
+        box-shadow: 0 -3em 0 0.2em, 2em -2em 0 0em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 0;
     }
     12.5% {
-        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 0, 2em -2em 0 0.2em, 3em 0 0 0, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
     }
     25% {
-        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0, 0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -0.5em, 2em -2em 0 0, 3em 0 0 0.2em, 2em 2em 0 0,
+            0 3em 0 -1em, -2em 2em 0 -1em, -3em 0 0 -1em, -2em -2em 0 -1em;
     }
     37.5% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em, 0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 0, 2em 2em 0 0.2em,
+            0 3em 0 0em, -2em 2em 0 -1em, -3em 0em 0 -1em, -2em -2em 0 -1em;
     }
     50% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em, 0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 0em,
+            0 3em 0 0.2em, -2em 2em 0 0, -3em 0em 0 -1em, -2em -2em 0 -1em;
     }
     62.5% {
-        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
+        box-shadow: 0 -3em 0 -1em, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 0, -2em 2em 0 0.2em, -3em 0 0 0, -2em -2em 0 -1em;
     }
     75% {
-        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em, -2em -2em 0 0;
+        box-shadow: 0em -3em 0 -1em, 2em -2em 0 -1em, 3em 0em 0 -1em,
+            2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0.2em,
+            -2em -2em 0 0;
     }
     87.5% {
-        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em, 0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
+        box-shadow: 0em -3em 0 0, 2em -2em 0 -1em, 3em 0 0 -1em, 2em 2em 0 -1em,
+            0 3em 0 -1em, -2em 2em 0 0, -3em 0em 0 0, -2em -2em 0 0.2em;
     }
 }
 </style>

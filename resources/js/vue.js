@@ -1,7 +1,7 @@
-import {createApp} from 'vue/dist/vue.esm-bundler'
-import ContactForm from "./components/ContactForm.vue";
-import CommentForm from "./components/CommentForm.vue";
-import CallbackForm from "./components/CallbackForm.vue";
+import { createApp } from 'vue/dist/vue.esm-bundler'
+import ContactForm from './components/ContactForm.vue'
+import CommentForm from './components/CommentForm.vue'
+import CallbackForm from './components/CallbackForm.vue'
 
 const contactComponent = createApp({
     components: {
