@@ -362,7 +362,16 @@
 		line-height: 140%;
 		text-transform: uppercase;
 
-		@include adaptiveValue('font-size', 20, 14);
+		@include adaptiveValue('font-size', 20, 16);
+		@include adaptiveValue('margin-bottom', 20, 15);
+	}
+
+	h3 {
+		font-weight: 600;
+		line-height: 140%;
+		text-transform: uppercase;
+
+		@include adaptiveValue('font-size', 18, 14);
 		@include adaptiveValue('margin-bottom', 20, 15);
 	}
 
