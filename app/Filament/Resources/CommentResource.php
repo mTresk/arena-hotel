@@ -1,36 +1,45 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CommentResource\Pages;
-use App\Filament\Resources\CommentResource\RelationManagers;
 use App\Models\Comment;
 use App\Models\Room;
+use BackedEnum;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\Group;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Schemas\Components\Group;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\ToggleColumn;
+use Filament\Tables\Table;
+use UnitEnum;
 
-class CommentResource extends Resource
+final class CommentResource extends Resource
 {
     protected static ?string $model = Comment::class;
-    protected static ?string $navigationIcon = 'heroicon-o-chat';
+
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-chat-bubble-oval-left-ellipsis';
+
     protected static ?string $modelLabel = 'отзыв';
+
     protected static ?string $pluralModelLabel = 'Отзывы';
-    protected static ?string $navigationGroup = 'Обратная связь';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Обратная связь';
+
     protected static ?int $navigationSort = 4;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('username')
                     ->label('Имя')
@@ -38,14 +47,7 @@ class CommentResource extends Resource
                     ->maxLength(255),
                 Select::make('room_id')
                     ->required()
-                    ->options(function (callable $get) {
-                        $comment = Comment::find($get('room_id'));
-
-                        if (!$comment) {
-                            return Room::all()->pluck('name', 'id')->toArray();
-                        }
-                        return $comment->room->pluck('name', 'id');
-                    })
+                    ->options(fn (): array => Room::query()->pluck('name', 'id')->all())
                     ->label('Номер'),
                 Textarea::make('review')
                     ->label('Отзыв')
@@ -62,7 +64,7 @@ class CommentResource extends Resource
                 DatePicker::make('created_at')
                     ->label('Дата публикации'),
                 Toggle::make('is_published')
-                    ->label('Опубликован')
+                    ->label('Опубликован'),
             ]);
     }
 
@@ -90,10 +92,10 @@ class CommentResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 

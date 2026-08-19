@@ -1,34 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\CallbackResource\Pages;
-use App\Filament\Resources\CallbackResource\RelationManagers;
 use App\Models\Callback;
-use Filament\Forms;
+use BackedEnum;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Table;
+use UnitEnum;
 
-class CallbackResource extends Resource
+final class CallbackResource extends Resource
 {
     protected static ?string $model = Callback::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-phone-incoming';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-phone-arrow-down-left';
+
     protected static ?string $modelLabel = 'Обратный звонок';
+
     protected static ?string $navigationLabel = 'Обратный звонок';
+
     protected static ?string $pluralModelLabel = 'Обратные звонки';
-    protected static ?string $navigationGroup = 'Обратная связь';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Обратная связь';
+
     protected static ?int $navigationSort = 5;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('name')
                     ->label('Пользователь')
@@ -58,10 +64,10 @@ class CallbackResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 

@@ -2,37 +2,33 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-        "php": "^8.0.2",
-        "filament/filament": "^2.0",
-        "filament/spatie-laravel-media-library-plugin": "^2.0",
-        "filament/spatie-laravel-settings-plugin": "^2.0",
-        "guzzlehttp/guzzle": "^7.2",
-        "jeffgreco13/filament-breezy": "^1.4",
-        "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.7",
-        "spatie/laravel-sitemap": "^6.2",
-        "symfony/http-client": "^6.2",
-        "symfony/mailgun-mailer": "^6.2"
+        "php": "^8.4",
+        "filament/filament": "^5.0",
+        "filament/spatie-laravel-media-library-plugin": "^5.0",
+        "filament/spatie-laravel-settings-plugin": "^5.0",
+        "guzzlehttp/guzzle": "^8.0",
+        "jeffgreco13/filament-breezy": "^3.0",
+        "laravel/framework": "^13.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^3.0",
+        "spatie/laravel-sitemap": "^8.0",
+        "symfony/http-client": "^8.0",
+        "symfony/mailgun-mailer": "^8.0"
     },
     "require-dev": {
-        "doctrine/dbal": "^3.5",
-        "fakerphp/faker": "^1.9.1",
-        "laravel-lang/attributes": "^2.0",
-        "laravel-lang/lang": "^12.5",
-        "laravel-lang/publisher": "^14.4",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.0",
-        "spatie/laravel-ignition": "^2.0"
+        "driftingly/rector-laravel": "^2.5",
+        "fakerphp/faker": "^1.23",
+        "larastan/larastan": "^3.0",
+        "laravel-lang/common": "^6.0",
+        "laravel/pail": "^1.2.5",
+        "laravel/pint": "^1.24",
+        "laravel/sail": "^1.41",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^13.0"
     },
     "autoload": {
         "psr-4": {
@@ -49,7 +45,10 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade",
+            "@php artisan livewire:publish --assets --ansi",
+            "@php -r \"is_dir('public/js/app') || mkdir('public/js/app', 0755, true); if (file_exists('public/vendor/livewire/livewire.js')) copy('public/vendor/livewire/livewire.js', 'public/js/app/lw.js'); if (file_exists('public/vendor/livewire/livewire.min.js')) copy('public/vendor/livewire/livewire.min.js', 'public/js/app/lw.min.js');\""
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -59,6 +58,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "analyse": [
+            "./vendor/bin/rector",
+            "./vendor/bin/phpstan analyse",
+            "./vendor/bin/pint"
         ]
     },
     "extra": {
@@ -71,7 +75,8 @@
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
-            "pestphp/pest-plugin": true
+            "pestphp/pest-plugin": true,
+            "php-http/discovery": true
         }
     },
     "minimum-stability": "stable",

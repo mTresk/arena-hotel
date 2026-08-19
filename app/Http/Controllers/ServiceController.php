@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Service;
-use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+final class ServiceController
 {
     public function show($slug, Service $service)
     {

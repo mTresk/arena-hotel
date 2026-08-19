@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use Spatie\LaravelSettings\Exceptions\SettingAlreadyExists;
 use Spatie\LaravelSettings\Migrations\SettingsMigration;
 
-class UpdateGeneralSettings extends SettingsMigration
+final class UpdateGeneralSettings extends SettingsMigration
 {
     /**
      * @throws SettingAlreadyExists

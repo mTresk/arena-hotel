@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use App\Http\Traits\Rateable;
@@ -8,22 +10,15 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Comment extends Model
+/**
+ * @property-read Rating|null $rating
+ */
+final class Comment extends Model
 {
     use HasFactory;
     use Rateable;
 
     protected $fillable = ['username', 'review', 'room_id', 'is_published', 'created_at'];
-
-    public function room(): BelongsTo
-    {
-        return $this->belongsTo(Room::class);
-    }
-
-    public function rating(): HasOne
-    {
-        return $this->hasOne(Rating::class, 'rateable_id');
-    }
 
     public static function boot()
     {
@@ -33,5 +28,15 @@ class Comment extends Model
                 $rating->delete();
             });
         });
+    }
+
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
+
+    public function rating(): HasOne
+    {
+        return $this->hasOne(Rating::class, 'rateable_id');
     }
 }

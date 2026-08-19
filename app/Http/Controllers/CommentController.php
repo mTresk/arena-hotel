@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CommentFormRequest;
 use App\Mail\CommentForm;
 use App\Models\Comment;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
-class CommentController extends Controller
+final class CommentController
 {
     public function comment(CommentFormRequest $request)
     {
@@ -27,7 +28,7 @@ class CommentController extends Controller
             $mailData = [
                 'username' => $formData['username'],
                 'review' => $formData['review'],
-                'rating' => $formData['rating']
+                'rating' => $formData['rating'],
             ];
 
             foreach ([config('mail.admin_email'), config('mail.manager_email')] as $recipient) {
@@ -35,7 +36,6 @@ class CommentController extends Controller
             }
         }
 
-
-        return response()->json('Спасибо за отзыв!', 200, array());
+        return response()->json('Спасибо за отзыв!', 200, []);
     }
 }

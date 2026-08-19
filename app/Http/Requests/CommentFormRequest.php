@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommentFormRequest extends FormRequest
+final class CommentFormRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -17,7 +19,7 @@ class CommentFormRequest extends FormRequest
             'username' => ['required', 'string', 'max:55'],
             'review' => ['required', 'string', 'min:10'],
             'rating' => ['required', 'integer'],
-            'room_id' => ['required']
+            'room_id' => ['required'],
         ];
     }
 

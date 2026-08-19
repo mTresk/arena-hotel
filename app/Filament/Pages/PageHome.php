@@ -1,43 +1,66 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Pages;
 
 use App\Models\Home;
-use Filament\Forms\Components\Card;
+use BackedEnum;
+use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Pages\Page;
-use Filament\Forms;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Str;
+use UnitEnum;
 
-class PageHome extends Page implements Forms\Contracts\HasForms
+/**
+ * @property-read Schema $form
+ */
+final class PageHome extends Page implements Forms\Contracts\HasForms
 {
-    protected static ?string $navigationIcon = 'heroicon-o-document-text';
-    protected static ?string $navigationLabel = 'Главная';
-    protected static ?string $title = 'Главная страница';
-    protected static ?string $navigationGroup = 'Страницы';
-    protected static ?string $slug = 'page-home';
-    protected static ?int $navigationSort = 1;
-
-    protected static string $view = 'filament.pages.page-home';
-
     use Forms\Concerns\InteractsWithForms;
 
     public $hero_image;
+
     public $banner1_title;
+
     public $banner2_title;
+
     public $banner1_description;
+
     public $banner2_description;
+
     public $slider1_title;
+
     public $slider2_title;
+
     public $features;
+
     public $seo_title;
+
     public $seo_description;
+
     public $ogImage;
+
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-document-text';
+
+    protected static ?string $navigationLabel = 'Главная';
+
+    protected static ?string $title = 'Главная страница';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Страницы';
+
+    protected static ?string $slug = 'page-home';
+
+    protected static ?int $navigationSort = 1;
+
+    protected string $view = 'filament.pages.page-home';
 
     public function mount(): void
     {
@@ -64,13 +87,23 @@ class PageHome extends Page implements Forms\Contracts\HasForms
             ]);
         }
 
+    }
 
+    public function create(): void
+    {
+        $homePage = Home::first();
+        $homePage->update($this->form->getState());
+        $this->form->model($homePage)->saveRelationships();
+        Notification::make()
+            ->title('Сохранено')
+            ->success()
+            ->send();
     }
 
     protected function getFormSchema(): array
     {
         return [
-            Card::make([
+            Section::make([
                 Section::make('Основное')->schema([
                     SpatieMediaLibraryFileUpload::make('hero_image')
                         ->image()
@@ -128,22 +161,18 @@ class PageHome extends Page implements Forms\Contracts\HasForms
                         TextInput::make('seo_title')
                             ->label('SEO заголовок')
                             ->maxLength(60)
-                            ->helperText(function (?string $state): string {
-                                return (string)Str::of(strlen($state))
-                                    ->append(' / ')
-                                    ->append(60 . ' ')
-                                    ->append(Str::of('символов')->lower());
-                            })
+                            ->helperText(fn (?string $state): string => (string) Str::of((string) mb_strlen($state ?? ''))
+                                ->append(' / ')
+                                ->append(60 .' ')
+                                ->append((string) Str::of('символов')->lower()))
                             ->reactive(),
                         Textarea::make('seo_description')
                             ->label('SEO описание')
                             ->maxLength(160)
-                            ->helperText(function (?string $state): string {
-                                return (string)Str::of(strlen($state))
-                                    ->append(' / ')
-                                    ->append(160 . ' ')
-                                    ->append(Str::of('символов')->lower());
-                            })
+                            ->helperText(fn (?string $state): string => (string) Str::of((string) mb_strlen($state ?? ''))
+                                ->append(' / ')
+                                ->append(160 .' ')
+                                ->append((string) Str::of('символов')->lower()))
                             ->reactive(),
                         SpatieMediaLibraryFileUpload::make('ogImage')
                             ->image()
@@ -151,20 +180,12 @@ class PageHome extends Page implements Forms\Contracts\HasForms
                             ->label('SEO изображение'),
                     ])
                     ->columnSpan(1),
-            ])->columns(3)
+            ])->columns(3),
         ];
     }
 
     protected function getFormModel(): Home
     {
         return Home::first();
-    }
-
-    public function create(): void
-    {
-        $homePage = Home::first();
-        $homePage->update($this->form->getState());
-        $this->form->model($homePage)->saveRelationships();
-        $this->notify('success', 'Сохранено');
     }
 }

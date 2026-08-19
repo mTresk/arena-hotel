@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
@@ -7,7 +9,7 @@ use App\Mail\ContactForm;
 use App\Models\Contact;
 use Illuminate\Support\Facades\Mail;
 
-class ContactController extends Controller
+final class ContactController
 {
     public function index()
     {
@@ -26,6 +28,6 @@ class ContactController extends Controller
             Mail::to($recipient)->send(new ContactForm($formData));
         }
 
-        return response()->json('Спасибо за сообщение!', 200, array());
+        return response()->json('Спасибо за сообщение!', 200, []);
     }
 }

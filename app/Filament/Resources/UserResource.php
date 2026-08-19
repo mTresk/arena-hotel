@@ -1,38 +1,44 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
-use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
-use Filament\Forms;
-use Filament\Forms\Components\Card;
+use BackedEnum;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Pages\Page;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\Facades\Hash;
 
-class UserResource extends Resource
+final class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-users';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-users';
+
     protected static ?string $modelLabel = 'пользователя';
+
     protected static ?string $pluralModelLabel = 'Пользователи';
+
     protected static ?int $navigationSort = 11;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
-                Card::make()->schema([
+                Section::make()->schema([
                     FileUpload::make('avatar')
                         ->avatar()
                         ->label('Аватар'),
@@ -50,17 +56,17 @@ class UserResource extends Resource
                     TextInput::make('password')
                         ->password()
                         ->maxLength(255)
-                        ->dehydrateStateUsing(static fn(null|string $state): null|string => filled($state) ? Hash::make($state) : null)
-                        ->required(static fn(Page $livewire) => $livewire instanceof Pages\CreateUser)
-                        ->dehydrated(static fn(null|string $state): bool => filled($state))
-                        ->label(static fn(Page $livewire) => ($livewire instanceof Pages\EditUser) ? 'Новый пароль' : 'Пароль'),
+                        ->dehydrateStateUsing(static fn (?string $state): ?string => filled($state) ? Hash::make($state) : null)
+                        ->required(static fn (Page $livewire) => $livewire instanceof Pages\CreateUser)
+                        ->dehydrated(static fn (?string $state): bool => filled($state))
+                        ->label(static fn (Page $livewire) => ($livewire instanceof Pages\EditUser) ? 'Новый пароль' : 'Пароль'),
                     Toggle::make('is_admin')
                         ->required()
                         ->label('Администратор'),
                     Toggle::make('is_editor')
                         ->required()
                         ->label('Редактор'),
-                ])
+                ]),
             ]);
     }
 
@@ -81,10 +87,10 @@ class UserResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 
@@ -104,13 +110,13 @@ class UserResource extends Resource
         ];
     }
 
-    protected static function shouldRegisterNavigation(): bool
+    public static function shouldRegisterNavigation(): bool
     {
-        return auth()->user()->isAdmin();
+        return auth()->user()?->isAdmin() ?? false;
     }
 
-    public function mount(): void
+    public static function canViewAny(): bool
     {
-        abort_unless(auth()->user()->isAdmin(), 403);
+        return auth()->user()?->isAdmin() ?? false;
     }
 }

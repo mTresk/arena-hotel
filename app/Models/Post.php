@@ -1,18 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Post extends Model implements HasMedia
+final class Post extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
@@ -32,60 +34,60 @@ class Post extends Model implements HasMedia
     /**
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('news')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CONTAIN, 860, 860)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 860, 860);
         $this
             ->addMediaConversion('news@2')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CONTAIN, 1720, 1720)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 1720, 1720);
         $this
             ->addMediaConversion('newsWebp')
             ->performOnCollections('news')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 860, 860)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 860, 860);
         $this
             ->addMediaConversion('newsWebp@2')
             ->performOnCollections('news')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 1720, 1720)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 1720, 1720);
         $this
             ->addMediaConversion('newsThumb')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CONTAIN, 350, 350)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 350, 350);
         $this
             ->addMediaConversion('newsThumbWebp')
             ->performOnCollections('news')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 350, 350)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 350, 350);
         $this
             ->addMediaConversion('newsThumb@2')
             ->performOnCollections('news')
-            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 700, 700);
         $this
             ->addMediaConversion('newsThumbWebp@2')
             ->performOnCollections('news')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 700, 700)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 700, 700);
     }
 
     protected function image(): Attribute
@@ -93,13 +95,13 @@ class Post extends Model implements HasMedia
         $collection = $this->getMedia('news')->last();
 
         return Attribute::make(
-            get: fn() => (
-            [
-                'news' => $collection->getUrl('news'),
-                'newsWebp' => $collection->getUrl('newsWebp'),
-                'newsBig' => $collection->getUrl('news@2'),
-                'newsBigWebp' => $collection->getUrl('newsWebp@2'),
-            ])
+            get: fn () => (
+                [
+                    'news' => $collection->getUrl('news'),
+                    'newsWebp' => $collection->getUrl('newsWebp'),
+                    'newsBig' => $collection->getUrl('news@2'),
+                    'newsBigWebp' => $collection->getUrl('newsWebp@2'),
+                ])
         );
     }
 
@@ -108,13 +110,13 @@ class Post extends Model implements HasMedia
         $collection = $this->getMedia('news')->last();
 
         return Attribute::make(
-            get: fn() => (
-            [
-                'newsThumb' => $collection->getUrl('newsThumb'),
-                'newsThumbWebp' => $collection->getUrl('newsThumbWebp'),
-                'newsThumbBig' => $collection->getUrl('newsThumb@2'),
-                'newsThumbBigWebp' => $collection->getUrl('newsThumbWebp@2'),
-            ])
+            get: fn () => (
+                [
+                    'newsThumb' => $collection->getUrl('newsThumb'),
+                    'newsThumbWebp' => $collection->getUrl('newsThumbWebp'),
+                    'newsThumbBig' => $collection->getUrl('newsThumb@2'),
+                    'newsThumbBigWebp' => $collection->getUrl('newsThumbWebp@2'),
+                ])
         );
     }
 }

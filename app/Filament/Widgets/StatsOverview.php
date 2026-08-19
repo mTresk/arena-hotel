@@ -1,24 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Widgets;
 
 use App\Models\Callback;
 use App\Models\Comment;
 use App\Models\Contact;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Card;
+use Filament\Widgets\StatsOverviewWidget\Stat;
 
-class StatsOverview extends BaseWidget
+final class StatsOverview extends BaseWidget
 {
-    protected function getCards(): array
+    protected function getStats(): array
     {
-        $commentCount = Comment::count();
-        $contactCount = Contact::count();
-        $callbackCount = Callback::count();
         return [
-            Card::make('Отзывов', $commentCount),
-            Card::make('Контактов', $contactCount),
-            Card::make('Обратных звонков', $callbackCount),
+            Stat::make('Отзывов', Comment::count()),
+            Stat::make('Контактов', Contact::count()),
+            Stat::make('Обратных звонков', Callback::count()),
         ];
     }
 }

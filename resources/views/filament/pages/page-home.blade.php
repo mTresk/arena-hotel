@@ -1,5 +1,5 @@
-<x-filament::page>
-    <form wire:submit.prevent="create">
+<x-filament-panels::page>
+    <form wire:submit="create">
         {{ $this->form }}
 
         <div class="flex mt-4">
@@ -8,4 +8,4 @@
             </x-filament::button>
         </div>
     </form>
-</x-filament::page>
+</x-filament-panels::page>

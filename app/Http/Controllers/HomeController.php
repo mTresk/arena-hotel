@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Models\Home;
 use App\Models\Post;
 use App\Models\Room;
 
-class HomeController extends Controller
+final class HomeController
 {
     public function index()
     {
@@ -29,5 +31,4 @@ class HomeController extends Controller
 
         return view('home', compact('standardRooms', 'luxuryRooms', 'news', 'homeData'));
     }
-
 }

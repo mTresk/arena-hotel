@@ -1,32 +1,40 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ContactResource\Pages;
-use App\Filament\Resources\ContactResource\RelationManagers;
 use App\Models\Contact;
-use Filament\Forms;
+use BackedEnum;
+use Exception;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
+use UnitEnum;
 
-class ContactResource extends Resource
+final class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-user-add';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-user-plus';
+
     protected static ?string $modelLabel = 'контакта';
+
     protected static ?string $pluralModelLabel = 'Форма контактов';
-    protected static ?string $navigationGroup = 'Обратная связь';
+
+    protected static string|UnitEnum|null $navigationGroup = 'Обратная связь';
+
     protected static ?int $navigationSort = 5;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('name')
                     ->label('Имя')
@@ -49,7 +57,7 @@ class ContactResource extends Resource
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public static function table(Table $table): Table
     {
@@ -61,7 +69,7 @@ class ContactResource extends Resource
                 TextColumn::make('message')
                     ->label('Сообщение')
                     ->limit(20),
-                Tables\Columns\TextColumn::make('created_at')
+                TextColumn::make('created_at')
                     ->dateTime()
                     ->label('Дата'),
             ])
@@ -69,10 +77,10 @@ class ContactResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 

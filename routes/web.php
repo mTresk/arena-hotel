@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Http\Controllers\CallbackController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
@@ -17,7 +19,6 @@ Route::get('/policy', [PolicyController::class, 'index'])->name('policy');
 Route::get('/rooms/{room}', [RoomController::class, 'show'])->name('room.show');
 Route::get('/news/{slug}', [PostController::class, 'show'])->name('post.show');
 Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('service.show');
-
 
 Route::post('/contact', [ContactController::class, 'contact'])->name('contact');
 Route::post('/comment', [CommentController::class, 'comment'])->name('comment');

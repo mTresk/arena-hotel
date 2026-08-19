@@ -1,16 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Image\Enums\Fit;
 use Spatie\Image\Exceptions\InvalidManipulation;
-use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Service extends Model implements HasMedia
+final class Service extends Model implements HasMedia
 {
     use HasFactory;
     use InteractsWithMedia;
@@ -20,52 +22,52 @@ class Service extends Model implements HasMedia
     /**
      * @throws InvalidManipulation
      */
-    public function registerMediaConversions(Media $media = null): void
+    public function registerMediaConversions(?Media $media = null): void
     {
         $this
             ->addMediaConversion('thumb')
             ->performOnCollections('thumbs')
-            ->fit(Manipulations::FIT_CONTAIN, 350, 250)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 350, 250);
         $this
             ->addMediaConversion('thumbWebp')
             ->performOnCollections('thumbs')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 350, 250)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 350, 250);
         $this
             ->addMediaConversion('banner')
             ->performOnCollections('banners')
-            ->fit(Manipulations::FIT_CONTAIN, 500, 800)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 500, 800);
         $this
             ->addMediaConversion('bannerWebp')
             ->performOnCollections('banners')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 500, 800)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 500, 800);
         $this
             ->addMediaConversion('header')
             ->performOnCollections('headers')
-            ->fit(Manipulations::FIT_CONTAIN, 1920, 400)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 1920, 400);
         $this
             ->addMediaConversion('headerWebp')
             ->performOnCollections('headers')
-            ->format('webp')
-            ->fit(Manipulations::FIT_CONTAIN, 1920, 400)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->format('webp')
+            ->fit(Fit::Contain, 1920, 400);
         $this
             ->addMediaConversion('ogImage')
             ->performOnCollections('seo')
-            ->fit(Manipulations::FIT_CONTAIN, 1200, 630)
             ->nonQueued()
-            ->nonOptimized();
+            ->nonOptimized()
+            ->fit(Fit::Contain, 1200, 630);
     }
 }

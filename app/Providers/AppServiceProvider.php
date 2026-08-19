@@ -1,17 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers;
 
 use App\Filament\Settings\GeneralSettings;
-use Filament\Facades\Filament;
-use Filament\Navigation\NavigationGroup;
-use Filament\Navigation\UserMenuItem;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
-use JeffGreco13\FilamentBreezy\Pages\MyProfile;
 
-class AppServiceProvider extends ServiceProvider
+final class AppServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
@@ -39,13 +37,6 @@ class AppServiceProvider extends ServiceProvider
             $view->with('email', $settings->email);
             $view->with('schedule', $settings->schedule);
             $view->with('requisites', $settings->requisites);
-        });
-
-        Filament::serving(function () {
-            Filament::registerViteTheme('resources/scss/filament.scss');
-            Filament::registerUserMenuItems([
-                'account' => UserMenuItem::make()->url(MyProfile::getUrl()),
-            ]);
         });
     }
 }

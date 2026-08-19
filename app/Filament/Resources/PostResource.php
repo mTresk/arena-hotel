@@ -1,41 +1,48 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PostResource\Pages;
-use App\Filament\Resources\PostResource\RelationManagers;
 use App\Models\Post;
-use Closure;
+use BackedEnum;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Schemas\Components\Utilities\Get;
+use Filament\Schemas\Components\Utilities\Set;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
-class PostResource extends Resource
+final class PostResource extends Resource
 {
     protected static ?string $model = Post::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rss';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-rss';
+
     protected static ?string $modelLabel = 'новость';
+
     protected static ?string $pluralModelLabel = 'Новости';
+
     protected static ?int $navigationSort = 3;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 TextInput::make('title')
-                    ->afterStateUpdated(function (Closure $get, Closure $set, ?string $state) {
-                        if (!$get('is_slug_changed_manually') && filled($state)) {
+                    ->afterStateUpdated(function (Get $get, Set $set, ?string $state) {
+                        if (! $get('is_slug_changed_manually') && filled($state)) {
                             $set('slug', Str::slug($state));
                         }
                     })
@@ -43,7 +50,7 @@ class PostResource extends Resource
                     ->reactive()
                     ->required(),
                 TextInput::make('slug')
-                    ->afterStateUpdated(function (Closure $set) {
+                    ->afterStateUpdated(function (Set $set) {
                         $set('is_slug_changed_manually', true);
                     })
                     ->label('Ссылка')
@@ -88,10 +95,10 @@ class PostResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ]);
     }
 

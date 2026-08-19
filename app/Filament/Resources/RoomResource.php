@@ -1,36 +1,43 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoomResource\Pages;
 use App\Filament\Resources\RoomResource\RelationManagers;
 use App\Models\Room;
+use BackedEnum;
+use Filament\Actions\DeleteBulkAction;
+use Filament\Actions\EditAction;
 use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Resources\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
-use Filament\Tables;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 use Illuminate\Support\Str;
 
-class RoomResource extends Resource
+final class RoomResource extends Resource
 {
     protected static ?string $model = Room::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-key';
+    protected static string|BackedEnum|null $navigationIcon = 'heroicon-o-key';
+
     protected static ?string $modelLabel = 'номера';
+
     protected static ?string $pluralModelLabel = 'Номера';
+
     protected static ?int $navigationSort = 1;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form
+        return $schema
             ->schema([
                 Section::make('Основное')->schema([
                     TextInput::make('name')
@@ -55,7 +62,7 @@ class RoomResource extends Resource
                         ->schema([
                             TextInput::make('facilities')
                                 ->label('Удобство')
-                                ->required()
+                                ->required(),
                         ])
                         ->orderable()
                         ->collapsed()
@@ -78,7 +85,7 @@ class RoomResource extends Resource
                         ->multiple()
                         ->enableReordering()
                         ->label('Изображения в слайдере')
-                        ->panelLayout('grid')
+                        ->panelLayout('grid'),
                 ])->columnSpan(2),
 
                 Section::make('SEO')
@@ -86,27 +93,23 @@ class RoomResource extends Resource
                         TextInput::make('seo_title')
                             ->label('SEO заголовок')
                             ->maxLength(60)
-                            ->helperText(function (?string $state): string {
-                                return (string)Str::of(strlen($state))
-                                    ->append(' / ')
-                                    ->append(60 . ' ')
-                                    ->append(Str::of('символов')->lower());
-                            })
+                            ->helperText(fn (?string $state): string => (string) Str::of((string) mb_strlen($state ?? ''))
+                                ->append(' / ')
+                                ->append(60 .' ')
+                                ->append((string) Str::of('символов')->lower()))
                             ->reactive(),
                         Textarea::make('seo_description')
                             ->label('SEO описание')
                             ->maxLength(160)
-                            ->helperText(function (?string $state): string {
-                                return (string)Str::of(strlen($state))
-                                    ->append(' / ')
-                                    ->append(160 . ' ')
-                                    ->append(Str::of('символов')->lower());
-                            })
+                            ->helperText(fn (?string $state): string => (string) Str::of((string) mb_strlen($state ?? ''))
+                                ->append(' / ')
+                                ->append(160 .' ')
+                                ->append((string) Str::of('символов')->lower()))
                             ->reactive(),
                         SpatieMediaLibraryFileUpload::make('ogImage')
                             ->image()
                             ->collection('seo')
-                            ->label('SEO изображение'),])
+                            ->label('SEO изображение'), ])
                     ->columnSpan(1),
             ])->columns(3);
     }
@@ -134,10 +137,10 @@ class RoomResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                EditAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\DeleteBulkAction::make(),
+                DeleteBulkAction::make(),
             ])->defaultSort('category.name', 'desc');
     }
 

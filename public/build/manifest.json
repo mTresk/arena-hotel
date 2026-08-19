@@ -1,86 +1,76 @@
 {
-  "resources/fonts/Exo2-Light.woff2": {
-    "file": "assets/Exo2-Light.0ea539f4.woff2",
-    "src": "resources/fonts/Exo2-Light.woff2"
-  },
-  "resources/fonts/Exo2-Bold.woff2": {
-    "file": "assets/Exo2-Bold.3e79b9a0.woff2",
-    "src": "resources/fonts/Exo2-Bold.woff2"
-  },
-  "resources/fonts/Exo2-Medium.woff2": {
-    "file": "assets/Exo2-Medium.371423c2.woff2",
-    "src": "resources/fonts/Exo2-Medium.woff2"
-  },
-  "resources/fonts/Exo2-Regular.woff2": {
-    "file": "assets/Exo2-Regular.a641c67f.woff2",
-    "src": "resources/fonts/Exo2-Regular.woff2"
-  },
-  "resources/fonts/Exo2-SemiBold.woff2": {
-    "file": "assets/Exo2-SemiBold.b4a31f1c.woff2",
-    "src": "resources/fonts/Exo2-SemiBold.woff2"
-  },
   "resources/fonts/Exo2-Bold.woff": {
-    "file": "assets/Exo2-Bold.61e73194.woff",
+    "file": "assets/Exo2-Bold-CsEVdwcs.woff",
     "src": "resources/fonts/Exo2-Bold.woff"
   },
-  "resources/fonts/Exo2-Regular.woff": {
-    "file": "assets/Exo2-Regular.71a977ce.woff",
-    "src": "resources/fonts/Exo2-Regular.woff"
+  "resources/fonts/Exo2-Bold.woff2": {
+    "file": "assets/Exo2-Bold-BNbXWtZR.woff2",
+    "src": "resources/fonts/Exo2-Bold.woff2"
   },
   "resources/fonts/Exo2-Light.woff": {
-    "file": "assets/Exo2-Light.61d2d050.woff",
+    "file": "assets/Exo2-Light-B5kCEi2Y.woff",
     "src": "resources/fonts/Exo2-Light.woff"
   },
+  "resources/fonts/Exo2-Light.woff2": {
+    "file": "assets/Exo2-Light-U2nuj7S1.woff2",
+    "src": "resources/fonts/Exo2-Light.woff2"
+  },
   "resources/fonts/Exo2-Medium.woff": {
-    "file": "assets/Exo2-Medium.d99e133a.woff",
+    "file": "assets/Exo2-Medium-Bs8W_EOo.woff",
     "src": "resources/fonts/Exo2-Medium.woff"
   },
+  "resources/fonts/Exo2-Medium.woff2": {
+    "file": "assets/Exo2-Medium-Ck00oSvI.woff2",
+    "src": "resources/fonts/Exo2-Medium.woff2"
+  },
+  "resources/fonts/Exo2-Regular.woff": {
+    "file": "assets/Exo2-Regular-C4H23EQo.woff",
+    "src": "resources/fonts/Exo2-Regular.woff"
+  },
+  "resources/fonts/Exo2-Regular.woff2": {
+    "file": "assets/Exo2-Regular-Cg8n1L2q.woff2",
+    "src": "resources/fonts/Exo2-Regular.woff2"
+  },
   "resources/fonts/Exo2-SemiBold.woff": {
-    "file": "assets/Exo2-SemiBold.bcb9a696.woff",
+    "file": "assets/Exo2-SemiBold-Bby-YSJC.woff",
     "src": "resources/fonts/Exo2-SemiBold.woff"
   },
+  "resources/fonts/Exo2-SemiBold.woff2": {
+    "file": "assets/Exo2-SemiBold-D9MU6oN5.woff2",
+    "src": "resources/fonts/Exo2-SemiBold.woff2"
+  },
   "resources/js/app.js": {
-    "file": "assets/app.22256a6c.js",
+    "file": "assets/app-Bd6TinLT.js",
+    "name": "app",
     "src": "resources/js/app.js",
     "isEntry": true,
     "imports": [
+      "resources/js/vue.js",
       "resources/js/vue.js"
     ],
     "css": [
-      "assets/app.4e1402aa.css"
+      "assets/app-Cwx59S_L.css"
     ],
     "assets": [
-      "assets/Exo2-Bold.3e79b9a0.woff2",
-      "assets/Exo2-Bold.61e73194.woff",
-      "assets/Exo2-Light.0ea539f4.woff2",
-      "assets/Exo2-Light.61d2d050.woff",
-      "assets/Exo2-Medium.371423c2.woff2",
-      "assets/Exo2-Medium.d99e133a.woff",
-      "assets/Exo2-Regular.a641c67f.woff2",
-      "assets/Exo2-Regular.71a977ce.woff",
-      "assets/Exo2-SemiBold.b4a31f1c.woff2",
-      "assets/Exo2-SemiBold.bcb9a696.woff"
+      "assets/Exo2-Bold-BNbXWtZR.woff2",
+      "assets/Exo2-Bold-CsEVdwcs.woff",
+      "assets/Exo2-Light-U2nuj7S1.woff2",
+      "assets/Exo2-Light-B5kCEi2Y.woff",
+      "assets/Exo2-Medium-Ck00oSvI.woff2",
+      "assets/Exo2-Medium-Bs8W_EOo.woff",
+      "assets/Exo2-Regular-Cg8n1L2q.woff2",
+      "assets/Exo2-Regular-C4H23EQo.woff",
+      "assets/Exo2-SemiBold-D9MU6oN5.woff2",
+      "assets/Exo2-SemiBold-Bby-YSJC.woff"
     ]
   },
   "resources/js/vue.js": {
-    "file": "assets/vue.a7f0b437.js",
+    "file": "assets/vue-TU3BEoZW.js",
+    "name": "vue",
     "src": "resources/js/vue.js",
     "isEntry": true,
     "css": [
-      "assets/vue.ef39de16.css"
+      "assets/vue-BD27XI-E.css"
     ]
-  },
-  "resources/js/vue.css": {
-    "file": "assets/vue.ef39de16.css",
-    "src": "resources/js/vue.css"
-  },
-  "resources/js/app.css": {
-    "file": "assets/app.4e1402aa.css",
-    "src": "resources/js/app.css"
-  },
-  "resources/scss/filament.scss": {
-    "file": "assets/filament.3145c54a.css",
-    "src": "resources/scss/filament.scss",
-    "isEntry": true
   }
 }

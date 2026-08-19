@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CallbackFormRequest extends FormRequest
+final class CallbackFormRequest extends FormRequest
 {
     public function authorize(): bool
     {

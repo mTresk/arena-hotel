@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Spatie\Sitemap\SitemapGenerator;
 
-class GenerateSitemap extends Command
+final class GenerateSitemap extends Command
 {
     protected $signature = 'sitemap:generate';
 

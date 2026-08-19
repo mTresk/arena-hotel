@@ -1,22 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Settings;
 
 use Spatie\LaravelSettings\Settings;
 
-class GeneralSettings extends Settings
+final class GeneralSettings extends Settings
 {
     public string $site_name;
+
     public string $address;
+
     public string $address_full;
+
     public string $phone;
+
     public string $phone_mobile;
+
     public string $phone_local;
+
     public string $whatsapp;
+
     public string $telegram;
+
     public string $viber;
+
     public string $email;
+
     public string $schedule;
+
     public array $requisites;
 
     public static function group(): string

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -8,17 +10,11 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class CallbackForm extends Mailable
+final class CallbackForm extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $formData;
-
-    public function __construct($formData)
-    {
-        $this->formData = $formData;
-    }
-
+    public function __construct(public $formData) {}
 
     public function envelope(): Envelope
     {
